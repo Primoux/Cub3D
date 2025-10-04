@@ -2,7 +2,7 @@
 
 NAME		=	cub3D
 CC		 	=	cc
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 #-------------------------------- DIRECTORIES --------------------------------#
 
@@ -30,7 +30,8 @@ MLX			= $(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
-SRCS		=	src/main.c
+SRCS		=	src/main.c \
+				src/init/init.c
 
 #-------------------------------- OBJECTS --------------------------------------#
 
