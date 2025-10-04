@@ -1,9 +1,6 @@
-#include "../inc/cubd.h"
-
-
-
+#include "cubd.h"
 
 int main()
 {
-	t_data data;
+	printf("coucou\n");
 }
