@@ -47,13 +47,13 @@ $(LIBFT): libft
 $(MLX): mlx
 
 mlx :
-	@$(MAKE) --silent -C $(LIBMLX_DIR) 
+	$(MAKE) -C $(LIBMLX_DIR) 
 
 libft:
-	@$(MAKE) --silent -C $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	@$(CC) $(OBJS) -o $(NAME)  $(LIBFT) $(LDFLAGS)
+	$(CC) $(OBJS) -o $(NAME)  $(LIBFT) $(LDFLAGS)
 
 
 $(OBJ_DIR)%.o: %.c
@@ -72,7 +72,7 @@ fclean:
 
 
 re: fclean
-	@$(MAKE) --silent all
+	$(MAKE) -j all
 
 print-%:
 	@echo $($(patsubst print-%,%,$@))
