@@ -6,7 +6,7 @@
 void winner(t_data data)
 {
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, 1000, 1000, "prout");
+	data.win = mlx_new_window(data.mlx, WEIGHT, HEIGHT, "prout");
 	mlx_loop(data.mlx);
 }
 

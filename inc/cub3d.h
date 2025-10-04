@@ -1,6 +1,11 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+
+//Dell
+# define HEIGHT 1080
+# define WEIGHT 1920
+
 #include "libft.h"
 #include <math.h>
 #include <unistd.h>
