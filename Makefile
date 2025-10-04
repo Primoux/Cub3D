@@ -25,8 +25,8 @@ LDFLAGS		=	-L$(LIBMLX_DIR) -lmlx \
 
 #-------------------------------- LIBRARIES --------------------------------#
 
-LIBFT		= $(LIBFT_DIR)/libft.a
-MLX			= $(LIBMLX_DIR)/libmlx.a
+LIBFT		=	$(LIBFT_DIR)/libft.a
+MLX			=	$(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
