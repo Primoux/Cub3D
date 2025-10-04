@@ -8,13 +8,21 @@
 
 typedef struct s_data
 {
-	struct t_mlx *mlx;
+	char			**map;
+	struct t_mlx	*mlx;
+	struct t_img	*img;
 } t_data;
+
+typedef struct s_img
+{
+	void	*floor;
+	void	*wall;
+} t_img;
 
 typedef struct s_mlx
 {
-	void *mlx;
-	void *mlx_win;
+	void	*mlx;
+	void	*mlx_win;
 } t_mlx;
 
 

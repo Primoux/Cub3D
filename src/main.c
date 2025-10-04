@@ -1,6 +1,4 @@
-#include "../inc/cubd.h"
-
-
+#include "../inc/cub3d.h"
 
 
 int main()
