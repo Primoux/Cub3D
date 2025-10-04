@@ -26,11 +26,11 @@ struct s_data
 	void	*win;
 };
 
-struct s_img
+typedef struct s_img
 {
-	char	*floor;
-	char	*wall;
-};
+	void			*floor;
+	void			*wall;
+}					t_img;
 
 struct s_mlx
 {
