@@ -12,7 +12,7 @@ LIBMLX_DIR		=	lib/libx
 INCLUDE_DIR		=	inc
 
 SRC_DIR			=	src/
-OBJ_DIR			=	obj/
+OBJ_DIR			=	.build/
 
 #-------------------------------- INCLUDES & FLAGS --------------------------------#
 
