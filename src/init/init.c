@@ -12,7 +12,7 @@ static void init_img(t_img *img)
 {
 	(void)img;
 //	img->floor = NULL; ----SEG
-//	img->wall = NULL; //en attendant les 4 faces ----SEG
+//	img->wall = NULL; //en attendant 4 faces ----SEG
 }
 
 void	init(t_data *data)

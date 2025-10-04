@@ -20,17 +20,17 @@ typedef struct s_data	t_data;
 
 struct s_data
 {
-	char			**map;
+	char	**map;
 	t_mlx	*mlx;
 	t_img	*img;
 	void	*win;
 };
 
-typedef struct s_img
+struct s_img
 {
 	void			*floor;
 	void			*wall;
-}					t_img;
+};
 
 struct s_mlx
 {
@@ -39,5 +39,7 @@ struct s_mlx
 };
 
 void	init(t_data *data);
+int close_window(t_data *data);
+int handle_key(int keycode, t_data *data);
 
 #endif
