@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include "mlx.h"
+#include "parsing.h"
 #include <X11/keysym.h>
 
 void	winner(t_data data)
@@ -11,11 +12,16 @@ void	winner(t_data data)
 	mlx_loop(data.mlx);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	if (argc != 2)
+	{
+		ft_putstr_fd("Bad usage", 2);
+		return (2);
+	}
 	init(&data);
+	parsing(&data, &argv[1]);
 	winner(data);
-	printf("coucou\n");
 }
