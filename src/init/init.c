@@ -3,14 +3,14 @@
 
 static void	init_base(t_data *data)
 {
-	ft_bzero(data, sizeof(*data));
+	ft_bzero(data, sizeof(t_data));
 	data->mlx = NULL;
 	data->win = NULL;
 }
 
 static int	init_map(t_data *data)
 {
-	data->map = malloc(sizeof(*(data->map)));
+	data->map = malloc(sizeof(t_map));
 	if (!data->map)
 	{
 		ft_putstr_fd("init: failed to allocate map\n", 2);
@@ -29,7 +29,7 @@ static int	init_map(t_data *data)
 
 static int	init_img(t_data *data)
 {
-	data->img = malloc(sizeof(*(data->img)));
+	data->img = malloc(sizeof(t_img));
 	if (!data->img)
 	{
 		ft_putstr_fd("init: failed to allocate img\n", 2);
