@@ -1,8 +1,9 @@
 #ifndef PARSING_H
 # define PARSING_H
 
-#include "cub3d.h"
+# include "cub3d.h"
 
-int	parsing(t_data *data, char **argv);
+int	parsing(t_data *data, char *argv);
+int	check_name(char *argv);
 
 #endif

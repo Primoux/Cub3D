@@ -22,6 +22,8 @@ int	main(int argc, char **argv)
 		return (2);
 	}
 	init(&data);
-	parsing(&data, &argv[1]);
-	winner(data);
+	if (parsing(&data, argv[1]) == 1)
+		return (1);
+	// winner(data);
+	free_all(&data);
 }
