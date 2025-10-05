@@ -1,18 +1,18 @@
 #include "cub3d.h"
 
-int close_window(t_data *data)
+int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	exit (0);
+	exit(0);
 }
 
-int handle_key(int keycode, t_data *data)
+int	handle_key(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		close_window(data);
 	return (0);
 }
 
-//void	hooks(t_data data)
+// void	hooks(t_data data)

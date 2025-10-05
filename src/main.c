@@ -21,9 +21,17 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Bad usage", 2);
 		return (2);
 	}
-	init(&data);
-	if (parsing(&data, argv[1]) == 1)
+	if (init(&data) != 0)
+	{
+		ft_putstr_fd("init failed\n", 2);
+		free_all(&data);
 		return (1);
+	}
+	if (parsing(&data, argv[1]) == 1)
+	{
+		free_all(&data);
+		return (1);
+	}
 	// winner(data);
 	free_all(&data);
 }

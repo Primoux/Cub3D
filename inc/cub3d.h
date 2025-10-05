@@ -50,9 +50,9 @@ struct					s_mlx
 	void				*mlx_win;
 };
 
-void					init(t_data *data);
 int						close_window(t_data *data);
 int						handle_key(int keycode, t_data *data);
+int						init(t_data *data);
 void					free_all(t_data *data);
 
 #endif
