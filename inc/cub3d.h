@@ -27,6 +27,7 @@ struct					s_img
 struct					s_map
 {
 	char				*file_name;
+	int					fd_map;
 	char				**map;
 	char				*n_wall_path;
 	char				*s_wall_path;

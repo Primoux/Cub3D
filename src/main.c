@@ -18,12 +18,11 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Bad usage", 2);
+		ft_putstr_fd("Bad usage: ./cub3d [a map whit .cub]\n", 2);
 		return (2);
 	}
 	if (init(&data) != 0)
 	{
-		ft_putstr_fd("init failed\n", 2);
 		free_all(&data);
 		return (1);
 	}
@@ -32,6 +31,6 @@ int	main(int argc, char **argv)
 		free_all(&data);
 		return (1);
 	}
-	// winner(data);
+	winner(data);
 	free_all(&data);
 }

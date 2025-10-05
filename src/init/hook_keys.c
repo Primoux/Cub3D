@@ -12,6 +12,7 @@ int	handle_key(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		close_window(data);
+	free_all(data);
 	return (0);
 }
 
