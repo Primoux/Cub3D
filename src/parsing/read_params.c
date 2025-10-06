@@ -15,7 +15,9 @@ static int	get_key_index(char *line, const char **keys)
 static int	assign_texture(t_map *m, int idx, char *trimed)
 {
 	char	**paths[6];
+	int		i;
 
+	i = 0;
 	paths[0] = &m->n_wall_path;
 	paths[1] = &m->s_wall_path;
 	paths[2] = &m->w_wall_path;
@@ -27,13 +29,20 @@ static int	assign_texture(t_map *m, int idx, char *trimed)
 		free(trimed);
 		return (-1);
 	}
-	*(paths[idx]) = trimed;
+	if (!ft_is_white_space(trimed[0]))
+		return (1);
+	while (trimed[i] && ft_is_white_space(trimed[i]))
+		i++;
+	if (!trimed[i])
+		return (1);
+	*(paths[idx]) = ft_strdup(&trimed[i]);
+	free(trimed);
 	return (0);
 }
 
 int	parse_for_textures(t_data *data, char *line)
 {
-	const char	*keys[] = {"NO ", "SO ", "WE ", "EA ", "F ", "C ", NULL};
+	const char	*keys[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	int			idx;
 	char		*trimed;
 

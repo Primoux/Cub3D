@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/06 03:29:27 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/06 17:25:29 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ char						*ft_strtrim(char const *s1, char const *set);
 void						*free_tab_return_null(char **tab);
 int							free_tab_return_int(char **tab, int return_var);
 void						safe_close(int *fd);
+int							ft_is_white_space(char c);
 char						**ft_split(char const *s, char c);
 char						*ft_itoa(int n);
 char						*ft_strmapi(char const *s, char (*f)(unsigned int,

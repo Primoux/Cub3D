@@ -33,7 +33,7 @@ LIST_DB_CIR_SRCS	=	ft_lstadd_back_db_cir.c ft_lstsize_db_cir.c \
 
 CHAR_SRCS			=	ft_isalpha.c ft_isdigit.c ft_isascii.c \
 						ft_isprint.c ft_isalnum.c ft_toupper.c \
-						ft_tolower.c
+						ft_tolower.c ft_is_white_space.c
 
 STRING_SRCS			=	ft_strlen.c ft_strchr.c ft_strrchr.c \
 						ft_strlcpy.c ft_strlcat.c ft_strnstr.c \
