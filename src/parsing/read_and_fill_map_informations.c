@@ -39,6 +39,6 @@ int	read_and_fill_map_informations(t_data *data)
 		ft_putstr_fd("Error: ft_split failed in " __FILE__ "\n", 2);
 		return (1);
 	}
-	print_map(data);
+	print_map_and_params(data);
 	return (0);
 }
