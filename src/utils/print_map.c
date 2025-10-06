@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	print_map(t_data *data)
+void	print_map_and_params(t_data *data)
 {
 	int	i;
 

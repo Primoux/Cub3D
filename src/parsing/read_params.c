@@ -26,7 +26,7 @@ static int	assign_texture(t_map *m, int idx, char *trimed)
 	paths[3] = &m->e_wall_path;
 	paths[4] = &m->floor_color;
 	paths[5] = &m->sky_color;
-	if (*(paths[idx]) || !trimed)
+	if (*(paths[idx]) && *(*(paths[idx])))
 	{
 		free(trimed);
 		return (-1);
@@ -52,8 +52,13 @@ int	parse_for_textures(t_data *data, char *line)
 	if (idx >= 0)
 	{
 		trimed = ft_strtrim(line + ft_strlen(keys[idx]), "\n");
-		if (assign_texture(data->map, idx, trimed) == -1)
+		if (!trimed)
 			return (-1);
+		if (assign_texture(data->map, idx, trimed) == -1)
+		{
+			ft_putstr_fd("Error: duplicated params\n", 2);
+			return (2);
+		}
 	}
 	if (line[0] == '1' || line[0] == ' ' || line[0] == '\t')
 		return (1);
@@ -63,7 +68,9 @@ int	parse_for_textures(t_data *data, char *line)
 int	read_params(t_data *data)
 {
 	int	ret;
+	int	error;
 
+	error = 0;
 	data->map->line = NULL;
 	data->map->line = get_next_line(data->map->fd_map);
 	while (data->map->line)
@@ -74,10 +81,14 @@ int	read_params(t_data *data)
 		else if (ret == -1)
 		{
 			free(data->map->line);
-			return (1);
+			return (0);
 		}
+		else if (ret == 2)
+			error = 1;
 		free(data->map->line);
 		data->map->line = get_next_line(data->map->fd_map);
 	}
+	if (error == 1)
+		return (1);
 	return (0);
 }

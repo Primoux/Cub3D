@@ -6,8 +6,8 @@
 // # define WEIGHT 720
 
 // Pas dell
-# define HEIGHT 75*5
-# define WEIGHT 75*5
+# define HEIGHT 75 * 5
+# define WEIGHT 75 * 5
 
 # include "libft.h"
 # include "mlx.h"
@@ -64,6 +64,6 @@ int						handle_key(int keycode, t_data *data);
 int						init(t_data *data);
 void					free_all(t_data *data);
 void					print_error_asset(t_data *data);
-void					print_map(t_data *data);
+void					print_map_and_params(t_data *data);
 
 #endif
