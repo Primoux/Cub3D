@@ -1,11 +1,13 @@
 #include "cub3d.h"
 
-static int	get_key_index(char *line, const char **keys)
+static int	get_key_index(char **line, const char **keys)
 {
 	int	i;
 
 	i = 0;
-	while (keys[i] && ft_strncmp(line, keys[i], ft_strlen(keys[i])))
+	while (*line && ft_is_white_space(**line))
+		(*line)++;
+	while (keys[i] && ft_strncmp(*line, keys[i], ft_strlen(keys[i])))
 		++i;
 	if (!keys[i])
 		return (-1);
@@ -46,7 +48,7 @@ int	parse_for_textures(t_data *data, char *line)
 	int			idx;
 	char		*trimed;
 
-	idx = get_key_index(line, keys);
+	idx = get_key_index(&line, keys);
 	if (idx >= 0)
 	{
 		trimed = ft_strtrim(line + ft_strlen(keys[idx]), "\n");
