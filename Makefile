@@ -3,6 +3,7 @@
 NAME		=	cub3D
 CC		 	=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g3
+DEPS		=	-MMD -MP
 
 #-------------------------------- DIRECTORIES --------------------------------#
 
@@ -30,12 +31,33 @@ MLX			=	$(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
-SRCS		=	src/main.c \
-				src/init/init.c \
-				src/init/hook_keys.c \
-				src/parsing/parsing.c \
-				src/parsing/check_name.c \
-				src/utils/free_all.c
+MAIN_SRCS := main.c \
+
+INIT_SRCS := init/init.c \
+
+PARSING_SRCS := parsing/parsing.c \
+				parsing/check_name.c \
+				parsing/read_and_fill_map_informations.c \
+				parsing/read_params.c	\
+				parsing/read_map.c	\
+
+
+MLX_SRCS := mlx/mlx_handler.c \
+			mlx/hook_keys.c \
+
+UTILS_SRCS :=	utils/free_all.c \
+				utils/print_map.c
+
+ERROR_SRCS := error/print_error_asset.c \
+
+SRCS := $(addprefix $(SRC_DIR), \
+			$(MAIN_SRCS) \
+			$(INIT_SRCS) \
+			$(PARSING_SRCS) \
+			$(MLX_SRCS) \
+			$(UTILS_SRCS) \
+			$(ERROR_SRCS) \
+)
 
 #-------------------------------- OBJECTS --------------------------------------#
 
@@ -63,7 +85,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 
 $(OBJ_DIR)%.o: %.c
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) $(DEPS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
