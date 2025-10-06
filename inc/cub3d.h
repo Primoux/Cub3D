@@ -22,6 +22,7 @@ struct					s_img
 {
 	void				*floor;
 	void				*wall;
+	void				*perso;
 };
 
 struct					s_map
