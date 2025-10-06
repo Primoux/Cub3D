@@ -6,8 +6,8 @@
 // # define WEIGHT 720
 
 // Pas dell
-# define HEIGHT 75 * 5
-# define WEIGHT 75 * 5
+# define HEIGHT 375
+# define WEIGHT 375
 
 # include "libft.h"
 # include "mlx.h"

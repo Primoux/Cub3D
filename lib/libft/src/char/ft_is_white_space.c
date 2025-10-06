@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_white_space.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 17:13:07 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/06 17:25:11 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/06 20:47:04 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_is_white_space(char c)
 {
-	int	i;
-
-	i = 0;
 	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
