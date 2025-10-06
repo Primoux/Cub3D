@@ -1,0 +1,48 @@
+name: Cub3D CI
+run-name: Norminette + Compilation 🚀
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  Norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install norminette
+        run: |
+          python -m pip install --upgrade pip
+          pip install norminette
+
+      - name: Check norminette
+        run: |
+          echo "🔍 Running norminette..."
+          norminette src inc
+
+  Compilation:
+    runs-on: ubuntu-latest
+    needs: Norminette
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential make clang pkg-config \
+            libx11-dev libxext-dev libxrandr-dev libxinerama-dev libxi-dev \
+            libxrender-dev libxft-dev
+
+      - name: Compile
+        run: |
+          echo "🔨 Compiling cub3d..."
+          make -j$(nproc)
