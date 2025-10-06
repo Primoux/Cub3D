@@ -57,5 +57,6 @@ int						handle_key(int keycode, t_data *data);
 int						init(t_data *data);
 void					free_all(t_data *data);
 void					print_error_asset(t_data *data);
+void					print_map(t_data *data);
 
 #endif

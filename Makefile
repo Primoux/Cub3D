@@ -45,7 +45,8 @@ PARSING_SRCS := parsing/parsing.c \
 MLX_SRCS := mlx/mlx_handler.c \
 			mlx/hook_keys.c \
 
-UTILS_SRCS := utils/free_all.c \
+UTILS_SRCS :=	utils/free_all.c \
+				utils/print_map.c
 
 ERROR_SRCS := error/print_error_asset.c \
 

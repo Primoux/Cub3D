@@ -1,29 +1,39 @@
 #include "parsing.h"
 
-static int	parse_map(t_data *data, char *line)
+static int	create_map(t_data *data, char **line)
 {
-	(void)data;
-	(void)line;//a faire pour kaan
+	char	*tmp;
+
+	tmp = str_free_to_join(*line, data->map->line);
+	if (!tmp)
+		return (-1);
+	*line = tmp;
 	return (0);
 }
 
 int	read_map(t_data *data)
 {
-	int	ret;
+	int		ret;
+	char	*line;
 
+	line = ft_strdup("");
+	if (!line)
+		return (-1);
 	while (data->map->line)
 	{
-		ret = parse_map(data, data->map->line);
+		ret = create_map(data, &line);
 		if (ret == 1)
 			break ;
 		else if (ret == -1)
 		{
+			free(line);
 			free(data->map->line);
 			return (1);
 		}
 		free(data->map->line);
 		data->map->line = get_next_line(data->map->fd_map);
 	}
-	close(data->map->fd_map);
+	data->map->line = ft_strdup(line);
+	free(line);
 	return (0);
 }
