@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abetemps <abetemps@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/09/08 12:31:15 by abetemps         ###   ########.fr       */
+/*   Updated: 2025/10/06 17:25:29 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ char						*str_free_to_join(char *s1, char *s2);
 char						*ft_strtrim(char const *s1, char const *set);
 void						*free_tab_return_null(char **tab);
 int							free_tab_return_int(char **tab, int return_var);
+void						safe_close(int *fd);
+int							ft_is_white_space(char c);
 char						**ft_split(char const *s, char c);
 char						*ft_itoa(int n);
 char						*ft_strmapi(char const *s, char (*f)(unsigned int,
@@ -122,16 +124,5 @@ int							ft_printf(const char *format, ...);
 int							print_digit(long n, int base, char c);
 int							print_hexa(unsigned long n);
 int							print_pointer(void *ptr);
-
-/***************************VECTORS****************************/
-
-t_vector					*create_vector(size_t capacity,
-								size_t datatype_size,
-								void (*clear_array)(t_vector *));
-bool						grow_vector(t_vector *vec, size_t new_elements);
-bool						add_element(t_vector *vec, void *element);
-void						clear_vector(t_vector **vec);
-
-/*************************************************************/
 
 #endif

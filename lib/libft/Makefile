@@ -1,7 +1,7 @@
 #-------------------------------- VARIABLES ----------------------------------#
 NAME	=	libft.a
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g3
 AR		=	ar rcs
 RM		=	rm -f
 
@@ -15,7 +15,6 @@ STRING_DIR		=	./src/string/
 IO_DIR			=	./src/io/
 MEMORY_DIR		=	./src/memory/
 ADVANCE_DIR		=	./src/advance/
-VECTOR_DIR		=	./src/vectors/
 BUILD_DIR		=	.build/
 
 #-------------------------------- SOURCE FILES -------------------------------#
@@ -26,7 +25,7 @@ LIST_SRCS			=	ft_lstadd_front.c ft_lstlast.c \
 						ft_lstiter.c ft_lstmap.c \
 						ft_lstnew.c
 
-UTILS_SRCS			=	free_tab.c
+UTILS_SRCS			=	free_tab.c safe_close.c
 
 LIST_DB_CIR_SRCS	=	ft_lstadd_back_db_cir.c ft_lstsize_db_cir.c \
 						ft_lstclear_db_cir.c \
@@ -34,7 +33,7 @@ LIST_DB_CIR_SRCS	=	ft_lstadd_back_db_cir.c ft_lstsize_db_cir.c \
 
 CHAR_SRCS			=	ft_isalpha.c ft_isdigit.c ft_isascii.c \
 						ft_isprint.c ft_isalnum.c ft_toupper.c \
-						ft_tolower.c
+						ft_tolower.c ft_is_white_space.c
 
 STRING_SRCS			=	ft_strlen.c ft_strchr.c ft_strrchr.c \
 						ft_strlcpy.c ft_strlcat.c ft_strnstr.c \
@@ -52,9 +51,6 @@ MEMORY_SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c \
 ADVANCE_SRCS		=	ft_atoi.c ft_split.c ft_itoa.c \
 						get_next_line.c ft_printf.c ft_atoi_long.c
 
-VECTOR_SRCS			=	add_element.c clear_vector.c \
-						create_vector.c grow_vector.c
-
 SRCS				=	$(addprefix $(LIST_DIR), $(LIST_SRCS)) \
 						$(addprefix $(UTILS_DIR), $(UTILS_SRCS)) \
 						$(addprefix $(LIST_DB_CIR_DIR), $(LIST_DB_CIR_SRCS)) \
@@ -63,7 +59,6 @@ SRCS				=	$(addprefix $(LIST_DIR), $(LIST_SRCS)) \
 						$(addprefix $(IO_DIR), $(IO_SRCS)) \
 						$(addprefix $(MEMORY_DIR), $(MEMORY_SRCS)) \
 						$(addprefix $(ADVANCE_DIR), $(ADVANCE_SRCS)) \
-						$(addprefix $(VECTOR_DIR), $(VECTOR_SRCS)) \
 
 
 #-------------------------------- OBJECTS ------------------------------------#

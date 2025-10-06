@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_vector.c                                     :+:      :+:    :+:   */
+/*   ft_is_white_space.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abetemps <abetemps@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 18:22:10 by abetemps          #+#    #+#             */
-/*   Updated: 2025/07/16 18:54:00 by abetemps         ###   ########.fr       */
+/*   Created: 2025/10/06 17:13:07 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/06 17:25:11 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	clear_vector(t_vector **vec)
+int	ft_is_white_space(char c)
 {
-	if ((*vec)->array)
-	{
-		(*vec)->clear_array((*vec));
-		free((*vec)->array);
-		(*vec)->array = (void *)0;
-	}
-	if (*vec)
-	{
-		free((*vec));
-		*vec = (void *)0;
-	}
+	int	i;
+
+	i = 0;
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
 }

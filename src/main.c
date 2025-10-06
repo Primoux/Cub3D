@@ -1,19 +1,20 @@
-#include "cub3d.h"
-#include "mlx.h"
-#include <X11/keysym.h>
+#include "mlx_management.h"
+#include "parsing.h"
 
-void	winner(t_data data)
-{
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WEIGHT, HEIGHT, "prout");
-	mlx_loop(data.mlx);
-}
-
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	init(&data);
-	winner(data);
-	printf("coucou\n");
+	if (argc != 2)
+	{
+		ft_putstr_fd("Usage: ./cub3d <map.cub>\n", 2);
+		return (2);
+	}
+	if (init(&data) == 1 || parsing(&data, argv[1]) == 1)
+	{
+		free_all(&data);
+		return (1);
+	}
+	// winner(data);
+	free_all(&data);
 }
