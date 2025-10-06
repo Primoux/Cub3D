@@ -2,8 +2,12 @@
 # define CUB3D_H
 
 // Dell
-# define HEIGHT 1080
-# define WEIGHT 1920
+// # define HEIGHT 1080
+// # define WEIGHT 720
+
+// Pas dell
+# define HEIGHT 75*5
+# define WEIGHT 75*5
 
 # include "libft.h"
 # include "mlx.h"
