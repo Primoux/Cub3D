@@ -27,6 +27,7 @@ struct					s_img
 struct					s_map
 {
 	char				*file_name;
+	char				*line;
 	int					fd_map;
 	char				**map;
 	char				*n_wall_path;
@@ -55,5 +56,6 @@ int						close_window(t_data *data);
 int						handle_key(int keycode, t_data *data);
 int						init(t_data *data);
 void					free_all(t_data *data);
+void					print_error_asset(t_data *data);
 
 #endif

@@ -9,6 +9,7 @@ int	parsing(t_data *data, char *argv)
 	data->map->file_name = ft_strdup(argv);
 	if (!data->map->file_name)
 		return (1);
-	close(data->map->fd_map);
+	if (read_and_fill_map_informations(data) == 1)
+		return (1);
 	return (EXIT_SUCCESS);
 }

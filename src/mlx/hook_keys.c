@@ -4,7 +4,7 @@ int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	free_all(data);
 	exit(0);
 }
 
@@ -12,7 +12,6 @@ int	handle_key(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		close_window(data);
-	free_all(data);
 	return (0);
 }
 

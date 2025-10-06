@@ -25,7 +25,7 @@ LIST_SRCS			=	ft_lstadd_front.c ft_lstlast.c \
 						ft_lstiter.c ft_lstmap.c \
 						ft_lstnew.c
 
-UTILS_SRCS			=	free_tab.c
+UTILS_SRCS			=	free_tab.c safe_close.c
 
 LIST_DB_CIR_SRCS	=	ft_lstadd_back_db_cir.c ft_lstsize_db_cir.c \
 						ft_lstclear_db_cir.c \
