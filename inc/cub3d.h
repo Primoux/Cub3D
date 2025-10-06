@@ -39,7 +39,7 @@ struct s_mlx
 };
 
 void	init(t_data *data);
-int close_window(t_data *data);
-int handle_key(int keycode, t_data *data);
+int		close_window(t_data *data);
+int		handle_key(int keycode, t_data *data);
 
 #endif
