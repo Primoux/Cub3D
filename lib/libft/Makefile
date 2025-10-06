@@ -15,7 +15,6 @@ STRING_DIR		=	./src/string/
 IO_DIR			=	./src/io/
 MEMORY_DIR		=	./src/memory/
 ADVANCE_DIR		=	./src/advance/
-VECTOR_DIR		=	./src/vectors/
 BUILD_DIR		=	.build/
 
 #-------------------------------- SOURCE FILES -------------------------------#
@@ -52,9 +51,6 @@ MEMORY_SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c \
 ADVANCE_SRCS		=	ft_atoi.c ft_split.c ft_itoa.c \
 						get_next_line.c ft_printf.c ft_atoi_long.c
 
-VECTOR_SRCS			=	add_element.c clear_vector.c \
-						create_vector.c grow_vector.c
-
 SRCS				=	$(addprefix $(LIST_DIR), $(LIST_SRCS)) \
 						$(addprefix $(UTILS_DIR), $(UTILS_SRCS)) \
 						$(addprefix $(LIST_DB_CIR_DIR), $(LIST_DB_CIR_SRCS)) \
@@ -63,7 +59,6 @@ SRCS				=	$(addprefix $(LIST_DIR), $(LIST_SRCS)) \
 						$(addprefix $(IO_DIR), $(IO_SRCS)) \
 						$(addprefix $(MEMORY_DIR), $(MEMORY_SRCS)) \
 						$(addprefix $(ADVANCE_DIR), $(ADVANCE_SRCS)) \
-						$(addprefix $(VECTOR_DIR), $(VECTOR_SRCS)) \
 
 
 #-------------------------------- OBJECTS ------------------------------------#

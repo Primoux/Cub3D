@@ -32,7 +32,10 @@ MLX			=	$(LIBMLX_DIR)/libmlx.a
 
 SRCS		=	src/main.c \
 				src/init/init.c \
-				src/init/hook_keys.c
+				src/init/hook_keys.c \
+				src/parsing/parsing.c \
+				src/parsing/check_name.c \
+				src/utils/free_all.c
 
 #-------------------------------- OBJECTS --------------------------------------#
 
