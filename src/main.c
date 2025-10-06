@@ -17,5 +17,6 @@ int	main(void)
 
 	init(&data);
 	winner(data);
-	printf("coucou\n");
+
+
 }
