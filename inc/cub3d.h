@@ -45,8 +45,8 @@ struct					s_ray
 {
 	float				rx;
 	float				ry;
-//	int					x_step;
-//	int					y_step;
+	float					x_step;
+	float					y_step;
 //	int					h_inter;
 //	int					v_inter;
 };
@@ -82,7 +82,8 @@ struct					s_mlx
 	void				*mlx;
 	void				*mlx_win;
 };
-void					raycaster(t_data data);
+//void					raycaster(t_data data);
+void					lazerizor(t_data data);
 int						close_window(t_data *data);
 int						handle_key(int keycode, t_data *data);
 int						init(t_data *data);

@@ -10,6 +10,16 @@ void charge_img(t_data data)
 
 }
 
+float	get_x_step(t_data data)
+{
+	float x;
+	float y;
+
+	x = data.ray->rx / TILE;
+	y = data.ray->ry / TILE;
+	return (data.ray->x_step);
+}
+
 char	get_angle(t_data data)
 {
 
@@ -22,7 +32,7 @@ char	get_angle(t_data data)
 }
 
 //rayon, trouver celui du millieu (angle 270) et les deux hypothenus
-void	lazerizor(t_data data, )
+void	lazerizor(t_data data)
 {
 	float x;
 	float y;
@@ -30,8 +40,9 @@ void	lazerizor(t_data data, )
 
 	x = 300;
 	y = 525;
-	data.ray->rx = x;
-	data.ray->ry = y;
+
+	data.player->px = x;
+	data.player->py = y;
 
 	while(!wall)
 	{
@@ -41,27 +52,26 @@ void	lazerizor(t_data data, )
 			wall = true;
 		}
 		mlx_pixel_put(data.mlx, data.win, x + (TILE >> 1) , y, 0x00FF0000);
-
 		y--;
 	}
 }
 
-void	raycaster(t_data data)
-{
-	int i;
-	float rad_fov;
-
-	i = 0;
-	get_rad(data);
-	int first_ray = (data.player->angle - (FOV >> 1));
-	int last_ray = (data.player->angle + (FOV >> 1));
-	while (i < WIDTH)
-	{
-//		rad_fov = last_ray - first_ray * (M_PI / 180); IL EST A JSP PAS PQ MAI PTT UTILE
-		lazerizor(data);
-		i++;
-	}
-}
+//void	raycaster(t_data data)
+//{
+//	int i;
+//	float rad_fov;
+//
+//	i = 0;
+//	get_rad(data);
+//	int first_ray = (data.player->angle - (FOV >> 1));
+//	int last_ray = (data.player->angle + (FOV >> 1));
+//	while (i < WIDTH)
+//	{
+////		rad_fov = last_ray - first_ray * (M_PI / 180); IL EST A JSP PAS PQ MAI PTT UTILE
+//		lazerizor(data);
+//		i++;
+//	}
+//}
 
 
 

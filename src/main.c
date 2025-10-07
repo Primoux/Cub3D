@@ -17,5 +17,6 @@ int	main(int argc, char **argv)
 	}
 	winner(data);
 //	raycaster(data);
+	lazerizor(data);
 	free_all(&data);
 }
