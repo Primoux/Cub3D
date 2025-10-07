@@ -1,14 +1,14 @@
 #include "cub3d.h"
 #include "mlx_management.h"
 
-void	winner(t_data data)
+void	winner(t_data *data)
 {
-	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "prout");
-	mlx_hook(data.win, 2, 1L << 0, handle_key, &data);
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "prout");
+	mlx_hook(data->win, 2, 1L << 0, handle_key, data);
 	imaginer(data);
 //	raycaster(data);
 	lazerizor(data);
-	mlx_hook(data.win, 17, 0, close_window, &data);
-	mlx_loop(data.mlx);
+	mlx_hook(data->win, 17, 0, close_window, data);
+	mlx_loop(data->mlx);
 }
