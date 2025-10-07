@@ -56,17 +56,14 @@ int	parse_for_textures(t_data *data, char *line)
 			return (-1);
 		if (assign_texture(data->map, idx, trimed) == -1)
 		{
-			ft_putstr_fd("Error: duplicated params\n", 2);
+			ft_dprintf(2, "Error: duplicated params for key '%s'\n", keys[idx]);
 			return (2);
 		}
 	}
 	if ((line[0] == '1' || line[0] == ' ' || line[0] == '\t')
-			|| (!ft_strnstr(line,"NO", 3)
-			&& !ft_strnstr(line, "SO", 3)
-			&& !ft_strnstr(line, "WE",3)
-			&& !ft_strnstr(line, "EA", 3)
-			&& !ft_strnstr(line, "F", 2)
-			&& !ft_strnstr(line, "C", 2)))
+		|| (!ft_strnstr(line, "NO", 3) && !ft_strnstr(line, "SO", 3)
+			&& !ft_strnstr(line, "WE", 3) && !ft_strnstr(line, "EA", 3)
+			&& !ft_strnstr(line, "F", 2) && !ft_strnstr(line, "C", 2)))
 		return (1);
 	return (0);
 }

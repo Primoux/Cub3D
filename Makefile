@@ -35,7 +35,7 @@ MAIN_SRCS		:=	main.c \
 
 INIT_SRCS		:=	init/init.c \
 
-PARSING_SRCS	:= parsing/parsing.c \
+PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_name.c \
 					parsing/read_and_fill_map_informations.c \
 					parsing/read_params.c	\
