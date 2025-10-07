@@ -10,7 +10,7 @@ static int	create_map(t_data *data, char **line)
 	*line = tmp;
 	return (0);
 }
-
+// || data->map->line[0] == '\n'
 int	read_map(t_data *data)
 {
 	int		ret;
@@ -32,6 +32,7 @@ int	read_map(t_data *data)
 		}
 		free(data->map->line);
 		data->map->line = get_next_line(data->map->fd_map);
+
 	}
 	data->map->line = ft_strdup(line);
 	free(line);

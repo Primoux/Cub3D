@@ -60,7 +60,13 @@ int	parse_for_textures(t_data *data, char *line)
 			return (2);
 		}
 	}
-	if (line[0] == '1' || line[0] == ' ' || line[0] == '\t')
+	if ((line[0] == '1' || line[0] == ' ' || line[0] == '\t')
+			|| (!ft_strnstr(line,"NO", 3)
+			&& !ft_strnstr(line, "SO", 3)
+			&& !ft_strnstr(line, "WE",3)
+			&& !ft_strnstr(line, "EA", 3)
+			&& !ft_strnstr(line, "F", 2)
+			&& !ft_strnstr(line, "C", 2)))
 		return (1);
 	return (0);
 }
