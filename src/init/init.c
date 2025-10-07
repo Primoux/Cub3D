@@ -6,6 +6,8 @@ static void	init_base(t_data *data)
 	ft_bzero(data, sizeof(t_data));
 	data->mlx = NULL;
 	data->win = NULL;
+	data->map = malloc(sizeof(t_map));
+	data->player = malloc(sizeof(t_player));
 }
 
 static int	init_map(t_data *data)
@@ -44,9 +46,16 @@ static int	init_img(t_data *data)
 	return (0);
 }
 
+static void init_player(t_data *data)
+{
+	data->player->px =  300 + (75 / 2);
+	data->player->py =  450 + (75 / 2);
+}
+
 int	init(t_data *data)
 {
 	init_base(data);
+	init_player(data);
 	if (init_map(data) != 0)
 		return (1);
 	if (init_img(data) != 0)

@@ -16,5 +16,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	winner(data);
+//	raycaster(data);
 	free_all(&data);
 }
