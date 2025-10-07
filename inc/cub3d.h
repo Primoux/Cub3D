@@ -1,10 +1,15 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// Dell
-# define HEIGHT 1080
-# define WIDTH 1920
 # define FOV 90
+
+
+// Dell
+// # define HEIGHT 1080
+// # define WIDTH 1920
+// Mac
+# define HEIGHT 2160
+# define WIDTH 3840
 
 # define M_PI 3.14159265359
 # define M_PI2 1.57079632679

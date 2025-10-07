@@ -20,16 +20,6 @@ float	get_x_step(t_data data)
 	return (data.ray->x_step);
 }
 
-char	get_angle(t_data data)
-{
-
-	if (data.map->map[data.map->y][data.map->x] == 'N')
-	{
-		data.player->angle = 270;
-		return ('N');
-	}
-	return ('\0');
-}
 
 //rayon, trouver celui du millieu (angle 270) et les deux hypothenus
 void	lazerizor(t_data data)
@@ -38,20 +28,18 @@ void	lazerizor(t_data data)
 	float y;
 	bool wall = false;
 
-	x = 300;
-	y = 525;
-
-	data.player->px = x;
-	data.player->py = y;
-
-	while(!wall)
+	x = data.player->px;
+	y = data.player->py;
+	
+	while(y && !wall)
 	{
-		printf("t dans le mur pelo la [x] = %f | [y] = %f\n", x, y);
-		if (data.map->map[(int)x / TILE][(int)y / TILE] == '1')
+		// printf("t dans le mur pelo la [x] = %f [%d] | [y] = %f [%d]\n", x, (int)x / TILE, y, (int)y /TILE);
+		if (data.map->map[(int)y / TILE][(int)x / TILE] == '1')
 		{
 			wall = true;
 		}
 		mlx_pixel_put(data.mlx, data.win, x + (TILE >> 1) , y, 0x00FF0000);
+		// y = y - TILE;
 		y--;
 	}
 }
