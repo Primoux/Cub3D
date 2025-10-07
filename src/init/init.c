@@ -1,13 +1,15 @@
 #include "cub3d.h"
 #include "init.h"
 
-static void	init_base(t_data *data)
+static int	init_base(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->mlx = NULL;
 	data->win = NULL;
-	data->map = malloc(sizeof(t_map));
 	data->player = malloc(sizeof(t_player));
+	if (!data->player)
+		return (1);
+	return (0);
 }
 
 static int	init_map(t_data *data)
@@ -16,8 +18,8 @@ static int	init_map(t_data *data)
 	if (!data->map)
 	{
 		ft_putstr_fd("init: failed to allocate map in the file : "__FILE__
-			"\n",
-			2);
+						"\n",
+						2);
 		return (1);
 	}
 	data->map->file_name = NULL;
@@ -37,8 +39,8 @@ static int	init_img(t_data *data)
 	if (!data->img)
 	{
 		ft_putstr_fd("init: failed to allocate img in the file : "__FILE__
-			"\n",
-			2);
+						"\n",
+						2);
 		return (1);
 	}
 	data->img->floor = NULL;
@@ -46,17 +48,9 @@ static int	init_img(t_data *data)
 	return (0);
 }
 
-static void init_player(t_data *data)
-{
-	data->player->px =  300 + (75 / 2);
-	data->player->py =  450 + (75 / 2);
-}
-
 int	init(t_data *data)
 {
-	init_base(data);
-	init_player(data);
-	if (init_map(data) != 0)
+	if (init_base(data) || init_map(data) != 0)
 		return (1);
 	if (init_img(data) != 0)
 	{

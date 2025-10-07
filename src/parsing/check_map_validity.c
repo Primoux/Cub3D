@@ -1,20 +1,18 @@
+#include "mlx_management.h"
 #include "parsing.h"
 
-void	get_angle(t_data *data, char c)
+void	get_angle(t_data *data, char c, int y, int x)
 {
 	if (c == 'N')
-	{
-	}
+		data->player->angle = 270;
 	else if (c == 'S')
-	{
-	}
+		data->player->angle = 90;
 	else if (c == 'W')
-	{
-	}
+		data->player->angle = 180;
 	else
-	{
-	}
-	(void)data;
+		data->player->angle = 0;
+	data->player->px = (float)x * TILE;
+	data->player->py = (float)y * TILE;
 }
 
 static int	check_char(t_data *data, char **map, int *y, int *x)
@@ -29,7 +27,7 @@ static int	check_char(t_data *data, char **map, int *y, int *x)
 				return (1);
 			if (map[*y][*x] == 'N' || map[*y][*x] == 'S' || map[*y][*x] == 'W'
 				|| map[*y][*x] == 'E')
-				get_angle(data, map[*y][*x]);
+				get_angle(data, map[*y][*x], *y, *x);
 			(*x)++;
 		}
 		(*y)++;
