@@ -29,9 +29,7 @@ static int	check_char(t_data *data, char **map, int *y, int *x)
 				return (1);
 			if (map[*y][*x] == 'N' || map[*y][*x] == 'S' || map[*y][*x] == 'W'
 				|| map[*y][*x] == 'E')
-			{
 				get_angle(data, map[*y][*x]);
-			}
 			(*x)++;
 		}
 		(*y)++;
