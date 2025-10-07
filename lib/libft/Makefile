@@ -49,7 +49,8 @@ MEMORY_SRCS			=	ft_memset.c ft_bzero.c ft_memcpy.c \
 						ft_calloc.c
 
 ADVANCE_SRCS		=	ft_atoi.c ft_split.c ft_itoa.c \
-						get_next_line.c ft_printf.c ft_atoi_long.c
+						get_next_line.c ft_printf.c ft_atoi_long.c \
+						ft_dprintf.c
 
 SRCS				=	$(addprefix $(LIST_DIR), $(LIST_SRCS)) \
 						$(addprefix $(UTILS_DIR), $(UTILS_SRCS)) \

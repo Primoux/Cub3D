@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/06 17:25:29 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/07 23:55:58 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,9 @@ char						*get_next_line(int fd);
 
 /***************************PRINTF****************************/
 int							ft_printf(const char *format, ...);
-int							print_digit(long n, int base, char c);
-int							print_hexa(unsigned long n);
-int							print_pointer(void *ptr);
+int							ft_dprintf(int fd, const char *format, ...);
+int							print_digit(int fd, long n, int base, char c);
+int							print_hexa(int fd, unsigned long n);
+int							print_pointer(int fd, void *ptr);
 
 #endif
