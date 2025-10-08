@@ -9,6 +9,8 @@ static int	init_base(t_data *data)
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		return (1);
+	data->player->px = 0;
+	data->player->py = 0;
 	return (0);
 }
 

@@ -3,7 +3,7 @@
 
 static int	get_angle(t_data *data, char c, int y, int x)
 {
-	if (data->player->px != 0 || data->player->py != 0)
+	if (data->player->px || data->player->py)
 		return (1);
 	if (c == 'N')
 		data->player->angle = 270;

@@ -4,6 +4,7 @@ static int	skip_newline(char **line, int fd)
 {
 	while (ft_str_is_only_space(*line) == 0)
 	{
+		free(*line);
 		*line = get_next_line(fd);
 		return (1);
 	}
