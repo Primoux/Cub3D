@@ -38,7 +38,7 @@ void	lazerizor(t_data *data)
 		{
 			wall = true;
 		}
-		usleep(20000);
+		// usleep(20000);
 		mlx_pixel_put(data->mlx, data->win, (int)x + (TILE >> 1) , (int)y, 0x00FF0000);
 		// y = y - TILE;
 		y--;

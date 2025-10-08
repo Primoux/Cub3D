@@ -18,7 +18,10 @@ static int	get_angle(t_data *data, char c, int y, int x)
 	return (0);
 }
 
-static int	check_char(t_data *data, char **map, int *y, int *x)
+
+#include "parsing.h"
+
+int	check_char(t_data *data, char **map, int *y, int *x)
 {
 	*y = 0;
 	while (map[*y])

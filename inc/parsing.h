@@ -11,5 +11,6 @@ int	read_params(t_data *data);
 int	read_map(t_data *data);
 int	check_map_validity(t_data *data, char **map);
 int	char_compare(char c);
+int	check_char(t_data *data, char **map, int *y, int *x);
 
 #endif
