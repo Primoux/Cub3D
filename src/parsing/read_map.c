@@ -4,11 +4,9 @@ static int	skip_newline(char **line, int fd)
 {
 	while (ft_str_is_only_space(*line) == 0)
 	{
-		ft_printf("HIP = %s\n", *line);
 		*line = get_next_line(fd);
 		return (1);
 	}
-	ft_printf("HOP = %s\n", *line);
 	return (0);
 }
 
@@ -17,10 +15,7 @@ static int	create_map(t_data *data, char **line)
 	char	*tmp;
 
 	if (skip_newline(&data->map->line, data->map->fd_map))
-	{
-		printf("coucou\n");
 		return (1);
-	}
 	tmp = str_free_to_join(*line, data->map->line);
 	if (!tmp)
 		return (1);
