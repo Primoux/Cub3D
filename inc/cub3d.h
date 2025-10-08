@@ -11,9 +11,9 @@
 # define HEIGHT 2160
 # define WIDTH 3840
 
-# define M_PI 3.14159265359
-# define M_PI2 1.57079632679
-# define M_2PI 6.28318530718
+//# define M_PI 3.14159265359
+//# define M_PI2 1.57079632679
+//# define M_2PI 6.28318530718
 
 
 # include "libft.h"
@@ -43,17 +43,15 @@ struct					s_player
 	float				px;
 	float				py;
 	float				rad;
-	float				angle;
+	double				angle;
 };
 
 struct					s_ray
 {
 	float				rx;
 	float				ry;
-	float					x_step;
-	float					y_step;
-//	int					h_inter;
-//	int					v_inter;
+	float 				rad_fov;
+	double				angle;
 };
 
 struct					s_map
@@ -87,8 +85,9 @@ struct					s_mlx
 	void				*mlx;
 	void				*mlx_win;
 };
-//void					raycaster(t_data *data);
-void					lazerizor(t_data *data);
+
+void					raycaster(t_data *data);
+void					lazerizor(t_data *data, double angle);
 int						close_window(t_data *data);
 int						handle_key(int keycode, t_data *data);
 int						init(t_data *data);

@@ -48,6 +48,14 @@ static int	init_img(t_data *data)
 	return (0);
 }
 
+static int init_ray(t_data *data)
+{
+	data->ray = malloc(sizeof(t_ray)); //cacaboudin
+	if(!data->ray)
+		return (1);
+	return(0);
+}
+
 int	init(t_data *data)
 {
 	if (init_base(data) || init_map(data) != 0)
@@ -63,5 +71,7 @@ int	init(t_data *data)
 		}
 		return (1);
 	}
+	if (init_ray(data) == 1)
+		return (1);
 	return (0);
 }
