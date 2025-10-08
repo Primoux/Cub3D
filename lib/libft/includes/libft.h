@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/07 23:55:58 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/08 16:45:24 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void						*ft_lstclear(t_list **lst, void (*del)(void *));
 void						ft_lstiter(t_list *lst, void (*f)(void *));
 t_list						*ft_lstmap(t_list *lst, void *(*f)(void *),
 								void (*del)(void *));
+int							ft_str_is_only_space(char *str);
 
 /*****************************LIST DB CIR******************************** */
 void						ft_lstadd_back_db_cir(t_list_db_cir **lst,
