@@ -12,6 +12,6 @@ int	parsing(t_data *data, char *argv)
 	if (read_and_fill_map_informations(data) == 1 || check_map_validity(data,
 			data->map->map) == 1)
 		return (1);
-	print_map_and_params(data);
+//	print_map_and_params(data);
 	return (EXIT_SUCCESS);
 }
