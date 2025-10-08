@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/08 16:45:24 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/08 17:00:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,8 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 64
 # endif
-
-typedef struct s_vector		t_vector;
-struct						s_vector
-{
-	void					*array;
-	size_t					datatype_size;
-	size_t					capacity;
-	size_t					nb_elements;
-	size_t					occupied_bytes;
-	void					(*clear_array)(t_vector *vec);
-};
 
 typedef struct s_list_db_cir
 {
