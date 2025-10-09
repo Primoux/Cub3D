@@ -40,16 +40,16 @@ struct					s_img
 
 struct					s_player
 {
-	float				px;
-	float				py;
+	double				px;
+	double				py;
 	float				rad;
 	double				angle;
 };
 
 struct					s_ray
 {
-	float				rx;
-	float				ry;
+	double				rx;
+	double				ry;
 	float 				rad_fov;
 	double				angle;
 };
