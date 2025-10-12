@@ -60,6 +60,8 @@ struct					s_map
 {
 	int					x;
 	int					y;
+	int					y_max;
+	int					x_max;
 	char				*file_name;
 	char				*line;
 	int					fd_map;

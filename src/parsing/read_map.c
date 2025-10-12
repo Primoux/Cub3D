@@ -33,6 +33,7 @@ int	read_map(t_data *data)
 		return (1);
 	while (skip_newline(&data->map->line, data->map->fd_map))
 		;
+	data->map->y_max = 0;
 	while (data->map->line)
 	{
 		if (create_map(data, &line) == 1)
@@ -43,6 +44,7 @@ int	read_map(t_data *data)
 		}
 		free(data->map->line);
 		data->map->line = get_next_line(data->map->fd_map);
+		data->map->y_max++;
 	}
 	data->map->line = ft_strdup(line);
 	free(line);
