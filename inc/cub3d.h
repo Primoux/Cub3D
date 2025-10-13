@@ -5,14 +5,8 @@
 
 
 // Dell
-<<<<<<< HEAD
-// # define HEIGHT 1080
-// # define WIDTH 1920
-
-=======
 # define HEIGHT 1080
 # define WIDTH 1920
->>>>>>> 8382cbf9020e19e0e00a4f37f40858f94a1ee0b0
 // Mac
 // # define HEIGHT 2160
 // # define WIDTH 3840
