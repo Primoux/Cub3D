@@ -10,7 +10,7 @@ DEPS		=	-MMD -MP
 LIBFT_DIR		=	lib/libft
 LIBMLX_DIR		=	lib/libx
 
-INCLUDE_DIR		=	inc
+INCLUDE_DIR		=	inc/
 
 SRC_DIR			=	src/
 OBJ_DIR			=	.build/
@@ -31,35 +31,39 @@ MLX			=	$(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
-MAIN_SRCS := main.c \
+MAIN_SRCS		:=	main.c \
 
-INIT_SRCS := init/init.c \
+INIT_SRCS		:=	init/init.c \
 
-PARSING_SRCS := parsing/parsing.c \
-				parsing/check_name.c \
-				parsing/read_and_fill_map_informations.c \
-				parsing/read_params.c	\
-				parsing/read_map.c	\
+PARSING_SRCS	:=	parsing/parsing.c \
+					parsing/check_name.c \
+					parsing/read_and_fill_map_informations.c \
+					parsing/read_params.c	\
+					parsing/read_map.c	\
+					parsing/check_map_validity.c	\
+					parsing/char_compare.c	\
+					parsing/check_char.c
 
+MLX_SRCS		:=	mlx/mlx_handler.c \
+					mlx/hook_keys.c \
 
-MLX_SRCS := mlx/mlx_handler.c \
-			mlx/hook_keys.c \
+UTILS_SRCS		:=	utils/free_all.c \
+					utils/print_map.c
 
-UTILS_SRCS :=	utils/free_all.c \
-				utils/print_map.c
+EXEC_SRCS		:=	exec/image.c \
+					exec/check_n_correct.c \
+					exec/raycast.c
 
-IMG_SRCS := images/image.c
+ERROR_SRCS		:=	error/print_error_asset.c \
 
-ERROR_SRCS := error/print_error_asset.c \
-
-SRCS := $(addprefix $(SRC_DIR), \
-			$(MAIN_SRCS) \
-			$(INIT_SRCS) \
-			$(PARSING_SRCS) \
-			$(IMG_SRCS) \
-			$(MLX_SRCS) \
-			$(UTILS_SRCS) \
-			$(ERROR_SRCS) \
+SRCS			:=	$(addprefix $(SRC_DIR), \
+					$(MAIN_SRCS) \
+					$(INIT_SRCS) \
+					$(PARSING_SRCS) \
+					$(EXEC_SRCS) \
+					$(MLX_SRCS) \
+					$(UTILS_SRCS) \
+					$(ERROR_SRCS) \
 )
 
 #-------------------------------- OBJECTS --------------------------------------#

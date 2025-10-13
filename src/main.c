@@ -7,7 +7,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("Usage: ./cub3d <map.cub>\n", 2);
+		ft_dprintf(2, "Usage: ./cub3d <map.cub>\n");
 		return (2);
 	}
 	if (init(&data) == 1 || parsing(&data, argv[1]) == 1)
