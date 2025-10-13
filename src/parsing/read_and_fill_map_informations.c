@@ -24,21 +24,20 @@ int	read_and_fill_map_informations(t_data *data)
 		return (1);
 	if (!data->map->line)
 	{
-		ft_putstr_fd("Error: empty map data in " __FILE__ "\n", 2);
+		ft_dprintf(2, "Error: empty map data in %s\n", __FILE__);
 		return (1);
 	}
-	if (!data->map->line || read_map(data) == 1)
+	if (read_map(data) == 1)
 	{
-		ft_putstr_fd("Error: reading map in " __FILE__ "\n", 2);
+		ft_dprintf(2, "Error: reading map in %s\n", __FILE__);
 		return (1);
 	}
 	data->map->map = ft_split(data->map->line, '\n');
 	free(data->map->line);
 	if (!data->map->map)
 	{
-		ft_putstr_fd("Error: ft_split failed in " __FILE__ "\n", 2);
+		ft_dprintf(2, "Error: ft_split failed in %s\n", __FILE__);
 		return (1);
 	}
-	print_map_and_params(data);
 	return (0);
 }
