@@ -15,6 +15,7 @@ static int	get_angle(t_data *data, char c, int y, int x)
 		data->player->angle = 0;
 	data->player->px = x * TILE + TILE / 2;
 	data->player->py = y * TILE + TILE / 2;
+	return (0);
 }
 
 int	check_char(t_data *data, char **map, int *y, int *x)

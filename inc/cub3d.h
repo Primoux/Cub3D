@@ -3,7 +3,6 @@
 
 # define FOV 90
 
-
 // Dell
 # define HEIGHT 1080
 # define WIDTH 1920
@@ -14,7 +13,6 @@
 //# define M_PI 3.14159265359
 //# define M_PI2 1.57079632679
 //# define M_2PI 6.28318530718
-
 
 # include "libft.h"
 # include "mlx.h"
@@ -50,7 +48,7 @@ struct					s_ray
 {
 	double				rx;
 	double				ry;
-	float 				rad_fov;
+	float				rad_fov;
 	double				angle;
 };
 
@@ -91,7 +89,8 @@ struct					s_mlx
 void					norm_angle(double *angle);
 int						ray_dir(double angle, int mode);
 bool					is_wall(t_map *map, double x, double y);
-int						balance_inter(double angle, double *inter, double *step, int mode);
+int						balance_inter(double angle, double *inter, double *step,
+							int mode);
 void					raycaster(t_data *data);
 void					lazerizor(t_data *data, double angle);
 int						close_window(t_data *data);
