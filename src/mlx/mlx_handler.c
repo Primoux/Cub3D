@@ -3,8 +3,8 @@
 
 void	winner(t_data *data)
 {
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "prout");
+	data->mlx = mlx_init(); // proteger ca
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "prout"); //proteger aussi
 	mlx_hook(data->win, 2, 1L << 0, handle_key, data);
 	imaginer(data);
 	raycaster(data);
