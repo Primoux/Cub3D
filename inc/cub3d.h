@@ -5,8 +5,14 @@
 
 
 // Dell
+<<<<<<< HEAD
+// # define HEIGHT 1080
+// # define WIDTH 1920
+
+=======
 # define HEIGHT 1080
 # define WIDTH 1920
+>>>>>>> 8382cbf9020e19e0e00a4f37f40858f94a1ee0b0
 // Mac
 // # define HEIGHT 2160
 // # define WIDTH 3840
@@ -40,16 +46,16 @@ struct					s_img
 
 struct					s_player
 {
-	float				px;
-	float				py;
+	double				px;
+	double				py;
 	float				rad;
 	double				angle;
 };
 
 struct					s_ray
 {
-	float				rx;
-	float				ry;
+	double				rx;
+	double				ry;
 	float 				rad_fov;
 	double				angle;
 };
@@ -88,6 +94,10 @@ struct					s_mlx
 	void				*mlx_win;
 };
 
+void					norm_angle(double *angle);
+int						ray_dir(double angle, int mode);
+bool					is_wall(t_map *map, double x, double y);
+int						balance_inter(double angle, double *inter, double *step, int mode);
 void					raycaster(t_data *data);
 void					lazerizor(t_data *data, double angle);
 int						close_window(t_data *data);
