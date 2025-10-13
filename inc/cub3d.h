@@ -87,6 +87,10 @@ struct					s_mlx
 	void				*mlx_win;
 };
 
+void					norm_angle(double *angle);
+int						ray_dir(double angle, int mode);
+bool					is_wall(t_map *map, double x, double y);
+int						balance_inter(double angle, double *inter, double *step, int mode);
 void					raycaster(t_data *data);
 void					lazerizor(t_data *data, double angle);
 int						close_window(t_data *data);
