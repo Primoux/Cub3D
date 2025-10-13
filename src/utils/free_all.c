@@ -23,6 +23,6 @@ void	free_all(t_data *data)
 		free(data->ray);
 	if (data->mlx)
 		free(data->mlx);
-	if (data->img)
-		free(data->img);
+	if (data->texture)
+		free(data->texture);
 }

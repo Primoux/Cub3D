@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define FOV 90
+# define FOV 60
 
 // Dell
 # define HEIGHT 1080
@@ -21,15 +21,37 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
-typedef struct s_img	t_img;
+typedef struct s_texture	t_texture;
 typedef struct s_mlx	t_mlx;
 typedef struct s_data	t_data;
 typedef struct s_map	t_map;
 typedef struct s_player	t_player;
 typedef struct s_ray	t_ray;
 
-struct					s_img
+typedef struct s_img
+{
+    void    *img;          // pointeur vers l'image mlx
+    char    *addr;         // adresse du début des données de l'image
+    int     bpp;           // bits par pixel
+    int     line_length;   // nombre d'octets par ligne
+    int     endian;        // endianess (pas toujours utilisé)
+}               t_img;
+
+typedef union u_color
+{
+	unsigned int	val;
+	struct
+	{
+		uint8_t		blue;
+		uint8_t		green;
+		uint8_t		red;
+		uint8_t		alpha;
+	};
+}					t_color;
+
+struct					s_texture
 {
 	void				*floor;
 	void				*wall;
@@ -74,16 +96,16 @@ struct					s_data
 {
 	t_map				*map;
 	t_mlx				*mlx;
-	t_img				*img;
+	t_texture			*texture;
 	t_player			*player;
 	t_ray				*ray;
+	t_img				*img;
 	void				*win;
 };
 
 struct					s_mlx
 {
 	void				*mlx;
-	void				*mlx_win;
 };
 
 void					norm_angle(double *angle);

@@ -2,9 +2,9 @@
 
 int	close_window(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->img->floor);
-	mlx_destroy_image(data->mlx, data->img->wall);
-	mlx_destroy_image(data->mlx, data->img->perso_n);
+	mlx_destroy_image(data->mlx, data->texture->floor);
+	mlx_destroy_image(data->mlx, data->texture->wall);
+	mlx_destroy_image(data->mlx, data->texture->perso_n);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free_all(data);
