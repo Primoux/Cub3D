@@ -49,7 +49,9 @@ MLX_SRCS		:=	mlx/mlx_handler.c \
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c
 
-IMG_SRCS		:=	images/image.c
+EXEC_SRCS		:=	exec/image.c \
+					exec/check_n_correct.c \
+					exec/raycast.c
 
 ERROR_SRCS		:=	error/print_error_asset.c \
 
@@ -57,7 +59,7 @@ SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
 					$(INIT_SRCS) \
 					$(PARSING_SRCS) \
-					$(IMG_SRCS) \
+					$(EXEC_SRCS) \
 					$(MLX_SRCS) \
 					$(UTILS_SRCS) \
 					$(ERROR_SRCS) \
