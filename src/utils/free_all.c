@@ -19,6 +19,8 @@ void	free_all(t_data *data)
 			free_tab_return_null(data->map->map);
 		free(data->map);
 	}
+	if (data->ray)
+		free(data->ray);
 	if (data->mlx)
 		free(data->mlx);
 	if (data->img)

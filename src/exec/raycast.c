@@ -10,6 +10,7 @@ double	y_inter(t_data *data, double angle)
 	double y_step;
 	int pixel;
 
+
 	x_step = TILE;
 	y_step = TILE * tan(angle);
 	x = floor(data->player->px / TILE) * TILE;
@@ -17,17 +18,16 @@ double	y_inter(t_data *data, double angle)
 	y = data->player->py + (x - data->player->px) * tan(angle);
 	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0)) //rediriger lazer de y_step du bon cote en fontion de l'angle (droite ou gauche du cercle trigo)
 		y_step *= -1;
-	while (!is_wall(data->map, x + pixel  , y))
+	while (!is_wall(data->map, x  + pixel  , y))
 	{
-		printf("(fonction y_inter) [x + pixel] = %f [%d] | [y] = %f [%d]\n", x, (int)x + pixel, y, (int)y);
+		// printf("(fonction y_inter) [x + pixel] = %f [%d] | [y] = %f [%d]\n", x, (int)x + pixel, y, (int)y);
 //		printf("(fonction y_inter) [xstep] = %f [%d] | [ystep] = %f [%d]\n", x_step, (int)x, y_step, (int)y);
-		mlx_pixel_put(data->mlx, data->win, (int)x - 1 , (int)y, 0x00FF0000);
 		mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x00FF0000);
-		mlx_pixel_put(data->mlx, data->win, (int)x + 1 , (int)y, 0x00FF0000);
 		y += y_step;
 		x += x_step;
 		usleep(500);
 	}
+	// mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x000000FF);
 	data->ray->rx = x;
 	data->ray->ry = y;
 	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
@@ -45,21 +45,20 @@ double	x_inter(t_data *data, double angle)
 	x_step = TILE / tan(angle);
 	y = floor(data->player->py / TILE) * TILE;
 	pixel = balance_inter(angle, &y, &y_step, 0);
-	printf("pixel = %d\n", pixel);
+	// printf("pixel = %d\n", pixel);
 	x = data->player->px + (y - data->player->py) / tan(angle);
 	if ((ray_dir(angle, 1) && x_step < 0) || (!ray_dir(angle, 1) && x_step > 0))
 		x_step *= -1;
 	while (!is_wall(data->map, x, y + pixel))
 	{
-		printf("(fonction x_inter) [x] = %f [%d] | [y] = %f [%d]\n", x, (int)x , y, (int)y);
+		// printf("(fonction x_inter) [x] = %f [%d] | [y] = %f [%d]\n", x, (int)x , y, (int)y);
 //		printf("(fonction x_inter) boucle\n");
-		mlx_pixel_put(data->mlx, data->win, (int)x - 1 , (int)y, 0x00FF0000);
 		mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x00FF0000);
-		mlx_pixel_put(data->mlx, data->win, (int)x + 1 , (int)y, 0x00FF0000);
 		x += x_step;
 		y += y_step;
-//		usleep(500);
+		usleep(500);
 	}
+	// mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x000000FF);
 	data->ray->rx = x;
 	data->ray->ry = y;
 	return (sqrt(pow(x -data->player->px , 2) + pow(y -data->player->py, 2)));
@@ -74,8 +73,7 @@ void	lazerizor(t_data *data, double angle)
 	wall = false;
 	x = data->player->px;
 	y = data->player->py;
-	printf("(fonction lazerizor) %f\n\n", angle / M_PI);
-
+	// printf("(fonction lazerizor) %f\n\n", angle / M_PI);
 	y_inter(data,  angle);
 	x_inter(data,  angle);
 
@@ -95,6 +93,7 @@ void	raycaster(t_data *data)
 
 	while (i < WIDTH)
 	{
+		// printf("(fonction raycaster) %d [ANGLE %.4f] \n", i, data->ray->angle);
 		norm_angle(&data->ray->angle);
 //		printf("(fonction raycaster) pls ray angle = %f\n", data->ray->angle);
 //		printf("(fonction raycaster) i = [%d]\n", i);
