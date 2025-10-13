@@ -35,13 +35,14 @@ MAIN_SRCS		:=	main.c \
 
 INIT_SRCS		:=	init/init.c \
 
-PARSING_SRCS	:= parsing/parsing.c \
+PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_name.c \
 					parsing/read_and_fill_map_informations.c \
 					parsing/read_params.c	\
 					parsing/read_map.c	\
 					parsing/check_map_validity.c	\
-					parsing/char_compare.c
+					parsing/char_compare.c	\
+					parsing/check_char.c
 
 MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/hook_keys.c \

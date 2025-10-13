@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   dprintf.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 22:20:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/07 23:55:43 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/07 23:56:28 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	print_format(int fd, char specifier, va_list ap)
 	return (count);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_dprintf(int fd, const char *format, ...)
 {
 	va_list	ap;
 	int		count;
@@ -48,9 +48,9 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-			count += print_format(1, *++format, ap);
+			count += print_format(fd, *++format, ap);
 		else
-			count += write(1, format, 1);
+			count += write(fd, format, 1);
 		format++;
 	}
 	va_end(ap);

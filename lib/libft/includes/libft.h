@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/06 17:25:29 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/08 17:00:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,8 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 64
 # endif
-
-typedef struct s_vector		t_vector;
-struct						s_vector
-{
-	void					*array;
-	size_t					datatype_size;
-	size_t					capacity;
-	size_t					nb_elements;
-	size_t					occupied_bytes;
-	void					(*clear_array)(t_vector *vec);
-};
 
 typedef struct s_list_db_cir
 {
@@ -106,6 +95,7 @@ void						*ft_lstclear(t_list **lst, void (*del)(void *));
 void						ft_lstiter(t_list *lst, void (*f)(void *));
 t_list						*ft_lstmap(t_list *lst, void *(*f)(void *),
 								void (*del)(void *));
+int							ft_str_is_only_space(char *str);
 
 /*****************************LIST DB CIR******************************** */
 void						ft_lstadd_back_db_cir(t_list_db_cir **lst,
@@ -121,8 +111,9 @@ char						*get_next_line(int fd);
 
 /***************************PRINTF****************************/
 int							ft_printf(const char *format, ...);
-int							print_digit(long n, int base, char c);
-int							print_hexa(unsigned long n);
-int							print_pointer(void *ptr);
+int							ft_dprintf(int fd, const char *format, ...);
+int							print_digit(int fd, long n, int base, char c);
+int							print_hexa(int fd, unsigned long n);
+int							print_pointer(int fd, void *ptr);
 
 #endif
