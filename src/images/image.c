@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include "mlx.h"
 #include "mlx_management.h"
-void charge_img(t_data *data)
+void charge_img(t_data *data) // proteger en cas de NULL
 {
 	data->img->wall = mlx_xpm_file_to_image(data->mlx,
 											"asset/textures/test_bloc2.xpm", &data->map->x, &data->map->y);
@@ -12,19 +12,14 @@ void charge_img(t_data *data)
 
 int	balance_inter(double angle, double *inter, double *step, int mode)
 {
-	if (mode == 1)
+	if (mode == 0)
 	{
-		if (angle > M_PI && angle <= 2 * M_PI)
+		if (angle > M_PI && angle <= 2 * M_PI) //180 to 360
 		{
 			*step *= -1;
 			return (-1);
 		}
-		else
-		{
-			*inter += TILE;
-			return (1);
-		}
-
+		*inter += TILE;
 	}
 	else
 	{
@@ -33,33 +28,11 @@ int	balance_inter(double angle, double *inter, double *step, int mode)
 			*step  *= -1;
 			return (-1); // a gauche
 		}
-		else // exterieur a 90 et 270
-			*inter += TILE;
+		*inter += TILE;
 	}
-	return(1); //a droite
+	return (1); //a droite
 }
 
-int check_rad(t_data *data, double angle, double *x, double *y)
-{
-	(void)data;
-//	data->ray->rad_fov = FOV * (M_PI / 180);
-//	printf("(fonction check rad) angle = %f\n", angle);
-	if (angle >= 0 && angle < M_PI_2)
-	{
-		(*x) *= 1;
-		(*y) *= 1;
-	}
-	if (angle >= M_PI_2 && angle < M_PI)
-		(*x) *= -1;
-	else if (angle >= 2 * M_PI && angle < 3 * M_PI_2)
-	{
-		(*x) *= -1;
-		(*y) *= -1;
-	}
-	else if (angle >= M_PI_2 && angle < 2 * M_PI)
-		(*y) *= -1;
-	return (0);
-}
 
 bool is_wall(t_map *map, double x, double y)
 {
@@ -68,24 +41,24 @@ bool is_wall(t_map *map, double x, double y)
 
 	x_ray = floor(x / TILE);
 	y_ray = floor(y / TILE);
-//	printf("(fonction is_wall) x_ray = %d y_ray = %d\n", x_ray, y_ray);
+	printf("(fonction is_wall) x_ray = %d y_ray = %d\n", x_ray, y_ray);
+	printf("(fonction is_wall) x = %f y = %f\n", x, y);
 
 	if (x_ray < 0 || y_ray < 0)
 	{
 		printf("1\n");
 		return (true);
 	}
-	if (map->map[y_ray][x_ray] == '1')
+	if (!map->map[y_ray][x_ray])
+	{
+		printf("2\n");
+		return true;
+	}
+	if (map && map->map[y_ray][x_ray] == '1')
 	{
 		printf("ara y a un mur = 3\n");
 		return (true);
 	}
-//	if (!map->map[y_ray][x_ray])
-//	{
-//		printf("2\n");
-//
-//		return true;
-//	}
 //	if (y > map->y || x > map->x)
 //	{
 //		printf("2\n");
@@ -94,19 +67,24 @@ bool is_wall(t_map *map, double x, double y)
 	return (false);
 }
 
-
-//void print_rayman(t_data *data, double x, double y)
-//{
-//
-//}
-
-int	ray_dir(double angle)
+int	ray_dir(double angle, int mode)
 {
-	if (angle < M_PI_2 && angle >= 3 * M_PI_2)
+	if (mode == 0)
 	{
-		return (0); // angle 'y' a droite
+		if (angle > M_PI) //180 to 360 vers le haut
+		{
+			return (0);
+		}
 	}
-	return (1); //angle 'y' a gauche
+	else
+	{
+		if (angle > M_PI_2 && angle <= 3 * M_PI_2) // 90 to 180 vers le bas
+		{
+			return (0); // angle 'y' a gauche
+		}
+	}
+
+	return (1); //angle 'y' a droite et x vers bas
 }
 
 // fonction y_inter
@@ -121,14 +99,13 @@ double	y_inter(t_data *data, double angle)
 	x_step = TILE;
 	y_step = TILE * tan(angle);
 	x = floor(data->player->px / TILE) * TILE;
-	pixel = balance_inter(angle, &x, &x_step, 0); //corriger angle x et x_step
+	pixel = balance_inter(angle, &x, &x_step, 1); //corriger angle x et x_step
 	y = data->player->py + (x - data->player->px) * tan(angle);
-	if ((ray_dir(angle) && y_step < 0 )||(!ray_dir(angle) && y_step > 0)) //rediriger lazer de y_step du bon cote en fontion de l'angle (droite ou gauche du cercle trigo)
+	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0)) //rediriger lazer de y_step du bon cote en fontion de l'angle (droite ou gauche du cercle trigo)
 		y_step *= -1;
-	check_rad(data, angle, &x_step, &y_step);
-	while (!is_wall(data->map, x + pixel, y))
+	while (!is_wall(data->map, x + pixel  , y))
 	{
-		printf("(fonction y_inter) [x] = %f [%d] | [y] = %f [%d]\n", x, (int)x , y, (int)y);
+		printf("(fonction y_inter) [x + pixel] = %f [%d] | [y] = %f [%d]\n", x, (int)x + pixel, y, (int)y);
 //		printf("(fonction y_inter) [xstep] = %f [%d] | [ystep] = %f [%d]\n", x_step, (int)x, y_step, (int)y);
 		mlx_pixel_put(data->mlx, data->win, (int)x - 1 , (int)y, 0x00FF0000);
 		mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x00FF0000);
@@ -139,7 +116,7 @@ double	y_inter(t_data *data, double angle)
 	}
 	data->ray->rx = x;
 	data->ray->ry = y;
-	return (sqrt(pow(data->player->py - y, 2) + pow(data->player->px - x, 2)));
+	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
 }
 
 double	x_inter(t_data *data, double angle)
@@ -153,16 +130,25 @@ double	x_inter(t_data *data, double angle)
 	y_step = TILE;
 	x_step = TILE / tan(angle);
 	y = floor(data->player->py / TILE) * TILE;
-	pixel = balance_inter(angle, &y, &y_step, 1);
+	pixel = balance_inter(angle, &y, &y_step, 0);
+	printf("pixel = %d\n", pixel);
 	x = data->player->px + (y - data->player->py) / tan(angle);
-	if (ray_dir(angle) && x_step
-	data->ray->rx = data->player->px;
-	data->ray->ry = data->player->py;
-
-	x_step = TILE / tan(angle);
-	y_step = TILE;
-
-	return (data->ray->x_step);
+	if ((ray_dir(angle, 1) && x_step < 0) || (!ray_dir(angle, 1) && x_step > 0))
+		x_step *= -1;
+	while (!is_wall(data->map, x, y + pixel))
+	{
+		printf("(fonction x_inter) [x] = %f [%d] | [y] = %f [%d]\n", x, (int)x , y, (int)y);
+//		printf("(fonction x_inter) boucle\n");
+		mlx_pixel_put(data->mlx, data->win, (int)x - 1 , (int)y, 0x00FF0000);
+		mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x00FF0000);
+		mlx_pixel_put(data->mlx, data->win, (int)x + 1 , (int)y, 0x00FF0000);
+		x += x_step;
+		y += y_step;
+//		usleep(500);
+	}
+	data->ray->rx = x;
+	data->ray->ry = y;
+	return (sqrt(pow(x -data->player->px , 2) + pow(y -data->player->py, 2)));
 }
 
 void	lazerizor(t_data *data, double angle)
@@ -174,15 +160,11 @@ void	lazerizor(t_data *data, double angle)
 	wall = false;
 	x = data->player->px;
 	y = data->player->py;
+	printf("(fonction lazerizor) %f\n", angle * 180 / M_PI);
 
 	y_inter(data,  angle);
-//	while((y || x) && is_wall(data->map, x, y))
-//	{
-////		mlx_pixel_put(data->mlx, data->win, (int)x + (TILE >> 1) , (int)y, 0x00FF0000);
-//		y += step_y;
-////		y_inter(data, data->player->angle - (FOV >> 1));
-////		x_inter(data, x);
-//	}
+	x_inter(data,  angle);
+
 }
 
 void	norm_angle(double *angle)
@@ -218,9 +200,6 @@ void	raycaster(t_data *data)
 		i++;
 	}
 }
-
-
-
 
 void	add_image(t_data *data)
 {
