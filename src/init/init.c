@@ -5,7 +5,6 @@ static int	init_base(t_data *data)
 {
 	ft_bzero(data, sizeof(t_data));
 	data->mlx = NULL;
-	data->win = NULL;
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		return (1);
@@ -32,20 +31,20 @@ static int	init_map(t_data *data)
 
 static int	init_img(t_data *data)
 {
-	data->img = malloc(sizeof(t_img));
-	if (!data->img)
+	data->texture = malloc(sizeof(t_texture));
+	if (!data->texture)
 		return (1);
-	data->img->floor = NULL;
-	data->img->wall = NULL;
+	data->texture->floor = NULL;
+	data->texture->wall = NULL;
 	return (0);
 }
 
-static int init_ray(t_data *data)
+static int	init_ray(t_data *data)
 {
-	data->ray = malloc(sizeof(t_ray)); //cacaboudin
-	if(!data->ray)
+	data->ray = malloc(sizeof(t_ray)); // cacaboudin
+	if (!data->ray)
 		return (1);
-	return(0);
+	return (0);
 }
 
 int	init(t_data *data)
@@ -65,5 +64,7 @@ int	init(t_data *data)
 	}
 	if (init_ray(data) == 1)
 		return (1);
+	data->img = ft_calloc(1, sizeof(t_img)); // pu la merde
+
 	return (0);
 }

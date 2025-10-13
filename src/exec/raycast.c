@@ -83,12 +83,28 @@ double	lazerizor(t_data *data, double angle)
 }
 
 
+void my_mlx_put_pixel(t_data *data, int x, int y, int color)
+{
+    char    *pixel;
+
+    // Sécurité : vérifier que x et y sont dans les bornes
+    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+        return;
+
+    pixel = data->img->addr + (y * data->img->line_length + x * (data->img->bpp / 8));
+    *(unsigned int *)pixel = color;
+}
+
 void	raycaster(t_data *data)
 {
 	int i;
 	double rad_fov;
 	double dist;
+	t_color color;
 
+	color.val = 0x00000000;
+	int bruhRed = 456546;
+	color.red = bruhRed;
 	i = 0;
 	rad_fov = FOV * (M_PI / 180);
 	// printf("rat des fave = %f\n", rad_fov);
@@ -104,13 +120,12 @@ void	raycaster(t_data *data)
 		for (int j = 0; j < HEIGHT; j++)
 		{
 			if (j < dist)
-			{
-				mlx_pixel_put(data->mlx, data->win, i , j, 0x00FFFF00);
-			}
+				my_mlx_put_pixel(data, i, j, color.val);
+				// 2313324
 			else if (j > HEIGHT - dist)
-				mlx_pixel_put(data->mlx, data->win, i , j, 0x0000FF00);
+				my_mlx_put_pixel(data, i, j, 0x000000FF);
 			else
-				mlx_pixel_put(data->mlx, data->win, i , j, 0x00000000);
+				my_mlx_put_pixel(data, i, j, 0x00FFFFFF);
 		}
 		data->ray->angle += rad_fov / WIDTH;
 		i++;
