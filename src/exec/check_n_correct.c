@@ -65,8 +65,6 @@ bool	is_wall(t_map *map, double x, double y)
 
 	x_ray = floor(x / TILE);
 	y_ray = floor(y / TILE);
-	// printf("(fonction is_wall) x_ray = %d y_ray = %d\n", x_ray, y_ray);
-	// printf("(fonction is_wall) x = %f y = %f\n", x, y);
 	if (x_ray < 0 || y_ray < 0 || x_ray >= HEIGHT / TILE || y_ray >= WIDTH
 		/ TILE)
 	{
@@ -77,10 +75,9 @@ bool	is_wall(t_map *map, double x, double y)
 	len = ft_strlen(map->map[y_ray]);
 	if (x_ray >= len)
 		return (true);
-	if (map && map->map[y_ray][x_ray] != '0')
-	{
-		// printf("ara y a un mur  3 in y = %d x = %d\n", y_ray, x_ray);
+	if (map && map->map[y_ray][x_ray] != '0' && map && map->map[y_ray][x_ray] != 'N' &&
+		map && map->map[y_ray][x_ray] != 'S' && map && map->map[y_ray][x_ray] != 'E' &&
+		map && map->map[y_ray][x_ray] != 'W')
 		return (true);
-	}
 	return (false);
 }
