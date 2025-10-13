@@ -92,7 +92,7 @@ bool					is_wall(t_map *map, double x, double y);
 int						balance_inter(double angle, double *inter, double *step,
 							int mode);
 void					raycaster(t_data *data);
-void					lazerizor(t_data *data, double angle);
+double					lazerizor(t_data *data, double angle);
 int						close_window(t_data *data);
 int						handle_key(int keycode, t_data *data);
 int						init(t_data *data);
