@@ -65,15 +65,10 @@ double	x_inter(t_data *data, double angle)
 }
 double	lazerizor(t_data *data, double angle)
 {
-	double x;
-	double y;
+
 	double x_dist;
 	double y_dist;
-	bool wall;
 
-	wall = false;
-	x = data->player->px;
-	y = data->player->py;
 	// printf("(fonction lazerizor) %f\n\n", angle / M_PI);
 	y_dist = y_inter(data,  angle);
 	x_dist = x_inter(data,  angle);
@@ -100,32 +95,22 @@ void	raycaster(t_data *data)
 	int i;
 	double rad_fov;
 	double dist;
-	t_color color;
 
-	color.val = 0x00000000;
-	int bruhRed = 456546;
-	color.red = bruhRed;
 	i = 0;
 	rad_fov = FOV * (M_PI / 180);
-	// printf("rat des fave = %f\n", rad_fov);
 	data->ray->angle = (data->player->angle - (rad_fov * 0.5));
-	// printf("(fonction raycaster) ray charles angle = %f\n", data->ray->angle);
 	while (i < WIDTH)
 	{
-		// printf("(fonction raycaster) %d [ANGLE %.4f] \n", i, data->ray->angle);
 		norm_angle(&data->ray->angle);
-		// printf("(fonction raycaster) pls ray angle = %f\n", data->ray->angle);
-		// printf("(fonction raycaster) i = [%d]\n", i);
 		dist = lazerizor(data, data->ray->angle);
 		for (int j = 0; j < HEIGHT; j++)
 		{
 			if (j < dist)
-				my_mlx_put_pixel(data, i, j, color.val);
-				// 2313324
+				my_mlx_put_pixel(data, i, j, 0x00FF0000);
 			else if (j > HEIGHT - dist)
 				my_mlx_put_pixel(data, i, j, 0x000000FF);
 			else
-				my_mlx_put_pixel(data, i, j, 0x00FFFFFF);
+				my_mlx_put_pixel(data, i, j, 0x00000000);
 		}
 		data->ray->angle += rad_fov / WIDTH;
 		i++;
