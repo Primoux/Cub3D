@@ -2,7 +2,7 @@
 
 int	char_compare(char c)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (VALID_CHARS[i])
