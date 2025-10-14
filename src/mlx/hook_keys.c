@@ -9,7 +9,7 @@ int	close_window(t_data *data)
 	exit(0);
 }
 
-void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
+static void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
 {
 	int	tile_x;
 	int	tile_y;
@@ -28,43 +28,59 @@ void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
 	}
 }
 
-int	move_player(t_data *data)
+static void	move_forward_or_backward(t_data *data, double new_x, double new_y, float move)
 {
-	double	new_x;
-	double	new_y;
-
 	if (data->key->w_key == true)
 	{
-		new_x = data->player->px + cos(data->player->angle) * MOVE_SPEED;
-		new_y = data->player->py + sin(data->player->angle) * MOVE_SPEED;
+		new_x = data->player->px + cos(data->player->angle) * move;
+		new_y = data->player->py + sin(data->player->angle) * move;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
 	if (data->key->s_key == true)
 	{
-		new_x = data->player->px - cos(data->player->angle) * MOVE_SPEED;
-		new_y = data->player->py - sin(data->player->angle) * MOVE_SPEED;
+		new_x = data->player->px - cos(data->player->angle) * move;
+		new_y = data->player->py - sin(data->player->angle) * move;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
+}
+
+static void	move_right_or_left(t_data *data, double new_x, double new_y, float move)
+{
 	if (data->key->d_key == true)
 	{
 		new_x = data->player->px + cos(data->player->angle + M_PI / 2)
-			* MOVE_SPEED;
+								   * move;
 		new_y = data->player->py + sin(data->player->angle + M_PI / 2)
-			* MOVE_SPEED;
+								   * move;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
 	if (data->key->a_key == true)
 	{
 		new_x = data->player->px - cos(data->player->angle + M_PI / 2)
-			* MOVE_SPEED;
+								   * move;
 		new_y = data->player->py - sin(data->player->angle + M_PI / 2)
-			* MOVE_SPEED;
+								   * move;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
 	if (data->key->left_key == true)
 		data->player->angle -= ANGLE_SPEED;
 	if (data->key->right_key == true)
 		data->player->angle += ANGLE_SPEED;
+}
+
+int	move_player(t_data *data)
+{
+	double	new_x;
+	double	new_y;
+	float	move;
+
+	new_x = 0.0;
+	new_y = 0.0;
+	move = MOVE_SPEED;
+	if (data->key->shift_l_key == true)
+		move = MOVE_SPRINT;
+	move_forward_or_backward(data, new_x, new_y, move);
+	move_right_or_left(data, new_x, new_y, move);
 	raycaster(data);
 	imaginer(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
@@ -92,6 +108,8 @@ void	press_key(t_data *data, int keycode)
 		else
 			data->key->tab_key = false;
 	}
+	if (keycode == XK_Shift_L)
+		data->key->shift_l_key = true;
 }
 
 void	release_key(t_data *data, int keycode)
@@ -108,8 +126,8 @@ void	release_key(t_data *data, int keycode)
 		data->key->left_key = false;
 	if (keycode == XK_Right)
 		data->key->right_key = false;
-//	if (keycode ==  XK_Tab)
-//		data->key->tab_key = false;
+	if (keycode == XK_Shift_L)
+		data->key->shift_l_key = false;
 }
 
 int	handle_press_key(int keycode, t_data *data)
@@ -117,14 +135,14 @@ int	handle_press_key(int keycode, t_data *data)
 	if (keycode == XK_Escape)
 		close_window(data);
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
-		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right || keycode == XK_Tab)
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right || keycode == XK_Tab || keycode == XK_Shift_L)
 		press_key(data, keycode);
 	return (0);
 }
 int	handle_release_key(int keycode, t_data *data)
 {
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
-		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right|| keycode == XK_Tab)
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right|| keycode == XK_Tab || keycode == XK_Shift_L)
 		release_key(data, keycode);
 	return (0);
 }

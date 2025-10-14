@@ -1,12 +1,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define FOV 60
+# define FOV 70
 
 // Dell
 # define HEIGHT 1080
 # define WIDTH 1920
-// Mac
+//// Mac
 // # define HEIGHT 2160
 // # define WIDTH 3840
 
@@ -74,6 +74,9 @@ struct						s_ray
 	float				rad_fov;
 	double				angle;
 	double				ray_dist;
+	double				rx_dist;
+	double				ry_dist;
+
 };
 
 struct						s_map
@@ -103,6 +106,7 @@ struct						s_key
 	bool					left_key;
 	bool					right_key;
 	bool					tab_key;
+	bool					shift_l_key;
 };
 
 struct						s_data
