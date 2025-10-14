@@ -14,14 +14,18 @@ int	close_window(t_data *data)
 
 void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
 {
-	if (map || (map->map[(int)new_y][(int)new_x] == '0' || map
-			|| map->map[(int)new_y][(int)new_x] == 'N' || map
-			|| map->map[(int)new_y][(int)new_x] == 'S' || map
-			|| map->map[(int)new_y][(int)new_x] == 'E' || map
-			|| map->map[(int)new_y][(int)new_x] == 'W'))
+	int	tile_x;
+	int	tile_y;
+
+	tile_x = floor(new_x / TILE);
+	tile_y = floor(new_y / TILE);
+	if ((map->map[tile_y][tile_x] == '0' || map->map[tile_y][tile_x] == 'N'
+			|| map->map[tile_y][tile_x] == 'S'
+			|| map->map[tile_y][tile_x] == 'E'
+			|| map->map[tile_y][tile_x] == 'W'))
 	{
-		ft_printf("C'est bon map->map[(int)new_y][(int)new_x] = '%c'\n",
-			map->map[(int)new_y][(int)new_x]);
+		ft_printf("(%s)%d C'est bon map->map[[%d][%d] = '%c'\n", __func__,
+			tile_y, tile_x, map->map[tile_y][tile_x]);
 		player->px = new_x;
 		player->py = new_y;
 	}
