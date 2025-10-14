@@ -69,8 +69,8 @@ int	move_player(t_data *data)
 	if (data->key->right_key == true)
 		data->player->angle += ANGLE_SPEED;
 	raycaster(data);
-	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
-	usleep(1000);
+	// mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+	imaginer(data);
 	return (0);
 }
 
