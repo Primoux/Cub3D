@@ -2,42 +2,65 @@
 #include "mlx.h"
 #include "mlx_management.h"
 
-void	charge_img(t_data *data) // proteger en cas de NULL
-{
-	data->texture->wall = mlx_xpm_file_to_image(data->mlx,
-			"asset/textures/test_bloc2.xpm", &data->map->x, &data->map->y);
-	data->texture->floor = mlx_xpm_file_to_image(data->mlx,
-			"asset/textures/test_bloc.xpm", &data->map->x, &data->map->y);
-	data->texture->perso_n = mlx_xpm_file_to_image(data->mlx,
-			"asset/textures/test_perso.xpm", &data->map->x, &data->map->y);
-}
+//void	charge_img(t_data *data) // proteger en cas de NULL
+//{
+//	data->texture->wall = mlx_xpm_file_to_image(data->mlx,
+//			"asset/textures/test_bloc2.xpm", &data->map->x, &data->map->y);
+//	data->texture->floor = mlx_xpm_file_to_image(data->mlx,
+//			"asset/textures/test_bloc.xpm", &data->map->x, &data->map->y);
+//	data->texture->perso_n = mlx_xpm_file_to_image(data->mlx,
+//			"asset/textures/test_perso.xpm", &data->map->x, &data->map->y);
+//}
 
-void	add_image(t_data *data)
+void	add_image(t_data *data, t_img *img, int player_color, int wall_color)
 {
+	int i = 0;
+	int j = 0;
+	int scale = WIDTH / 60;
 	if (data->map->map[data->map->y][data->map->x] == '1')
-		mlx_put_image_to_window(data->mlx, data->win, data->texture->wall,
-			data->map->x * TILE, data->map->y * TILE);
-	if (data->map->map[data->map->y][data->map->x] == '0'
-		|| data->map->map[data->map->y][data->map->x] == 'N'
-		|| data->map->map[data->map->y][data->map->x] == 'S'
-		|| data->map->map[data->map->y][data->map->x] == 'E'
-		|| data->map->map[data->map->y][data->map->x] == 'W')
-		mlx_put_image_to_window(data->mlx, data->win, data->texture->floor,
-			data->map->x * TILE, data->map->y * TILE);
+	{
+		while (i < scale)
+		{
+			j = 0;
+			while (j < scale)
+			{
+				my_mlx_put_pixel(img, data->map->x * scale + i,data->map->y * scale + j, wall_color);
+				j++;
+			}
+			i++;
+		}
+	}
+	if (data->map->y == floor(data->player->py / TILE) && data->map->x == floor(data->player->px / TILE))
+	{
+		while (i < scale)
+		{
+			j = 0;
+			while (j < scale)
+			{
+				my_mlx_put_pixel(img, data->map->x * scale + i,data->map->y * scale + j, player_color);
+				j++;
+			}
+			i++;
+		}
+	}
 }
 
 void	imaginer(t_data *data)
 {
-	charge_img(data);
-	data->map->y = 0;
-	while (data->map->map[data->map->y])
+
+	if (data->key->tab_key == true)
 	{
-		data->map->x = 0;
-		while (data->map->map[data->map->y][data->map->x])
+		data->map->y = 0;
+		while (data->map->map[data->map->y])
 		{
-			add_image(data);
-			data->map->x++;
+			data->map->x = 0;
+			while (data->map->map[data->map->y][data->map->x])
+			{
+				add_image(data, data->img, 0x0000CC00, 0x004C0099);
+				data->map->x++;
+			}
+			data->map->y++;
 		}
-		data->map->y++;
 	}
 }
+

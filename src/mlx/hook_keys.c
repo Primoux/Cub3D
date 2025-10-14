@@ -3,9 +3,6 @@
 
 int	close_window(t_data *data)
 {
-	mlx_destroy_image(data->mlx, data->texture->floor);
-	mlx_destroy_image(data->mlx, data->texture->wall);
-	mlx_destroy_image(data->mlx, data->texture->perso_n);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free_all(data);
@@ -69,8 +66,8 @@ int	move_player(t_data *data)
 	if (data->key->right_key == true)
 		data->player->angle += ANGLE_SPEED;
 	raycaster(data);
-	// mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	imaginer(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
 
@@ -88,6 +85,13 @@ void	press_key(t_data *data, int keycode)
 		data->key->left_key = true;
 	if (keycode == XK_Right)
 		data->key->right_key = true;
+	if (keycode == XK_Tab)
+	{
+		if (data->key->tab_key == false)
+			data->key->tab_key = true;
+		else
+			data->key->tab_key = false;
+	}
 }
 
 void	release_key(t_data *data, int keycode)
@@ -104,6 +108,8 @@ void	release_key(t_data *data, int keycode)
 		data->key->left_key = false;
 	if (keycode == XK_Right)
 		data->key->right_key = false;
+//	if (keycode ==  XK_Tab)
+//		data->key->tab_key = false;
 }
 
 int	handle_press_key(int keycode, t_data *data)
@@ -111,14 +117,14 @@ int	handle_press_key(int keycode, t_data *data)
 	if (keycode == XK_Escape)
 		close_window(data);
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
-		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right)
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right || keycode == XK_Tab)
 		press_key(data, keycode);
 	return (0);
 }
 int	handle_release_key(int keycode, t_data *data)
 {
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
-		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right)
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right|| keycode == XK_Tab)
 		release_key(data, keycode);
 	return (0);
 }

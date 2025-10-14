@@ -76,7 +76,7 @@ double	lazerizor(t_data *data, double angle)
 }
 
 
-void my_mlx_put_pixel(t_data *data, int x, int y, int color)
+void my_mlx_put_pixel(t_img *img, int x, int y, int color)
 {
     char    *pixel;
 
@@ -84,7 +84,7 @@ void my_mlx_put_pixel(t_data *data, int x, int y, int color)
     if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
         return;
 
-    pixel = data->img->addr + (y * data->img->line_length + x * (data->img->bpp / 8));
+    pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
     *(unsigned int *)pixel = color;
 }
 
@@ -114,11 +114,11 @@ void	raycaster(t_data *data)
 		while (j < HEIGHT)
 		{
 			if (j < dist)
-				my_mlx_put_pixel(data, i, j, 0x00FF0000);
+				my_mlx_put_pixel(data->img, i, j, 0x00FFFFFF);
 			else if (j > HEIGHT - dist)
-				my_mlx_put_pixel(data, i, j, 0x000000FF);
+				my_mlx_put_pixel(data->img, i, j, 0x000000FF);
 			else
-				my_mlx_put_pixel(data, i, j, 0x00000000);
+				my_mlx_put_pixel(data->img, i, j, 0x00000000);
 			j++;
 		}
 		data->ray->ray_dist = dist;
