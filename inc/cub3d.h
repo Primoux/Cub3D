@@ -72,6 +72,7 @@ struct					s_ray
 	double				ry;
 	float				rad_fov;
 	double				angle;
+	double				ray_dist;
 };
 
 struct					s_map

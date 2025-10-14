@@ -62,6 +62,7 @@ double	x_inter(t_data *data, double angle)
 	data->ray->rx = x;
 	data->ray->ry = y;
 	return (sqrt(pow(x -data->player->px , 2) + pow(y -data->player->py, 2)));
+	return ((data->ray->rx - data->player->px) / cos(angle)); //pour corriger le fish-eyes pour y_inter
 }
 double	lazerizor(t_data *data, double angle)
 {
@@ -72,7 +73,7 @@ double	lazerizor(t_data *data, double angle)
 	// printf("(fonction lazerizor) %f\n\n", angle / M_PI);
 	y_dist = y_inter(data,  angle);
 	x_dist = x_inter(data,  angle);
-	if ( y_dist < x_dist)
+	if (y_dist < x_dist)
 		return (y_dist);
 	return (x_dist);
 }
@@ -92,26 +93,32 @@ void my_mlx_put_pixel(t_data *data, int x, int y, int color)
 
 void	raycaster(t_data *data)
 {
-	int i;
-	double rad_fov;
-	double dist;
+	int		i;
+	int		j;
+	double	rad_fov;
+	double	dist;
+	double	correct_dist;
 
 	i = 0;
 	rad_fov = FOV * (M_PI / 180);
 	data->ray->angle = (data->player->angle - (rad_fov * 0.5));
 	while (i < WIDTH)
 	{
+		j = 0;
 		norm_angle(&data->ray->angle);
 		dist = lazerizor(data, data->ray->angle);
-		for (int j = 0; j < HEIGHT; j++)
+		correct_dist = dist * cos(data->ray->angle - data->player->angle);
+		while (j < HEIGHT)
 		{
-			if (j < dist)
+			if (j < correct_dist)
 				my_mlx_put_pixel(data, i, j, 0x00FF0000);
-			else if (j > HEIGHT - dist)
+			else if (j > HEIGHT - correct_dist)
 				my_mlx_put_pixel(data, i, j, 0x000000FF);
 			else
 				my_mlx_put_pixel(data, i, j, 0x00000000);
+			j++;
 		}
+		data->ray->ray_dist = correct_dist;
 		data->ray->angle += rad_fov / WIDTH;
 		i++;
 	}
