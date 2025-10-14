@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define FOV 60
+# define FOV 70
 
 // Dell
 # define HEIGHT 1080
@@ -9,10 +9,6 @@
 //// Mac
 // # define HEIGHT 2160
 // # define WIDTH 3840
-
-//# define M_PI 3.14159265359
-//# define M_PI2 1.57079632679
-//# define M_2PI 6.28318530718
 
 # include "libft.h"
 # include "mlx.h"
@@ -33,11 +29,11 @@ typedef struct s_key		t_key;
 
 typedef struct s_img
 {
-	void *img;       // pointeur vers l'image mlx
-	char *addr;      // adresse du début des données de l'image
-	int bpp;         // bits par pixel
-	int line_length; // nombre d'octets par ligne
-	int endian;      // endianess (pas toujours utilisé)
+	void					*img;
+	char					*addr;
+	int						bpp;
+	int						line_length;
+	int						endian;
 }							t_img;
 
 typedef union u_color
@@ -54,7 +50,8 @@ typedef union u_color
 
 struct						s_texture
 {
-	void					*floor;
+	t_color					floor;
+	t_color					ceiling;
 	void					*wall;
 	void					*perso_n;
 };
@@ -94,7 +91,7 @@ struct						s_map
 	char					*e_wall_path;
 	char					*w_wall_path;
 	char					*floor_color;
-	char					*sky_color;
+	char					*ceiling_color;
 };
 
 struct						s_key
@@ -126,7 +123,8 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void						my_mlx_put_pixel(t_img *img, int x, int y, int color);
+void						my_mlx_put_pixel(t_img *img, int x, int y,
+								int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
 bool						is_wall(t_map *map, double x, double y);

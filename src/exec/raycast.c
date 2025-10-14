@@ -97,9 +97,9 @@ void	raycaster(t_data *data)
 		norm_angle(&data->ray->angle);
 		dist = lazerizor(data, data->ray->angle);
 		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
-		if (corrected_dist <= 0) // secu si division par 0
+		if (corrected_dist <= 0)
 			corrected_dist = 0.1;
-		wall_height = (TILE * HEIGHT) / corrected_dist; // haut du mur
+		wall_height = (TILE * HEIGHT) / corrected_dist;
 		if (wall_height > HEIGHT)
 			wall_height = HEIGHT;
 		wall_top = (HEIGHT - wall_height) / 2;
@@ -108,11 +108,11 @@ void	raycaster(t_data *data)
 		while (j < HEIGHT)
 		{
 			if (j < wall_top)
-				my_mlx_put_pixel(data->img, i, j, 0x0087CEEB); // Ciel
+				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
-				my_mlx_put_pixel(data->img, i, j, 0x00C0C0C0); // Mur
+				my_mlx_put_pixel(data->img, i, j, 0x00C0C0C0);
 			else
-				my_mlx_put_pixel(data->img, i, j, 0x00664D99); // Sol
+				my_mlx_put_pixel(data->img, i, j, data->texture->floor.val);
 			j++;
 		}
 		data->ray->ray_dist = corrected_dist;

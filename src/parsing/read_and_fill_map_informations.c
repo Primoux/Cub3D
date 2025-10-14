@@ -6,7 +6,7 @@ static int	ensure_textures(t_data *data)
 		return (1);
 	if (!data->map->n_wall_path || !data->map->s_wall_path
 		|| !data->map->w_wall_path || !data->map->e_wall_path
-		|| !data->map->floor_color || !data->map->sky_color)
+		|| !data->map->floor_color || !data->map->ceiling_color)
 	{
 		print_error_asset(data);
 		return (1);

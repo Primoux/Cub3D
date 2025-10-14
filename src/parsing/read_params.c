@@ -25,7 +25,7 @@ static int	assign_texture(t_map *m, int idx, char *trimed)
 	paths[2] = &m->w_wall_path;
 	paths[3] = &m->e_wall_path;
 	paths[4] = &m->floor_color;
-	paths[5] = &m->sky_color;
+	paths[5] = &m->ceiling_color;
 	if (*(paths[idx]) && *(*(paths[idx])))
 	{
 		free(trimed);

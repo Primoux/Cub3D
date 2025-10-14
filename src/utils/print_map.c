@@ -8,7 +8,7 @@ void	print_map_and_params(t_data *data)
 	ft_printf("%s\n", data->map->s_wall_path);
 	ft_printf("%s\n", data->map->w_wall_path);
 	ft_printf("%s\n", data->map->e_wall_path);
-	ft_printf("%s\n", data->map->sky_color);
+	ft_printf("%s\n", data->map->ceiling_color);
 	ft_printf("%s\n", data->map->floor_color);
 	i = 0;
 	while (data->map->map[i])

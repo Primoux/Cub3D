@@ -12,6 +12,6 @@ void	print_error_asset(t_data *data)
 		ft_dprintf(2, "Error: missing east wall texture (EA)\n");
 	if (!data->map->floor_color)
 		ft_dprintf(2, "Error: missing floor color (F)\n");
-	if (!data->map->sky_color)
+	if (!data->map->ceiling_color)
 		ft_dprintf(2, "Error: missing ceiling color (C)\n");
 }
