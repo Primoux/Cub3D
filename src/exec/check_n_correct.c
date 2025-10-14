@@ -2,11 +2,11 @@
 #include "mlx.h"
 #include "mlx_management.h"
 
-int	balance_inter(double angle, double *inter, double *step, int mode) // pixel
+int	balance_inter(double angle, double *inter, double *step, int mode)
 {
 	if (mode == 0)
 	{
-		if (angle > M_PI && angle <= 2 * M_PI) // 180 to 360
+		if (angle > M_PI && angle <= 2 * M_PI)
 		{
 			*step *= -1;
 			return (-1);
@@ -15,41 +15,40 @@ int	balance_inter(double angle, double *inter, double *step, int mode) // pixel
 	}
 	else
 	{
-		if (angle > M_PI_2 && angle <= 3 * M_PI_2) // entre 90 et 270
+		if (angle > M_PI_2 && angle <= 3 * M_PI_2)
 		{
 			*step *= -1;
-			return (-1); // a gauche
+			return (-1);
 		}
 		*inter += TILE;
 	}
 	(void)*inter;
-	return (1); // a droite
+	return (1);
 }
 
 int	ray_dir(double angle, int mode)
 {
 	if (mode == 0)
 	{
-		if (angle > M_PI) // 180 to 360 vers le haut
+		if (angle > M_PI)
 		{
 			return (0);
 		}
 	}
 	else
 	{
-		if (angle > M_PI_2 && angle <= 3 * M_PI_2) // 90 to 180 vers le bas
+		if (angle > M_PI_2 && angle <= 3 * M_PI_2)
 		{
-			return (0); // angle 'y' a gauche
+			return (0);
 		}
 	}
-	return (1); // angle 'y' a droite et x vers bas
+	return (1);
 }
 
 void	norm_angle(double *angle)
 {
 	while (*angle < 0 || *angle >= 2 * M_PI)
 	{
-		//		printf("ray charles angle = %f\n", *angle);
 		if (*angle < 0)
 			*angle += 2 * M_PI;
 		if (*angle >= 2 * M_PI)
