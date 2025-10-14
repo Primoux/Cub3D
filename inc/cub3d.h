@@ -102,6 +102,7 @@ struct						s_key
 	bool					d_key;
 	bool					left_key;
 	bool					right_key;
+	bool					tab_key;
 };
 
 struct						s_data
@@ -121,6 +122,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void						my_mlx_put_pixel(t_img *img, int x, int y, int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
 bool						is_wall(t_map *map, double x, double y);
