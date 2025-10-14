@@ -68,8 +68,8 @@ double	lazerizor(t_data *data, double angle)
 	double y_dist;
 
 	// printf("(fonction lazerizor) %f\n\n", angle / M_PI);
-	y_dist = y_inter(data,  angle);
-	x_dist = x_inter(data,  angle);
+	y_dist = y_inter(data, angle);
+	x_dist = x_inter(data, angle);
 	if (y_dist < x_dist)
 		return (y_dist);
 	return (x_dist);
@@ -78,16 +78,53 @@ double	lazerizor(t_data *data, double angle)
 
 void my_mlx_put_pixel(t_img *img, int x, int y, int color)
 {
-    char    *pixel;
+	char	*pixel;
 
     // Sécurité : vérifier que x et y sont dans les bornes
-    if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-        return;
-
-    pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
-    *(unsigned int *)pixel = color;
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return;
+	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	*(unsigned int *)pixel = color;
 }
 
+
+
+
+//void	raycaster(t_data *data)
+//{
+//	int		i;
+//	int		j;
+//	double	rad_fov;
+//	double	dist;
+//
+//	i = 0;
+//	rad_fov = FOV * (M_PI / 180);
+//	data->ray->angle = (data->player->angle - (rad_fov * 0.5));
+//	while (i < WIDTH)
+//	{
+//		j = 0;
+//		norm_angle(&data->ray->angle);
+//		dist = lazerizor(data, data->ray->angle);
+////		printf("(in %s ) dist = [%f]\n", __func__, dist);
+////		printf("(in %s) ray angle = [%f] |  player angle = [%f]\n", __func__, data->ray->angle, data->player->angle);
+////		if (dist > )
+//		while (j < HEIGHT)
+//		{
+//			norm_angle(&data->player->angle);
+//			dist *=  cos(data->ray->angle - data->player->angle);
+//			if (j < dist)
+//				my_mlx_put_pixel(data->img, i, j, 0x00FFFFFF);
+//			else if (j > HEIGHT - dist)
+//				my_mlx_put_pixel(data->img, i, j, 0x000000FF);
+//			else
+//				my_mlx_put_pixel(data->img, i, j, 0x00000000);
+//			j++;
+//		}
+//		data->ray->ray_dist = dist;
+//		data->ray->angle += rad_fov / WIDTH;
+//		i++;
+//	}
+//}
 
 
 
@@ -95,34 +132,41 @@ void	raycaster(t_data *data)
 {
 	int		i;
 	int		j;
-	double	rad_fov;
 	double	dist;
+	double	corrected_dist;
+	double	wall_height;
+	int		wall_top;
+	int		wall_bot;
 
 	i = 0;
-	rad_fov = FOV * (M_PI / 180);
-	data->ray->angle = (data->player->angle - (rad_fov * 0.5));
+	data->ray->rad_fov = FOV * (M_PI / 180);
+	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
 	while (i < WIDTH)
 	{
-		j = 0;
 		norm_angle(&data->ray->angle);
-		norm_angle(&data->player->angle);
 		dist = lazerizor(data, data->ray->angle);
-//		printf("(in %s ) dist = [%f]\n", __func__, dist);
-//		printf("(in %s) ray angle = [%f] |  player angle = [%f]\n", __func__, data->ray->angle, data->player->angle);
-		dist *=  cos(data->ray->angle - data->player->angle);
-//		if (dist > )
+		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
+		if (corrected_dist <= 0) // secu si division par 0
+			corrected_dist = 0.1;
+		wall_height = (TILE * HEIGHT) / corrected_dist; // haut du mur
+		if (wall_height > HEIGHT) //fixer la limite du mur
+			wall_height = HEIGHT;
+		wall_top = (HEIGHT - wall_height) / 2;
+		wall_bot = wall_top + wall_height;
+
+		j = 0;
 		while (j < HEIGHT)
 		{
-			if (j < dist)
-				my_mlx_put_pixel(data->img, i, j, 0x00FFFFFF);
-			else if (j > HEIGHT - dist)
-				my_mlx_put_pixel(data->img, i, j, 0x000000FF);
+			if (j < wall_top)
+				my_mlx_put_pixel(data->img, i, j, 0x0087CEEB); // Ciel
+			else if (j < wall_bot)
+				my_mlx_put_pixel(data->img, i, j, 0x00C0C0C0); // Mur
 			else
-				my_mlx_put_pixel(data->img, i, j, 0x00000000);
+				my_mlx_put_pixel(data->img, i, j, 0x00664D99); // Sol
 			j++;
 		}
 		data->ray->ray_dist = dist;
-		data->ray->angle += rad_fov / WIDTH;
+		data->ray->angle += data->ray->rad_fov / WIDTH;
 		i++;
 	}
 }
