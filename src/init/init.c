@@ -25,7 +25,7 @@ static int	init_map(t_data *data)
 	data->map->e_wall_path = NULL;
 	data->map->w_wall_path = NULL;
 	data->map->floor_color = NULL;
-	data->map->sky_color = NULL;
+	data->map->ceiling_color = NULL;
 	return (0);
 }
 
@@ -34,7 +34,6 @@ static int	init_img(t_data *data)
 	data->texture = malloc(sizeof(t_texture));
 	if (!data->texture)
 		return (1);
-	data->texture->floor = NULL;
 	data->texture->wall = NULL;
 	return (0);
 }

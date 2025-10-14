@@ -72,7 +72,7 @@ void	imaginer(t_data *data)
 			data->map->x = 0;
 			while (data->map->map[data->map->y][data->map->x])
 			{
-				add_image(data, data->img, 0x0000CC00, 0x004C0099);
+				add_image(data, data->img, 0x00000, data->texture->floor.val);
 				data->map->x++;
 			}
 			data->map->y++;
