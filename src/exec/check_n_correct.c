@@ -65,11 +65,8 @@ bool	is_wall(t_map *map, double x, double y)
 
 	x_ray = floor(x / TILE);
 	y_ray = floor(y / TILE);
-	if (x_ray < 0 || y_ray < 0 || x_ray >= HEIGHT / TILE || y_ray >= WIDTH
-		/ TILE)
-	{
+	if (x_ray < 0 || y_ray < 0)
 		return (true);
-	}
 	if (y_ray >= map->y_max)
 		return (true);
 	len = ft_strlen(map->map[y_ray]);
