@@ -75,9 +75,9 @@ bool	is_wall(t_map *map, double x, double y)
 	len = ft_strlen(map->map[y_ray]);
 	if (x_ray >= len)
 		return (true);
-	if (map && map->map[y_ray][x_ray] != '0' && map && map->map[y_ray][x_ray] != 'N' &&
-		map && map->map[y_ray][x_ray] != 'S' && map && map->map[y_ray][x_ray] != 'E' &&
-		map && map->map[y_ray][x_ray] != 'W')
+	if (map && map->map[y_ray][x_ray] != '0' && map->map[y_ray][x_ray] != 'N'
+		&& map->map[y_ray][x_ray] != 'S' && map->map[y_ray][x_ray] != 'E'
+		&& map->map[y_ray][x_ray] != 'W')
 		return (true);
 	return (false);
 }
