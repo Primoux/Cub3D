@@ -13,9 +13,9 @@ double	y_inter(t_data *data, double angle)
 	x_step = TILE;
 	y_step = TILE * tan(angle);
 	x = floor(data->player->px / TILE) * TILE;
-	pixel = balance_inter(angle, &x, &x_step, 1); //corriger angle x et x_step
+	pixel = balance_inter(angle, &x, &x_step, 1);
 	y = data->player->py + (x - data->player->px) * tan(angle);
-	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0)) //rediriger lazer de y_step du bon cote en fontion de l'angle (droite ou gauche du cercle trigo)
+	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0))
 		y_step *= -1;
 	while (!is_wall(data->map, x + pixel, y))
 	{
@@ -29,10 +29,10 @@ double	y_inter(t_data *data, double angle)
 
 double	x_inter(t_data *data, double angle)
 {
-	double	x;
-	double	y;
 	double	x_step;
 	double	y_step;
+	double	x;
+	double	y;
 	int		pixel;
 
 	y_step = TILE;
@@ -57,7 +57,6 @@ double	lazerizor(t_data *data, double angle)
 	double	x_dist;
 	double	y_dist;
 
-	// printf("(fonction lazerizor) %f\n\n", angle / M_PI);
 	y_dist = y_inter(data, angle);
 	x_dist = x_inter(data, angle);
 	if (y_dist < x_dist)
@@ -68,7 +67,7 @@ double	lazerizor(t_data *data, double angle)
 void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*pixel;
-	// Sécurité : vérifier que x et y sont dans les bornes
+
 	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
 		return ;
 	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
@@ -97,7 +96,7 @@ void	raycaster(t_data *data)
 		if (corrected_dist <= 0) // secu si division par 0
 			corrected_dist = 0.1;
 		wall_height = (TILE * HEIGHT) / corrected_dist; // haut du mur
-		if (wall_height > HEIGHT) //fixer la limite du mur
+		if (wall_height > HEIGHT)
 			wall_height = HEIGHT;
 		wall_top = (HEIGHT - wall_height) / 2;
 		wall_bot = wall_top + wall_height;
