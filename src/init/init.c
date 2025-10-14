@@ -65,6 +65,6 @@ int	init(t_data *data)
 	if (init_ray(data) == 1)
 		return (1);
 	data->img = ft_calloc(1, sizeof(t_img)); // pu la merde
-
+	data->key = ft_calloc(1, sizeof(t_key));// pu la merde
 	return (0);
 }

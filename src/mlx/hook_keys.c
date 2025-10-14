@@ -24,31 +24,31 @@ void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
 			|| map->map[tile_y][tile_x] == 'E'
 			|| map->map[tile_y][tile_x] == 'W'))
 	{
-		ft_printf("(%s) C'est bon map->map[[%d][%d] = '%c'\n", __func__,
-			tile_y, tile_x, map->map[tile_y][tile_x]);
+		// ft_printf("(%s) C'est bon map->map[[%d][%d] = '%c'\n", __func__, tile_y,
+		// 	tile_x, map->map[tile_y][tile_x]);
 		player->px = new_x;
 		player->py = new_y;
 	}
 }
 
-void	move_player(t_data *data, int keycode)
+int	move_player(t_data *data)
 {
 	double	new_x;
 	double	new_y;
 
-	if (keycode == XK_w)
+	if (data->key->w_key == true)
 	{
 		new_x = data->player->px + cos(data->player->angle) * MOVE_SPEED;
 		new_y = data->player->py + sin(data->player->angle) * MOVE_SPEED;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
-	if (keycode == XK_s)
+	if (data->key->s_key == true)
 	{
 		new_x = data->player->px - cos(data->player->angle) * MOVE_SPEED;
 		new_y = data->player->py - sin(data->player->angle) * MOVE_SPEED;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
-	if (keycode == XK_d)
+	if (data->key->d_key == true)
 	{
 		new_x = data->player->px + cos(data->player->angle + M_PI / 2)
 			* MOVE_SPEED;
@@ -56,7 +56,7 @@ void	move_player(t_data *data, int keycode)
 			* MOVE_SPEED;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
-	if (keycode == XK_a)
+	if (data->key->a_key == true)
 	{
 		new_x = data->player->px - cos(data->player->angle + M_PI / 2)
 			* MOVE_SPEED;
@@ -64,20 +64,61 @@ void	move_player(t_data *data, int keycode)
 			* MOVE_SPEED;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
-	if (keycode == XK_Left)
+	if (data->key->left_key == true)
 		data->player->angle -= ANGLE_SPEED;
-	if (keycode == XK_Right)
+	if (data->key->right_key == true)
 		data->player->angle += ANGLE_SPEED;
 	raycaster(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
+	usleep(1000);
+	return (0);
 }
 
-int	handle_key(int keycode, t_data *data)
+void	press_key(t_data *data, int keycode)
+{
+	if (keycode == XK_w)
+		data->key->w_key = true;
+	if (keycode == XK_a)
+		data->key->a_key = true;
+	if (keycode == XK_s)
+		data->key->s_key = true;
+	if (keycode == XK_d)
+		data->key->d_key = true;
+	if (keycode == XK_Left)
+		data->key->left_key = true;
+	if (keycode == XK_Right)
+		data->key->right_key = true;
+}
+
+void	release_key(t_data *data, int keycode)
+{
+	if (keycode == XK_w)
+		data->key->w_key = false;
+	if (keycode == XK_a)
+		data->key->a_key = false;
+	if (keycode == XK_s)
+		data->key->s_key = false;
+	if (keycode == XK_d)
+		data->key->d_key = false;
+	if (keycode == XK_Left)
+		data->key->left_key = false;
+	if (keycode == XK_Right)
+		data->key->right_key = false;
+}
+
+int	handle_press_key(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		close_window(data);
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
 		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right)
-		move_player(data, keycode);
+		press_key(data, keycode);
+	return (0);
+}
+int	handle_release_key(int keycode, t_data *data)
+{
+	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right)
+		release_key(data, keycode);
 	return (0);
 }
