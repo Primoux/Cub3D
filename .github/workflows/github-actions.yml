@@ -1,5 +1,5 @@
 name: Cub3D CI
-run-name: Norminette + Compilation 🚀
+run-name: Compilation + Norminette  🚀
 on:
   push:
     branches: [ main ]
