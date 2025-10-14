@@ -14,7 +14,7 @@ void	winner(t_data *data)
     raycaster(data);
     mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
     mlx_hook(data->win, 17, 0, close_window, data);
-    // mlx_loop_hook(mlx, &hooks, &data);
+//     mlx_loop_hook(mlx, &hooks, &data);
     mlx_loop(data->mlx);
 
     // hook key_pressed -> code si code == XK_a -> bool  de direction left = true; 

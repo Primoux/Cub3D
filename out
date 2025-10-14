@@ -1,2 +1,0 @@
-return ((data->ray->rx - data->player->px) / cos(angle)); //pour corriger le fish-eyes pour y_inter
-return ((data->ray->ry - data->player->py) / sin(angle)); //pour corriger le fish-eyes pour x_inter
