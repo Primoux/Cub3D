@@ -21,8 +21,6 @@ static void	check_colision(t_player *player, t_map *map, double new_y, double ne
 			|| map->map[tile_y][tile_x] == 'E'
 			|| map->map[tile_y][tile_x] == 'W'))
 	{
-		// ft_printf("(%s) C'est bon map->map[[%d][%d] = '%c'\n", __func__, tile_y,
-		// 	tile_x, map->map[tile_y][tile_x]);
 		player->px = new_x;
 		player->py = new_y;
 	}
@@ -139,6 +137,7 @@ int	handle_press_key(int keycode, t_data *data)
 		press_key(data, keycode);
 	return (0);
 }
+
 int	handle_release_key(int keycode, t_data *data)
 {
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
