@@ -78,6 +78,7 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+//37 lines
 void	raycaster(t_data *data)
 {
 	int		i;
