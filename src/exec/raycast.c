@@ -25,11 +25,10 @@ double	y_inter(t_data *data, double angle)
 		// mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x00FF0000);
 		y += y_step;
 		x += x_step;
-		// usleep(500);
 	}
-	// mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x000000FF);
 	data->ray->rx = x;
 	data->ray->ry = y;
+//	return ((data->ray->ry - data->player->py) / sin(angle)); //pour corriger le fish-eyes pour x_inter
 	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
 }
 
@@ -56,13 +55,11 @@ double	x_inter(t_data *data, double angle)
 		// mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x00FF0000);
 		x += x_step;
 		y += y_step;
-		// usleep(500);
 	}
-	// mlx_pixel_put(data->mlx, data->win, (int)x  , (int)y, 0x000000FF);
 	data->ray->rx = x;
 	data->ray->ry = y;
+//	return ((data->ray->rx - data->player->px) / cos(angle)); //pour corriger le fish-eyes pour y_inter
 	return (sqrt(pow(x -data->player->px , 2) + pow(y -data->player->py, 2)));
-	return ((data->ray->rx - data->player->px) / cos(angle)); //pour corriger le fish-eyes pour y_inter
 }
 double	lazerizor(t_data *data, double angle)
 {
@@ -91,13 +88,15 @@ void my_mlx_put_pixel(t_data *data, int x, int y, int color)
     *(unsigned int *)pixel = color;
 }
 
+
+
+
 void	raycaster(t_data *data)
 {
 	int		i;
 	int		j;
 	double	rad_fov;
 	double	dist;
-	double	correct_dist;
 
 	i = 0;
 	rad_fov = FOV * (M_PI / 180);
@@ -106,19 +105,23 @@ void	raycaster(t_data *data)
 	{
 		j = 0;
 		norm_angle(&data->ray->angle);
+		norm_angle(&data->player->angle);
 		dist = lazerizor(data, data->ray->angle);
-		correct_dist = dist * cos(data->ray->angle - data->player->angle);
+//		printf("(in %s ) dist = [%f]\n", __func__, dist);
+//		printf("(in %s) ray angle = [%f] |  player angle = [%f]\n", __func__, data->ray->angle, data->player->angle);
+		dist *=  cos(data->ray->angle - data->player->angle);
+//		if (dist > )
 		while (j < HEIGHT)
 		{
-			if (j < correct_dist)
+			if (j < dist)
 				my_mlx_put_pixel(data, i, j, 0x00FF0000);
-			else if (j > HEIGHT - correct_dist)
+			else if (j > HEIGHT - dist)
 				my_mlx_put_pixel(data, i, j, 0x000000FF);
 			else
 				my_mlx_put_pixel(data, i, j, 0x00000000);
 			j++;
 		}
-		data->ray->ray_dist = correct_dist;
+		data->ray->ray_dist = dist;
 		data->ray->angle += rad_fov / WIDTH;
 		i++;
 	}

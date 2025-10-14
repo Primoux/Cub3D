@@ -24,7 +24,7 @@ void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
 			|| map->map[tile_y][tile_x] == 'E'
 			|| map->map[tile_y][tile_x] == 'W'))
 	{
-		ft_printf("(%s)%d C'est bon map->map[[%d][%d] = '%c'\n", __func__,
+		ft_printf("(%s) C'est bon map->map[[%d][%d] = '%c'\n", __func__,
 			tile_y, tile_x, map->map[tile_y][tile_x]);
 		player->px = new_x;
 		player->py = new_y;
