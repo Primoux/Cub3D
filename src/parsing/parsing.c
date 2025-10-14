@@ -24,6 +24,5 @@ int	parsing(t_data *data, char *argv)
 			data->map->x_max = len - 1;
 		i++;
 	}
-	print_map_and_params(data);
 	return (EXIT_SUCCESS);
 }

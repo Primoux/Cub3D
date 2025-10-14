@@ -21,8 +21,6 @@ void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
 			|| map->map[tile_y][tile_x] == 'E'
 			|| map->map[tile_y][tile_x] == 'W'))
 	{
-		// ft_printf("(%s) C'est bon map->map[[%d][%d] = '%c'\n", __func__, tile_y,
-		// 	tile_x, map->map[tile_y][tile_x]);
 		player->px = new_x;
 		player->py = new_y;
 	}
@@ -65,6 +63,7 @@ int	move_player(t_data *data)
 		data->player->angle -= ANGLE_SPEED;
 	if (data->key->right_key == true)
 		data->player->angle += ANGLE_SPEED;
+	norm_angle(&data->player->angle);
 	raycaster(data);
 	imaginer(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
@@ -108,8 +107,6 @@ void	release_key(t_data *data, int keycode)
 		data->key->left_key = false;
 	if (keycode == XK_Right)
 		data->key->right_key = false;
-//	if (keycode ==  XK_Tab)
-//		data->key->tab_key = false;
 }
 
 int	handle_press_key(int keycode, t_data *data)
@@ -121,6 +118,7 @@ int	handle_press_key(int keycode, t_data *data)
 		press_key(data, keycode);
 	return (0);
 }
+
 int	handle_release_key(int keycode, t_data *data)
 {
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
