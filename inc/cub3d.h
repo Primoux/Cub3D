@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define FOV 70
+# define FOV 60
 
 // Dell
 # define HEIGHT 1080

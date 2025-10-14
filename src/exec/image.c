@@ -2,16 +2,6 @@
 #include "mlx.h"
 #include "mlx_management.h"
 
-// void	charge_img(t_data *data) // proteger en cas de NULL
-//{
-//	data->texture->wall = mlx_xpm_file_to_image(data->mlx,
-//			"asset/textures/test_bloc2.xpm", &data->map->x, &data->map->y);
-//	data->texture->floor = mlx_xpm_file_to_image(data->mlx,
-//			"asset/textures/test_bloc.xpm", &data->map->x, &data->map->y);
-//	data->texture->perso_n = mlx_xpm_file_to_image(data->mlx,
-//			"asset/textures/test_perso.xpm", &data->map->x, &data->map->y);
-//}
-
 void	add_image(t_data *data, t_img *img, int player_color, int wall_color)
 {
 	int	i;
