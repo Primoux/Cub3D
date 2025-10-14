@@ -57,11 +57,15 @@ double	lazerizor(t_data *data, double angle)
 	double	x_dist;
 	double	y_dist;
 
-	y_dist = y_inter(data, angle);
 	x_dist = x_inter(data, angle);
-	if (y_dist < x_dist)
-		return (y_dist);
-	return (x_dist);
+	y_dist = y_inter(data, angle);
+	if (x_dist < y_dist)
+	{
+		data->ray->rx_dist  = x_dist;
+		return (x_dist);
+	}
+	data->ray->rx_dist  = y_dist;
+	return (y_dist);
 }
 
 void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
@@ -91,7 +95,6 @@ void	raycaster(t_data *data)
 	{
 		norm_angle(&data->ray->angle);
 		dist = lazerizor(data, data->ray->angle);
-//		printf("(in %s) dist = [%f]\n", __func__, dist);
 		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
 		if (corrected_dist <= 0) // secu si division par 0
 			corrected_dist = 0.1;

@@ -22,7 +22,6 @@ int	balance_inter(double angle, double *inter, double *step, int mode)
 		}
 		*inter += TILE;
 	}
-	(void)*inter;
 	return (1);
 }
 
