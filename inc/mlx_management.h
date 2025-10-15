@@ -9,6 +9,6 @@
 # define ANGLE_SPEED 0.015
 
 void	winner(t_data *data);
-void	imaginer(t_data *data);
+void	draw_minimap(t_data *data);
 
 #endif
