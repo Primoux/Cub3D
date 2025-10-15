@@ -1,7 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define FOV 70
+# define FOV 60
 
 // Dell
 # define HEIGHT 1080
@@ -136,7 +136,16 @@ int							close_window(t_data *data);
 int							handle_press_key(int keycode, t_data *data);
 int							handle_release_key(int keycode, t_data *data);
 int							move_player(t_data *data);
+int							parse_color_format(char *color_str, t_color *color);
+int							init_colors(t_data *data);
 int							init(t_data *data);
+int							init_base(t_data *data);
+int							init_player(t_player *player);
+int							init_map(t_data *data);
+int							init_texture(t_data *data);
+int							init_ray(t_data *data);
+int							init_img(t_data *data);
+int							init_keys(t_data *data);
 void						free_all(t_data *data);
 void						print_error_asset(t_data *data);
 void						print_map_and_params(t_data *data);

@@ -1,15 +1,15 @@
+#define _GNU_SOURCE
 #include "cub3d.h"
 #include "mlx_management.h"
 
 int	close_window(t_data *data)
 {
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
 	free_all(data);
 	exit(0);
 }
 
-static void	check_colision(t_player *player, t_map *map, double new_y, double new_x)
+static void	check_colision(t_player *player, t_map *map, double new_y,
+		double new_x)
 {
 	int	tile_x;
 	int	tile_y;
@@ -26,7 +26,8 @@ static void	check_colision(t_player *player, t_map *map, double new_y, double ne
 	}
 }
 
-static void	move_forward_or_backward(t_data *data, double new_x, double new_y, float move)
+static void	move_forward_or_backward(t_data *data, double new_x, double new_y,
+		float move)
 {
 	if (data->key->w_key == true)
 	{
@@ -42,22 +43,19 @@ static void	move_forward_or_backward(t_data *data, double new_x, double new_y, f
 	}
 }
 
-static void	move_right_or_left(t_data *data, double new_x, double new_y, float move)
+static void	move_right_or_left(t_data *data, double new_x, double new_y,
+		float move)
 {
 	if (data->key->d_key == true)
 	{
-		new_x = data->player->px + cos(data->player->angle + M_PI / 2)
-								   * move;
-		new_y = data->player->py + sin(data->player->angle + M_PI / 2)
-								   * move;
+		new_x = data->player->px + cos(data->player->angle + M_PI / 2) * move;
+		new_y = data->player->py + sin(data->player->angle + M_PI / 2) * move;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
 	if (data->key->a_key == true)
 	{
-		new_x = data->player->px - cos(data->player->angle + M_PI / 2)
-								   * move;
-		new_y = data->player->py - sin(data->player->angle + M_PI / 2)
-								   * move;
+		new_x = data->player->px - cos(data->player->angle + M_PI / 2) * move;
+		new_y = data->player->py - sin(data->player->angle + M_PI / 2) * move;
 		check_colision(data->player, data->map, new_y, new_x);
 	}
 	if (data->key->left_key == true)
@@ -80,7 +78,7 @@ int	move_player(t_data *data)
 	move_forward_or_backward(data, new_x, new_y, move);
 	move_right_or_left(data, new_x, new_y, move);
 	raycaster(data);
-	imaginer(data);
+	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
@@ -133,7 +131,8 @@ int	handle_press_key(int keycode, t_data *data)
 	if (keycode == XK_Escape)
 		close_window(data);
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
-		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right || keycode == XK_Tab || keycode == XK_Shift_L)
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right
+		|| keycode == XK_Tab || keycode == XK_Shift_L)
 		press_key(data, keycode);
 	return (0);
 }
@@ -141,7 +140,8 @@ int	handle_press_key(int keycode, t_data *data)
 int	handle_release_key(int keycode, t_data *data)
 {
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
-		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right|| keycode == XK_Tab || keycode == XK_Shift_L)
+		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right
+		|| keycode == XK_Tab || keycode == XK_Shift_L)
 		release_key(data, keycode);
 	return (0);
 }
