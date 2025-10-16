@@ -59,7 +59,7 @@ double	lazerizor(t_data *data, double angle)
 
 	x_dist = x_inter(data, angle);
 	y_dist = y_inter(data, angle);
-	if (x_dist < y_dist)
+	if (x_dist <= y_dist)
 	{
 		data->ray->rx_dist  = x_dist;
 		return (x_dist);
@@ -110,7 +110,7 @@ void	raycaster(t_data *data)
 			if (j < wall_top)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
-				my_mlx_put_pixel(data->img, i, j, 0x00C0C0C0);
+				my_mlx_put_pixel(data->img, i, j, 0x000000);
 			else
 				my_mlx_put_pixel(data->img, i, j, data->texture->floor.val);
 			j++;

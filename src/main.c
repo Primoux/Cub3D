@@ -10,11 +10,13 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Usage: ./cub3d <map.cub>\n");
 		return (2);
 	}
-	if (init(&data) == 1 || parsing(&data, argv[1]) == 1 || init_colors(&data))
+	if (init(&data) == 1 || parsing(&data, argv[1]) == 1
+		|| init_colors(&data) == 1 || init_mlx(&data) == 1)
 	{
 		free_all(&data);
 		return (1);
 	}
 	winner(&data);
 	free_all(&data);
+	return (0);
 }

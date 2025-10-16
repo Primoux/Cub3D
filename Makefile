@@ -41,6 +41,7 @@ INIT_SRCS		:=	init/init.c \
 					init/init_ray.c \
 					init/init_img.c \
 					init/init_keys.c \
+					init/init_mlx.c
 
 PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_name.c \
