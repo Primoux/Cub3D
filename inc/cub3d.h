@@ -136,7 +136,6 @@ int							close_window(t_data *data);
 int							handle_press_key(int keycode, t_data *data);
 int							handle_release_key(int keycode, t_data *data);
 int							move_player(t_data *data);
-int							parse_color_format(char *color_str, t_color *color);
 int							init_colors(t_data *data);
 int							init(t_data *data);
 int							init_base(t_data *data);
