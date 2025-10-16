@@ -52,8 +52,10 @@ struct						s_texture
 {
 	t_color					floor;
 	t_color					ceiling;
-	void					*wall;
-	void					*perso_n;
+	t_img					*n_wall;
+	t_img					*s_wall;
+	t_img					*w_wall;
+	t_img					*e_wall;
 };
 
 struct						s_player
@@ -66,14 +68,13 @@ struct						s_player
 
 struct						s_ray
 {
-	double				rx;
-	double				ry;
-	float				rad_fov;
-	double				angle;
-	double				ray_dist;
-	double				rx_dist;
-	double				ry_dist;
-
+	double					rx;
+	double					ry;
+	float					rad_fov;
+	double					angle;
+	double					ray_dist;
+	double					rx_dist;
+	double					ry_dist;
 };
 
 struct						s_map

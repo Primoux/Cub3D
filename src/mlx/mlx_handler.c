@@ -3,11 +3,6 @@
 
 void	winner(t_data *data)
 {
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "prout");
-	data->img->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
-			&data->img->line_length, &data->img->endian);
 	mlx_hook(data->win, 2, 1L << 0, handle_press_key, data);
 	mlx_hook(data->win, 3, 1L << 1, handle_release_key, data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);

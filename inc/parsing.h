@@ -12,5 +12,6 @@ int	read_map(t_data *data);
 int	check_map_validity(t_data *data, char **map);
 int	char_compare(char c);
 int	check_char(t_data *data, char **map, int *y, int *x);
+int	init_mlx(t_data *data);
 
 #endif
