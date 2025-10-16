@@ -61,10 +61,10 @@ double	lazerizor(t_data *data, double angle)
 	y_dist = y_inter(data, angle);
 	if (x_dist <= y_dist)
 	{
-		data->ray->rx_dist  = x_dist;
+		data->ray->rx_dist = x_dist;
 		return (x_dist);
 	}
-	data->ray->rx_dist  = y_dist;
+	data->ray->rx_dist = y_dist;
 	return (y_dist);
 }
 
@@ -78,7 +78,6 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
-//37 lines
 void	raycaster(t_data *data)
 {
 	int		i;
