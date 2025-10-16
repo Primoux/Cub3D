@@ -10,8 +10,8 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Usage: ./cub3d <map.cub>\n");
 		return (2);
 	}
-	if (init(&data) == 1 || parsing(&data, argv[1]) == 1
-		|| init_colors(&data) == 1 || init_mlx(&data) == 1)
+	if (init(&data) != 0 || parsing(&data, argv[1]) != 0
+		|| init_colors(&data) != 0 || init_mlx(&data) != 0)
 	{
 		free_all(&data);
 		return (1);
