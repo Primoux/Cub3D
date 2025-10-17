@@ -6,10 +6,10 @@ static int	stock_xpm(t_data *data)
 	int	width;
 	int	height;
 
-	width = TEXTURE_RES;
-	height = TEXTURE_RES;
 	data->texture->n_wall = mlx_xpm_file_to_image(data->mlx,
 			data->map->n_wall_path, &width, &height);
+	data->texture->n_wall->width = width;
+	data->texture->n_wall->height = height;
 	if (!data->texture->n_wall)
 		return (1);
 	data->texture->n_wall->addr = mlx_get_data_addr(data->texture->n_wall,
