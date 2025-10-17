@@ -98,6 +98,7 @@ void print_texture(t_data *data, int i, int j)
 	double wall_top = data->ray->rwall_top;
 	double wall_height = data->ray->rwall_height;
 	int tex_y = (int)((j - wall_top) / wall_height * data->texture->n_wall->height);
+//	printf("wall_top =  %f | wall_height %f\n", wall_top, wall_height);
 	if (tex_y >= data->texture->n_wall->height)
 		tex_y = data->texture->n_wall->height;
 
@@ -133,8 +134,8 @@ void	raycaster(t_data *data)
 			corrected_dist = 0.1;
 		wall_height = (TILE * HEIGHT) / corrected_dist;
 		data->ray->rwall_height = wall_height;
-		if (wall_height > HEIGHT)
-			wall_height = HEIGHT;
+//		if (wall_height > HEIGHT)
+//			wall_height = HEIGHT;
 		wall_top = (HEIGHT - wall_height) / 2;
 		data->ray->rwall_top = wall_top;
 		wall_bot = wall_top + wall_height;
