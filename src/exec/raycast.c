@@ -57,14 +57,22 @@ double	lazerizor(t_data *data, double angle)
 	double	x_dist;
 	double	y_dist;
 
+	data->ray->rx_dist = 0;
+	data->ray->ry_dist = 0;
+
 	x_dist = x_inter(data, angle);
 	y_dist = y_inter(data, angle);
 	if (x_dist <= y_dist)
 	{
 		data->ray->rx_dist = x_dist;
+		data->ray->flag = 'y';
 		return (x_dist);
 	}
-	data->ray->rx_dist = y_dist;
+	else
+	{
+		data->ray->rx_dist  = x_dist;
+		data->ray->flag = 'x';
+	}
 	return (y_dist);
 }
 
@@ -78,15 +86,45 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+
+//plus simple de prendre des images a taille de la fenetre
+//savoir ou le rayon tape sur le mur
+//distance avec le mur
+//tail du xpm L =
+void print_texture(t_data *data, int i, int j)
+{
+	data->texture->n_wall->width = 512;
+	data->texture->n_wall->height = 512;
+
+	int tex_x = data->texture->n_wall->width / 2;
+	int tex_y;
+	unsigned int color;
+	double wall_top = data->ray->rwall_top;
+	double wall_height = data->ray->rwall_height;
+
+	tex_y = (int)((j - wall_top) / wall_height * data->texture->n_wall->height);
+	if (tex_y < 0) tex_y = 0;
+	if (tex_y >= data->texture->n_wall->height)
+		tex_y = data->texture->n_wall->height;
+
+	color = *(unsigned int *)(data->texture->n_wall->addr
+			+ (tex_y * data->texture->n_wall->line_length
+			+ tex_x * (data->texture->n_wall->bpp / 8)));
+
+	my_mlx_put_pixel(data->img, i, j, color);
+}
+
+
+
 void	raycaster(t_data *data)
 {
-	int		i;
-	int		j;
-	double	dist;
-	double	corrected_dist;
-	double	wall_height;
-	int		wall_top;
-	int		wall_bot;
+	int			i;
+	int			j;
+	double		dist;
+	double		corrected_dist;
+	double		wall_height;
+	double		wall_top;
+	double		wall_bot;
 
 	i = 0;
 	data->ray->rad_fov = FOV * (M_PI / 180);
@@ -96,12 +134,15 @@ void	raycaster(t_data *data)
 		norm_angle(&data->ray->angle);
 		dist = lazerizor(data, data->ray->angle);
 		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
+
 		if (corrected_dist <= 0)
 			corrected_dist = 0.1;
 		wall_height = (TILE * HEIGHT) / corrected_dist;
+		data->ray->rwall_height = wall_height;
 		if (wall_height > HEIGHT)
 			wall_height = HEIGHT;
 		wall_top = (HEIGHT - wall_height) / 2;
+		data->ray->rwall_top = wall_top;
 		wall_bot = wall_top + wall_height;
 		j = 0;
 		while (j < HEIGHT)
@@ -109,7 +150,11 @@ void	raycaster(t_data *data)
 			if (j < wall_top)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
-				my_mlx_put_pixel(data->img, i, j, 0x000000);
+			{
+				//remplacer ce pixel part une fonction qui permet d'imprimer la texture
+//				my_mlx_put_pixel(data->img, i, j, 0x00C0C0C0);
+				print_texture(data, i, j);
+			}
 			else
 				my_mlx_put_pixel(data->img, i, j, data->texture->floor.val);
 			j++;

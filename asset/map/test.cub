@@ -2,8 +2,8 @@ NO ./asset/textures/test_bloc.xpm
 SO ./asset/textures/test_bloc.xpm
 WE ./asset/textures/test_bloc.xpm
 EA ./asset/textures/test_bloc.xpm
-F 100,0,123
-C 0,0,250
+F 155,155,42
+C 15,58,255
 
 
 11111111111
