@@ -3,6 +3,7 @@
 
 # define FOV 60
 
+//1500 par 1000
 // Dell
 # define HEIGHT 1080
 # define WIDTH 1920
@@ -34,6 +35,8 @@ typedef struct s_img
 	int						bpp;
 	int						line_length;
 	int						endian;
+	int						width;
+	int						height;
 }							t_img;
 
 typedef union u_color
@@ -75,6 +78,9 @@ struct						s_ray
 	double					ray_dist;
 	double					rx_dist;
 	double					ry_dist;
+	char					flag;
+	double					rwall_height;
+	double					rwall_top;
 };
 
 struct						s_map
