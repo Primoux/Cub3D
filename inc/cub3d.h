@@ -81,6 +81,8 @@ struct						s_ray
 	char					flag;
 	double					rwall_height;
 	double					rwall_top;
+	double					hit_x;
+	double					hit_y;
 };
 
 struct						s_map
