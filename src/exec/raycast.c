@@ -93,23 +93,19 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 //tail du xpm L =
 void print_texture(t_data *data, int i, int j)
 {
-	data->texture->n_wall->width = 512;
-	data->texture->n_wall->height = 512;
 
-	int tex_x = data->texture->n_wall->width / 2;
-	int tex_y;
 	unsigned int color;
+	int tex_x = data->texture->n_wall->width / 2;
 	double wall_top = data->ray->rwall_top;
 	double wall_height = data->ray->rwall_height;
-
-	tex_y = (int)((j - wall_top) / wall_height * data->texture->n_wall->height);
+	int tex_y = (int)((j - wall_top) / wall_height * data->texture->n_wall->height);
 	if (tex_y < 0) tex_y = 0;
 	if (tex_y >= data->texture->n_wall->height)
 		tex_y = data->texture->n_wall->height;
 
 	color = *(unsigned int *)(data->texture->n_wall->addr
-			+ (tex_y * data->texture->n_wall->line_length
-			+ tex_x * (data->texture->n_wall->bpp / 8)));
+			+ (tex_x * data->texture->n_wall->line_length
+			+ tex_y * (data->texture->n_wall->bpp / 8)));
 
 	my_mlx_put_pixel(data->img, i, j, color);
 }
@@ -129,6 +125,7 @@ void	raycaster(t_data *data)
 	i = 0;
 	data->ray->rad_fov = FOV * (M_PI / 180);
 	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
+	printf("(fonction %s) w = %d h = %d\n", __func__, data->texture->n_wall->width, data->texture->n_wall->height);
 	while (i < WIDTH)
 	{
 		norm_angle(&data->ray->angle);
