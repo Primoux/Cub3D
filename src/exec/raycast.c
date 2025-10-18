@@ -23,7 +23,7 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		x += x_step;
 	}
 	*hit_x = x; // point d'impact mur Y;
-	*hit_y = y; //point d'impact mur X
+	*hit_y = y; // point d'impact mur X
 	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
 }
 
@@ -47,41 +47,41 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		x += x_step;
 		y += y_step;
 	}
-	*hit_y = y; //point d'impact mur Y
+	*hit_y = y; // point d'impact mur Y
 	*hit_x = x; // point impact mur X;
 	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
 }
 
-double lazerizor(t_data *data, double angle)
+double	lazerizor(t_data *data, double angle)
 {
-	double x_dist;
-	double y_dist;
-	double x_hit_x;
-	double y_hit_y;
-	double y_hit_x;
-	double x_hit_y;
+	double	x_dist;
+	double	y_dist;
+	double	x_hit_x;
+	double	y_hit_y;
+	double	y_hit_x;
+	double	x_hit_y;
 
-//	data->ray->rx_dist = 0;
-//	data->ray->ry_dist = 0;
+	//	data->ray->rx_dist = 0;
+	//	data->ray->ry_dist = 0;
 	x_dist = x_inter(data, angle, &x_hit_x, &x_hit_y);
 	y_dist = y_inter(data, angle, &y_hit_x, &y_hit_y);
 	if (x_dist <= y_dist)
 	{
-		data->ray->flag = 'x';	// mur horizontal touche
-		data->ray->rx_dist = x_dist;	//distance a l’horizontale
-		data->ray->ry_dist = y_dist;	//distance a la verticale
-		data->ray->hit_x = x_hit_x;	//point d’impact exact
-		data->ray->hit_y = x_hit_y;	//same
-		return x_dist;
+		data->ray->flag = 'x';       // mur horizontal touche
+		data->ray->rx_dist = x_dist; // distance a l’horizontale
+		data->ray->ry_dist = y_dist; // distance a la verticale
+		data->ray->hit_x = x_hit_x;  // point d’impact exact
+		data->ray->hit_y = x_hit_y;  // same
+		return (x_dist);
 	}
 	else
 	{
-		data->ray->flag = 'y';	//pareil pour y
+		data->ray->flag = 'y'; // pareil pour y
 		data->ray->rx_dist = x_dist;
 		data->ray->ry_dist = y_dist;
 		data->ray->hit_x = y_hit_x;
 		data->ray->hit_y = y_hit_y;
-		return y_dist;
+		return (y_dist);
 	}
 }
 
@@ -95,50 +95,48 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+// plus simple de prendre des images a taille de la fenetre
+// savoir ou le rayon tape sur le mur
+// tail du xpm L =
 
-//plus simple de prendre des images a taille de la fenetre
-//savoir ou le rayon tape sur le mur
-//tail du xpm L =
-
-void print_texture(t_data *data, int i, int j)
+void	print_texture(t_data *data, int i, int j)
 {
 	double			tex_y;
 	double			tex_x;
 	unsigned int	color;
-	double			wall_top = data->ray->rwall_top;
-	double			wall_height = data->ray->rwall_height;
+	double			wall_top;
+	double			wall_height;
 
+	wall_top = data->ray->rwall_top;
+	wall_height = data->ray->rwall_height;
 	if (data->ray->flag == 'x')
 	{
-			tex_x = fmod(data->ray->hit_y, TILE) / TILE;
+		tex_x = fmod(data->ray->hit_x, TILE) / TILE;
 	}
 	else
 	{
-//		printf("texas = %f\n", data->ray->hit_x);
-		tex_x = fmod(data->ray->hit_x, TILE) / TILE;
+		tex_x = fmod(data->ray->hit_y, TILE) / TILE;
 	}
-	tex_y = (double)((j - wall_top) * data->texture->n_wall->height / wall_height);
+	tex_y = (double)((j - wall_top) * data->texture->n_wall->height
+			/ wall_height);
 	if (tex_y >= data->texture->n_wall->height)
 		tex_y = data->texture->n_wall->height;
-
-	color = *(unsigned int *)(data->texture->n_wall->addr
-			+ ((int)tex_y * data->texture->n_wall->line_length
-			+ (int)(tex_x * data->texture->n_wall->width) * (data->texture->n_wall->bpp / 8)));
-//	printf("2 %p\n", data->texture->n_wall->addr);
-
+	color = *(unsigned int *)(data->texture->n_wall->addr + ((int)tex_y
+				* data->texture->n_wall->line_length + (int)(tex_x
+					* data->texture->n_wall->width)
+				* (data->texture->n_wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, (int)color);
 }
 
-
 void	raycaster(t_data *data)
 {
-	int			i;
-	int			j;
-	double		dist;
-	double		corrected_dist;
-	double		wall_height;
-	double		wall_top;
-	double		wall_bot;
+	int		i;
+	int		j;
+	double	dist;
+	double	corrected_dist;
+	double	wall_height;
+	double	wall_top;
+	double	wall_bot;
 
 	i = 0;
 	data->ray->rad_fov = FOV * (M_PI / 180);
@@ -162,8 +160,8 @@ void	raycaster(t_data *data)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
 			{
-				//remplacer ce pixel part une fonction qui permet d'imprimer la texture
-				my_mlx_put_pixel(data->img, i, j, 0x0000FFFF);
+				// remplacer ce pixel part une fonction qui permet d'imprimer la texture
+				// my_mlx_put_pixel(data->img, i, j, 0x0000FFFF);
 				print_texture(data, i, j);
 			}
 			else
