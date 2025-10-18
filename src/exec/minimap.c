@@ -40,7 +40,7 @@ static void	draw_minimap_tile(t_data *data, int scale)
 {
 	int	player_x;
 	int	player_y;
-	int	wall_color;
+	unsigned int	wall_color;
 	int	player_color;
 
 	player_x = floor(data->player->px / TILE);

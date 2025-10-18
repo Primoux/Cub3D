@@ -37,6 +37,7 @@ typedef struct s_img
 	int						endian;
 	int						width;
 	int						height;
+
 }							t_img;
 
 typedef union u_color
@@ -132,8 +133,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void						my_mlx_put_pixel(t_img *img, int x, int y,
-								int color);
+void						my_mlx_put_pixel(t_img *img, int x, int y, int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
 bool						is_wall(t_map *map, double x, double y);
