@@ -3,7 +3,7 @@
 
 # include "cub3d.h"
 
-# define TILE 75
+# define TILE 33
 # define TEXTURE_RES 75
 # define MOVE_SPEED 2.2
 # define MOVE_SPRINT 5

@@ -22,8 +22,8 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		y += y_step;
 		x += x_step;
 	}
-	*hit_x = y; // point d'impact mur x;
-	*hit_y = x; //point d'impact mur y
+	*hit_x = y; // point d'impact mur Y;
+	*hit_y = x; //point d'impact mur X
 	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
 }
 
@@ -47,8 +47,8 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		x += x_step;
 		y += y_step;
 	}
-	*hit_y = y; //point d'impact mur y
-	*hit_x = x; // point impact mur x;
+	*hit_y = y; //point d'impact mur Y
+	*hit_x = x; // point impact mur X;
 	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
 }
 
@@ -103,26 +103,29 @@ void print_texture(t_data *data, int i, int j)
 	double			tex_y;
 	double			tex_x;
 	unsigned int	color;
+	double wall_top = data->ray->rwall_top;
+	double wall_height = data->ray->rwall_height;
+
 	if (data->ray->flag == 'x')
 	{
-		tex_x = fmod(data->ray->hit_y, TILE) / 512;
+		tex_x = fmod(data->ray->hit_y, TILE) / 1280;
 	}
 	else
 	{
 //		printf("texas = %f\n", data->ray->hit_x);
-		tex_x = fmod(data->ray->hit_x, TILE) / 512;
+		tex_x = fmod(data->ray->hit_x, TILE) / 1280;
 	}
-	double wall_top = data->ray->rwall_top;
-	double wall_height = data->ray->rwall_height;
-	tex_y = (double)((j - wall_top) * data->texture->n_wall->height / wall_height );
+	tex_y = (double)((j - wall_top) * data->texture->n_wall->height / wall_height);
 	if (tex_y >= data->texture->n_wall->height)
 		tex_y = data->texture->n_wall->height;
 
+//	printf("addr = %p, ll = %p, width = %p, bpp = %p\n", data->texture->n_wall->addr, &data->texture->n_wall->line_length, &data->texture->n_wall->width, &data->texture->n_wall->bpp);
 	color = *(unsigned int *)(data->texture->n_wall->addr
 			+ ((int)tex_y * data->texture->n_wall->line_length
 			+ (int)(tex_x * data->texture->n_wall->width) * (data->texture->n_wall->bpp / 8)));
+//	printf("2 %p\n", data->texture->n_wall->addr);
 
-		my_mlx_put_pixel(data->img, i, j, color);
+	my_mlx_put_pixel(data->img, i, j, (int)color);
 }
 
 
@@ -144,13 +147,10 @@ void	raycaster(t_data *data)
 		norm_angle(&data->ray->angle);
 		dist = lazerizor(data, data->ray->angle);
 		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
-
 		if (corrected_dist <= 0)
 			corrected_dist = 0.1;
 		wall_height = (TILE * HEIGHT) / corrected_dist;
 		data->ray->rwall_height = wall_height;
-//		if (wall_height > HEIGHT)
-//			wall_height = HEIGHT;
 		wall_top = (HEIGHT - wall_height) / 2;
 		data->ray->rwall_top = wall_top;
 		wall_bot = wall_top + wall_height;
@@ -162,7 +162,7 @@ void	raycaster(t_data *data)
 			else if (j < wall_bot)
 			{
 				//remplacer ce pixel part une fonction qui permet d'imprimer la texture
-//				my_mlx_put_pixel(data->img, i, j, 0x00C0C0C0);
+				my_mlx_put_pixel(data->img, i, j, 0x0000FFFF);
 				print_texture(data, i, j);
 			}
 			else

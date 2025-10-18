@@ -3,13 +3,8 @@
 
 static int	stock_xpm(t_data *data)
 {
-	int	width;
-	int	height;
-
 	data->texture->n_wall = mlx_xpm_file_to_image(data->mlx,
-			data->map->n_wall_path, &width, &height);
-	data->texture->n_wall->width = width;
-	data->texture->n_wall->height = height;
+			data->map->n_wall_path, &data->texture->n_wall->width, &data->texture->n_wall->height);
 	if (!data->texture->n_wall)
 		return (1);
 	data->texture->n_wall->addr = mlx_get_data_addr(data->texture->n_wall,
@@ -18,7 +13,7 @@ static int	stock_xpm(t_data *data)
 	if (!data->texture->n_wall->addr)
 		return (1);
 	data->texture->s_wall = mlx_xpm_file_to_image(data->mlx,
-			data->map->s_wall_path, &width, &height);
+			data->map->s_wall_path, &data->texture->s_wall->width, &data->texture->s_wall->height);
 	if (!data->texture->s_wall)
 		return (1);
 	data->texture->s_wall->addr = mlx_get_data_addr(data->texture->s_wall,
@@ -27,7 +22,7 @@ static int	stock_xpm(t_data *data)
 	if (!data->texture->s_wall->addr)
 		return (1);
 	data->texture->e_wall = mlx_xpm_file_to_image(data->mlx,
-			data->map->e_wall_path, &width, &height);
+			data->map->e_wall_path, &data->texture->e_wall->width, &data->texture->e_wall->height);
 	if (!data->texture->e_wall)
 		return (1);
 	data->texture->e_wall->addr = mlx_get_data_addr(data->texture->e_wall,
@@ -36,7 +31,7 @@ static int	stock_xpm(t_data *data)
 	if (!data->texture->e_wall->addr)
 		return (1);
 	data->texture->w_wall = mlx_xpm_file_to_image(data->mlx,
-			data->map->w_wall_path, &width, &height);
+			data->map->w_wall_path, &data->texture->w_wall->width, &data->texture->w_wall->height);
 	if (!data->texture->w_wall)
 		return (1);
 	data->texture->w_wall->addr = mlx_get_data_addr(data->texture->w_wall,
