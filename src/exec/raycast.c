@@ -61,8 +61,6 @@ double	lazerizor(t_data *data, double angle)
 	double	y_hit_x;
 	double	x_hit_y;
 
-	//	data->ray->rx_dist = 0;
-	//	data->ray->ry_dist = 0;
 	x_dist = x_inter(data, angle, &x_hit_x, &x_hit_y);
 	y_dist = y_inter(data, angle, &y_hit_x, &y_hit_y);
 	if (x_dist <= y_dist)
@@ -94,10 +92,6 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
 	*(unsigned int *)pixel = color;
 }
-
-// plus simple de prendre des images a taille de la fenetre
-// savoir ou le rayon tape sur le mur
-// tail du xpm L =
 
 void	print_texture(t_data *data, int i, int j)
 {
@@ -159,7 +153,7 @@ void	raycaster(t_data *data)
 	while (i < WIDTH)
 	{
 		norm_angle(&data->ray->angle);
-		dist = lazerizor(data, data->ray->angle);
+		dist = lazerizor(data, data->ray->angle) / 1.5;
 		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
 		if (corrected_dist <= 0)
 			corrected_dist = 0.1;
@@ -175,7 +169,6 @@ void	raycaster(t_data *data)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
 			{
-				// remplacer ce pixel part une fonction qui permet d'imprimer la texture
 				// my_mlx_put_pixel(data->img, i, j, 0x0000FFFF);
 				print_texture(data, i, j);
 			}
