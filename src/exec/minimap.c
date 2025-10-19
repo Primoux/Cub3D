@@ -38,10 +38,10 @@ static void	draw_tile(t_data *data, int scale, int color)
 
 static void	draw_minimap_tile(t_data *data, int scale)
 {
-	int	player_x;
-	int	player_y;
+	int				player_x;
+	int				player_y;
 	unsigned int	wall_color;
-	int	player_color;
+	int				player_color;
 
 	player_x = floor(data->player->px / TILE);
 	player_y = floor(data->player->py / TILE);

@@ -28,10 +28,6 @@ static void	free_images(t_data *data)
 	}
 	if (data->texture)
 	{
-		// if (data->texture->wall && data->mlx)
-		// 	mlx_destroy_image(data->mlx, data->texture->wall);
-		// if (data->texture->perso_n && data->mlx)
-		// 	mlx_destroy_image(data->mlx, data->texture->perso_n);
 		free(data->texture);
 	}
 }

@@ -60,7 +60,8 @@ UTILS_SRCS		:=	utils/free_all.c \
 
 EXEC_SRCS		:=	exec/minimap.c \
 					exec/check_n_correct.c \
-					exec/raycast.c
+					exec/raycast.c \
+					exec/movement.c
 
 ERROR_SRCS		:=	error/print_error_asset.c \
 
