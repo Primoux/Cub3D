@@ -1,7 +1,7 @@
-NO ./asset/textures/test_bloc.xpm
-SO ./asset/textures/test_bloc.xpm
-WE ./asset/textures/test_bloc.xpm
-EA ./asset/textures/test_bloc.xpm
+NO ./asset/textures/ebini.xpm
+SO ./asset/textures/triangle.xpm
+WE ./asset/textures/test_bloc1.xpm
+EA ./asset/textures/test_bloc2.xpm
 F 155,155,42
 C 15,58,255
 
