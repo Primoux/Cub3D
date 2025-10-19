@@ -29,19 +29,19 @@ int	ray_dir(double angle, int mode)
 {
 	if (mode == 0)
 	{
-		if (angle > M_PI)
+		if (angle > M_PI) // haut
 		{
 			return (0);
 		}
 	}
 	else
 	{
-		if (angle > M_PI_2 && angle <= 3 * M_PI_2)
+			if (angle > M_PI_2 && angle <= 3 * M_PI_2) //gauche
 		{
 			return (0);
 		}
 	}
-	return (1);
+	return (1); // bas ou droite
 }
 
 void	norm_angle(double *angle)

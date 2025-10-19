@@ -104,29 +104,44 @@ void	print_texture(t_data *data, int i, int j)
 	double			tex_y;
 	double			tex_x;
 	unsigned int	color;
-	double			wall_top;
-	double			wall_height;
+	double			wall_top = data->ray->rwall_top;
+	double			wall_height = data->ray->rwall_height;
+	t_img			*wall;
 
-	wall_top = data->ray->rwall_top;
-	wall_height = data->ray->rwall_height;
 	if (data->ray->flag == 'x')
 	{
-		tex_x = fmod(data->ray->hit_x, TILE) / TILE;
+		tex_x = fmod(data->ray->hit_x, TILE);
+		if (tex_x < 0)
+			tex_x += TILE;
+		tex_x /= TILE;
+
+		if (ray_dir(data->ray->angle, 0))
+			wall = data->texture->n_wall;
+		else
+			wall = data->texture->s_wall;
 	}
 	else
 	{
-		tex_x = fmod(data->ray->hit_y, TILE) / TILE;
+		tex_x = fmod(data->ray->hit_y, TILE);
+		if (tex_x < 0)
+			tex_x += TILE;
+		tex_x /= TILE;
+
+		if (ray_dir(data->ray->angle, 1))
+			wall = data->texture->e_wall;
+		else
+			wall = data->texture->w_wall;
 	}
-	tex_y = (double)((j - wall_top) * data->texture->n_wall->height
-			/ wall_height);
-	if (tex_y >= data->texture->n_wall->height)
-		tex_y = data->texture->n_wall->height;
-	color = *(unsigned int *)(data->texture->n_wall->addr + ((int)tex_y
-				* data->texture->n_wall->line_length + (int)(tex_x
-					* data->texture->n_wall->width)
-				* (data->texture->n_wall->bpp / 8)));
-	my_mlx_put_pixel(data->img, i, j, (int)color);
+
+	tex_y = (double)((j - wall_top) * wall->height / wall_height);
+
+
+	color = *(unsigned int *)(wall->addr + ((int)tex_y
+											* wall->line_length + (int)(tex_x * wall->width) * (wall->bpp / 8)));
+
+	my_mlx_put_pixel(data->img, i, j, color);
 }
+
 
 void	raycaster(t_data *data)
 {
