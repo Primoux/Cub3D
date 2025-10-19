@@ -22,8 +22,8 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		y += y_step;
 		x += x_step;
 	}
-	*hit_x = x; // point d'impact mur Y;
-	*hit_y = y; // point d'impact mur X
+	*hit_x = x;
+	*hit_y = y;
 	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
 }
 
@@ -47,8 +47,8 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		x += x_step;
 		y += y_step;
 	}
-	*hit_y = y; // point d'impact mur Y
 	*hit_x = x; // point impact mur X;
+	*hit_y = y; // point d'impact mur Y
 	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
 }
 
@@ -98,8 +98,6 @@ void	print_texture(t_data *data, int i, int j)
 	double			tex_y;
 	double			tex_x;
 	unsigned int	color;
-	double			wall_top = data->ray->rwall_top;
-	double			wall_height = data->ray->rwall_height;
 	t_img			*wall;
 
 	if (data->ray->flag == 'x')
@@ -108,7 +106,6 @@ void	print_texture(t_data *data, int i, int j)
 		if (tex_x < 0)
 			tex_x += TILE;
 		tex_x /= TILE;
-
 		if (ray_dir(data->ray->angle, 0))
 			wall = data->texture->n_wall;
 		else
@@ -120,22 +117,17 @@ void	print_texture(t_data *data, int i, int j)
 		if (tex_x < 0)
 			tex_x += TILE;
 		tex_x /= TILE;
-
 		if (ray_dir(data->ray->angle, 1))
 			wall = data->texture->e_wall;
 		else
 			wall = data->texture->w_wall;
 	}
-
-	tex_y = (double)((j - wall_top) * wall->height / wall_height);
-
-
-	color = *(unsigned int *)(wall->addr + ((int)tex_y
-											* wall->line_length + (int)(tex_x * wall->width) * (wall->bpp / 8)));
-
+	tex_y = (double)((j - data->ray->rwall_top) * wall->height
+			/ data->ray->rwall_height);
+	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
+				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, color);
 }
-
 
 void	raycaster(t_data *data)
 {
