@@ -3,7 +3,7 @@
 
 # define FOV 60
 
-//1500 par 1000
+// 1500 par 1000
 // Dell
 # define HEIGHT 1080
 # define WIDTH 1920
@@ -133,7 +133,8 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void						my_mlx_put_pixel(t_img *img, int x, int y, int color);
+void						my_mlx_put_pixel(t_img *img, int x, int y,
+								int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
 bool						is_wall(t_map *map, double x, double y);
@@ -157,5 +158,6 @@ int							init_keys(t_data *data);
 void						free_all(t_data *data);
 void						print_error_asset(t_data *data);
 void						print_map_and_params(t_data *data);
+int							move_player(t_data *data);
 
 #endif
