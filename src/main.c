@@ -1,5 +1,6 @@
 #include "mlx_management.h"
 #include "parsing.h"
+#include "init.h"
 
 int	main(int argc, char **argv)
 {
