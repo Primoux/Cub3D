@@ -92,6 +92,40 @@ void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)pixel = color;
 }
 
+t_img	*texture_north_south(t_data *data, double *tex_x)
+{
+	*tex_x = fmod(data->ray->hit_x, TILE);
+	if (*tex_x < 0)
+		*tex_x += TILE;
+	*tex_x /= TILE;
+	if (!ray_dir(data->ray->angle, 0))
+	{
+		return (data->texture->n_wall);
+	}
+	else
+	{
+		*tex_x = 1 - *tex_x;
+		return (data->texture->s_wall);
+	}
+}
+
+t_img	*texture_east_west(t_data *data, double *tex_x)
+{
+	*tex_x = fmod(data->ray->hit_y, TILE);
+	if (*tex_x < 0)
+		*tex_x += TILE;
+	*tex_x /= TILE;
+	if (ray_dir(data->ray->angle, 1))
+	{
+		return (data->texture->w_wall);
+	}
+	else
+	{
+		*tex_x = 1 - *tex_x;
+		return (data->texture->e_wall);
+	}
+}
+
 void	print_texture(t_data *data, int i, int j)
 {
 	double			tex_y;
@@ -100,42 +134,13 @@ void	print_texture(t_data *data, int i, int j)
 	t_img			*wall;
 
 	if (data->ray->flag == 'x')
-	{
-		tex_x = fmod(data->ray->hit_x, TILE);
-		if (tex_x < 0)
-			tex_x += TILE;
-		tex_x /= TILE;
-
-		if (!ray_dir(data->ray->angle, 0))
-		{
-			wall = data->texture->n_wall;
-		}
-		else
-		{
-			tex_x = 1 - tex_x;
-			wall = data->texture->s_wall;
-		}
-	}
+		wall = texture_north_south(data, &tex_x);
 	else
-	{
-		tex_x = fmod(data->ray->hit_y, TILE);
-		if (tex_x < 0)
-			tex_x += TILE;
-		tex_x /= TILE;
-		if (ray_dir(data->ray->angle, 1))
-		{
-			wall = data->texture->w_wall;
-		}
-		else
-		{
-			tex_x = 1 - tex_x;
-			wall = data->texture->e_wall;
-		}
-	}
-
-	tex_y = (double)((j - data->ray->rwall_top) * wall->height / data->ray->rwall_height);
-	color = *(unsigned int *)(wall->addr + ((int)tex_y
-			* wall->line_length + (int)(tex_x * wall->width) * (wall->bpp / 8)));
+		wall = texture_east_west(data, &tex_x);
+	tex_y = (double)((j - data->ray->rwall_top) * wall->height
+			/ data->ray->rwall_height);
+	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
+				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, color);
 }
 
