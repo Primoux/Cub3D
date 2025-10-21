@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 22:35:01 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 22:39:19 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	check_colision(t_player *player, t_map *map, double new_y,
 
 	tile_x = floor(new_x / TILE);
 	tile_y = floor(new_y / TILE);
-	if ((map->map[tile_y][tile_x] == '2' || map->map[tile_y][tile_x] == 'N'
+	if ((map->map[tile_y][tile_x] == 'O' || map->map[tile_y][tile_x] == 'N'
 			|| map->map[tile_y][tile_x] == 'S'
 			|| map->map[tile_y][tile_x] == 'E'
 			|| map->map[tile_y][tile_x] == 'W'))

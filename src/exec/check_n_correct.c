@@ -29,19 +29,19 @@ int	ray_dir(double angle, int mode)
 {
 	if (mode == 0)
 	{
-		if (angle > M_PI) // haut
+		if (angle > M_PI)
 		{
 			return (0);
 		}
 	}
 	else
 	{
-			if (angle > M_PI_2 && angle <= 3 * M_PI_2) //gauche
+		if (angle > M_PI_2 && angle <= 3 * M_PI_2)
 		{
 			return (0);
 		}
 	}
-	return (1); // bas ou droite
+	return (1);
 }
 
 void	norm_angle(double *angle)
@@ -70,7 +70,7 @@ bool	is_wall(t_map *map, double x, double y)
 	len = ft_strlen(map->map[y_ray]);
 	if (x_ray >= len)
 		return (true);
-	if (map && map->map[y_ray][x_ray] != '2' && map->map[y_ray][x_ray] != 'N'
+	if (map && map->map[y_ray][x_ray] != 'O' && map->map[y_ray][x_ray] != 'N'
 		&& map->map[y_ray][x_ray] != 'S' && map->map[y_ray][x_ray] != 'E'
 		&& map->map[y_ray][x_ray] != 'W')
 		return (true);
