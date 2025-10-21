@@ -133,7 +133,7 @@ void	print_texture(t_data *data, int i, int j)
 		}
 	}
 
-	tex_y = (double)((j - wall_top) * wall->height / wall_height);
+	tex_y = (double)((j - data->ray->rwall_top) * wall->height / data->ray->rwall_height);
 	color = *(unsigned int *)(wall->addr + ((int)tex_y
 			* wall->line_length + (int)(tex_x * wall->width) * (wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, color);
