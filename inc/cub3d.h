@@ -133,13 +133,14 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void		print_texture(t_data *data, int i, int j);
 void						my_mlx_put_pixel(t_img *img, int x, int y, int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
 bool						is_wall(t_map *map, double x, double y);
 int							balance_inter(double angle, double *inter,
 								double *step, int mode);
-void						raycaster(t_data *data);
+void						raycast_loop(t_data *data);
 double						lazerizor(t_data *data, double angle);
 int							close_window(t_data *data);
 int							handle_press_key(int keycode, t_data *data);

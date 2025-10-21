@@ -70,7 +70,7 @@ int	move_player(t_data *data)
 		move = MOVE_SPRINT;
 	move_forward_or_backward(data, new_x, new_y, move);
 	move_right_or_left(data, new_x, new_y, move);
-	raycaster(data);
+	raycast_loop(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
