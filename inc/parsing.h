@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:41 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:54:45 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/21 22:20:10 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	read_map(t_data *data);
 int	check_map_validity(t_data *data, char **map);
 int	char_compare(char c);
 int	check_char(t_data *data, char **map, int *y, int *x);
-int	init_mlx(t_data *data);
+int	flood_fill(t_data *data);
 
 #endif
