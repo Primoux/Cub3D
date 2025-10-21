@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include "mlx.h"
 #include "mlx_management.h"
 
 double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
@@ -106,10 +105,16 @@ void	print_texture(t_data *data, int i, int j)
 		if (tex_x < 0)
 			tex_x += TILE;
 		tex_x /= TILE;
-		if (ray_dir(data->ray->angle, 0))
+
+		if (!ray_dir(data->ray->angle, 0))
+		{
 			wall = data->texture->n_wall;
+		}
 		else
+		{
+			tex_x = 1 - tex_x;
 			wall = data->texture->s_wall;
+		}
 	}
 	else
 	{
@@ -118,14 +123,19 @@ void	print_texture(t_data *data, int i, int j)
 			tex_x += TILE;
 		tex_x /= TILE;
 		if (ray_dir(data->ray->angle, 1))
-			wall = data->texture->e_wall;
-		else
+		{
 			wall = data->texture->w_wall;
+		}
+		else
+		{
+			tex_x = 1 - tex_x;
+			wall = data->texture->e_wall;
+		}
 	}
-	tex_y = (double)((j - data->ray->rwall_top) * wall->height
-			/ data->ray->rwall_height);
-	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
-				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
+
+	tex_y = (double)((j - wall_top) * wall->height / wall_height);
+	color = *(unsigned int *)(wall->addr + ((int)tex_y
+			* wall->line_length + (int)(tex_x * wall->width) * (wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, color);
 }
 
@@ -161,7 +171,6 @@ void	raycaster(t_data *data)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
 			{
-				// my_mlx_put_pixel(data->img, i, j, 0x0000FFFF);
 				print_texture(data, i, j);
 			}
 			else
