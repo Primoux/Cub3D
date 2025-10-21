@@ -7,7 +7,7 @@
 # define TEXTURE_RES 75
 # define MOVE_SPEED 2.2
 # define MOVE_SPRINT 5
-# define ANGLE_SPEED 0.015
+# define ANGLE_SPEED 0.05
 
 void	winner(t_data *data);
 void	draw_minimap(t_data *data);
