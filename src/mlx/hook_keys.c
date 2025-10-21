@@ -1,4 +1,15 @@
-#define _GNU_SOURCE
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook_keys.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 21:52:03 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/21 21:52:06 by enchevri         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "mlx_management.h"
 
@@ -7,8 +18,6 @@ int	close_window(t_data *data)
 	free_all(data);
 	exit(0);
 }
-
-
 
 void	press_key(t_data *data, int keycode)
 {
