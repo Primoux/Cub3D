@@ -124,15 +124,14 @@ void	print_texture(t_data *data, int i, int j)
 		if (tex_x < 0)
 			tex_x += TILE;
 		tex_x /= TILE;
-
 		if (ray_dir(data->ray->angle, 1))
 		{
 			wall = data->texture->w_wall;
 		}
 		else
 		{
-			wall = data->texture->e_wall;
 			tex_x = 1 - tex_x;
+			wall = data->texture->e_wall;
 		}
 	}
 
