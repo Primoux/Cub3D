@@ -1,31 +1,6 @@
 #include "cub3d.h"
 #include "mlx_management.h"
 
-double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
-{
-	double	x;
-	double	y;
-	double	x_step;
-	double	y_step;
-	int		pixel;
-
-	x_step = TILE;
-	y_step = TILE * tan(angle);
-	x = floor(data->player->px / TILE) * TILE;
-	pixel = balance_inter(angle, &x, &x_step, 1);
-	y = data->player->py + (x - data->player->px) * tan(angle);
-	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0))
-		y_step *= -1;
-	while (!is_wall(data->map, x + pixel, y))
-	{
-		y += y_step;
-		x += x_step;
-	}
-	*hit_x = x;
-	*hit_y = y;
-	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
-}
-
 double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 {
 	double	x_step;
@@ -51,6 +26,31 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
 }
 
+double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
+{
+	double	x;
+	double	y;
+	double	x_step;
+	double	y_step;
+	int		pixel;
+
+	x_step = TILE;
+	y_step = TILE * tan(angle);
+	x = floor(data->player->px / TILE) * TILE;
+	pixel = balance_inter(angle, &x, &x_step, 1);
+	y = data->player->py + (x - data->player->px) * tan(angle);
+	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0))
+		y_step *= -1;
+	while (!is_wall(data->map, x + pixel, y))
+	{
+		y += y_step;
+		x += x_step;
+	}
+	*hit_x = x;
+	*hit_y = y;
+	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
+}
+
 double	lazerizor(t_data *data, double angle)
 {
 	double	x_dist;
@@ -71,84 +71,34 @@ double	lazerizor(t_data *data, double angle)
 		data->ray->hit_y = x_hit_y;  // same
 		return (x_dist);
 	}
-	else
-	{
-		data->ray->flag = 'y'; // pareil pour y
-		data->ray->rx_dist = x_dist;
-		data->ray->ry_dist = y_dist;
-		data->ray->hit_x = y_hit_x;
-		data->ray->hit_y = y_hit_y;
-		return (y_dist);
-	}
+	data->ray->flag = 'y'; // pareil pour y
+	data->ray->rx_dist = x_dist;
+	data->ray->ry_dist = y_dist;
+	data->ray->hit_x = y_hit_x;
+	data->ray->hit_y = y_hit_y;
+	return (y_dist);
 }
 
-void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
+void	raycaster(t_data *data, double *corrected_dist, double wall_bot, double wall_top)
 {
-	char	*pixel;
+	double dist;
 
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return ;
-	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int *)pixel = color;
+	norm_angle(&data->ray->angle);
+	dist = lazerizor(data, data->ray->angle) / 1.5;
+	corrected_dist = dist * cos(data->ray->angle - data->player->angle);
+	if (corrected_dist <= 0)
+		corrected_dist = 0.1;
+	wall_height = (TILE * HEIGHT) / corrected_dist;
+	data->ray->rwall_height = wall_height;
+	wall_top = (HEIGHT - wall_height) / 2;
+	data->ray->rwall_top = wall_top;
+	wall_bot = wall_top + wall_height;
 }
 
-t_img	*texture_north_south(t_data *data, double *tex_x)
-{
-	*tex_x = fmod(data->ray->hit_x, TILE);
-	if (*tex_x < 0)
-		*tex_x += TILE;
-	*tex_x /= TILE;
-	if (!ray_dir(data->ray->angle, 0))
-	{
-		return (data->texture->n_wall);
-	}
-	else
-	{
-		*tex_x = 1 - *tex_x;
-		return (data->texture->s_wall);
-	}
-}
-
-t_img	*texture_east_west(t_data *data, double *tex_x)
-{
-	*tex_x = fmod(data->ray->hit_y, TILE);
-	if (*tex_x < 0)
-		*tex_x += TILE;
-	*tex_x /= TILE;
-	if (ray_dir(data->ray->angle, 1))
-	{
-		return (data->texture->w_wall);
-	}
-	else
-	{
-		*tex_x = 1 - *tex_x;
-		return (data->texture->e_wall);
-	}
-}
-
-void	print_texture(t_data *data, int i, int j)
-{
-	double			tex_y;
-	double			tex_x;
-	unsigned int	color;
-	t_img			*wall;
-
-	if (data->ray->flag == 'x')
-		wall = texture_north_south(data, &tex_x);
-	else
-		wall = texture_east_west(data, &tex_x);
-	tex_y = (double)((j - data->ray->rwall_top) * wall->height
-			/ data->ray->rwall_height);
-	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
-				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
-	my_mlx_put_pixel(data->img, i, j, color);
-}
-
-void	raycaster(t_data *data)
+void	raycast_loop(t_data *data)
 {
 	int		i;
 	int		j;
-	double	dist;
 	double	corrected_dist;
 	double	wall_height;
 	double	wall_top;
@@ -159,16 +109,7 @@ void	raycaster(t_data *data)
 	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
 	while (i < WIDTH)
 	{
-		norm_angle(&data->ray->angle);
-		dist = lazerizor(data, data->ray->angle) / 1.5;
-		corrected_dist = dist * cos(data->ray->angle - data->player->angle);
-		if (corrected_dist <= 0)
-			corrected_dist = 0.1;
-		wall_height = (TILE * HEIGHT) / corrected_dist;
-		data->ray->rwall_height = wall_height;
-		wall_top = (HEIGHT - wall_height) / 2;
-		data->ray->rwall_top = wall_top;
-		wall_bot = wall_top + wall_height;
+		raycaster(data, &corrected_dist, &wall_bot, &wall_top);
 		j = 0;
 		while (j < HEIGHT) // axe x
 		{
