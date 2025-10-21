@@ -51,6 +51,7 @@ PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_map_validity.c	\
 					parsing/char_compare.c	\
 					parsing/color.c	\
+					parsing/flood_fill.c \
 
 MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/hook_keys.c \
