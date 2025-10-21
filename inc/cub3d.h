@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/21 21:55:10 by enchevri         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
 # define FOV 60
 
-//1500 par 1000
+// 1500 par 1000
 // Dell
 # define WIDTH 1280
 # define HEIGHT 720
@@ -133,7 +145,8 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void						my_mlx_put_pixel(t_img *img, int x, int y, int color);
+void						my_mlx_put_pixel(t_img *img, int x, int y,
+								int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
 bool						is_wall(t_map *map, double x, double y);
