@@ -6,60 +6,70 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:03 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:52:06 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 17:13:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include <stdbool.h>
 
-int	close_window(t_data *data)
+static void	handle_key(bool *key, t_mod_key mod, t_key_action action)
 {
-	free_all(data);
-	exit(0);
+	if (mod == HOLD_MOD)
+	{
+		if (action == PRESS_ACTION)
+			*key = true;
+		else
+			*key = false;
+	}
+	else
+	{
+		if (*key == false)
+			*key = true;
+		else
+			*key = false;
+	}
 }
 
 void	press_key(t_data *data, int keycode)
 {
 	if (keycode == XK_w)
-		data->key->w_key = true;
+		handle_key(&data->key->w_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_a)
-		data->key->a_key = true;
+		handle_key(&data->key->a_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_s)
-		data->key->s_key = true;
+		handle_key(&data->key->s_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_d)
-		data->key->d_key = true;
+		handle_key(&data->key->d_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_Left)
-		data->key->left_key = true;
+		handle_key(&data->key->left_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_Right)
-		data->key->right_key = true;
-	if (keycode == XK_Tab)
-	{
-		if (data->key->tab_key == false)
-			data->key->tab_key = true;
-		else
-			data->key->tab_key = false;
-	}
+		handle_key(&data->key->right_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_Shift_L)
-		data->key->shift_l_key = true;
+		handle_key(&data->key->shift_l_key, HOLD_MOD, PRESS_ACTION);
+	if (keycode == XK_Tab)
+		handle_key(&data->key->tab_key, PRESS_MOD, PRESS_ACTION);
+	if (keycode == XK_f)
+		handle_key(&data->key->f_key, PRESS_MOD, PRESS_ACTION);
 }
 
 void	release_key(t_data *data, int keycode)
 {
 	if (keycode == XK_w)
-		data->key->w_key = false;
+		handle_key(&data->key->w_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_a)
-		data->key->a_key = false;
+		handle_key(&data->key->a_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_s)
-		data->key->s_key = false;
+		handle_key(&data->key->s_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_d)
-		data->key->d_key = false;
+		handle_key(&data->key->d_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_Left)
-		data->key->left_key = false;
+		handle_key(&data->key->left_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_Right)
-		data->key->right_key = false;
+		handle_key(&data->key->right_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_Shift_L)
-		data->key->shift_l_key = false;
+		handle_key(&data->key->shift_l_key, HOLD_MOD, RELEASE_ACTION);
 }
 
 int	handle_press_key(int keycode, t_data *data)
@@ -68,7 +78,7 @@ int	handle_press_key(int keycode, t_data *data)
 		close_window(data);
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
 		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right
-		|| keycode == XK_Tab || keycode == XK_Shift_L)
+		|| keycode == XK_Tab || keycode == XK_Shift_L || keycode == XK_f)
 		press_key(data, keycode);
 	return (0);
 }

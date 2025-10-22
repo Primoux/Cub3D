@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:55:10 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 16:35:06 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 // 1500 par 1000
 // Dell
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920
+# define HEIGHT 1080
 //// Mac
 // # define HEIGHT 2160
 // # define WIDTH 3840
@@ -80,6 +80,7 @@ struct						s_player
 	double					py;
 	float					rad;
 	double					angle;
+	double					last_frame_time;
 };
 
 struct						s_ray
@@ -122,6 +123,7 @@ struct						s_key
 	bool					a_key;
 	bool					s_key;
 	bool					d_key;
+	bool					f_key;
 	bool					left_key;
 	bool					right_key;
 	bool					tab_key;
@@ -161,5 +163,6 @@ int							move_player(t_data *data);
 void						free_all(t_data *data);
 void						print_error_asset(t_data *data);
 void						print_map_and_params(t_data *data);
+void						draw_fps(t_data *data, double current_time_ms);
 
 #endif

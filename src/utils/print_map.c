@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:27 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 22:26:35 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 16:36:15 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	print_map_and_params(t_data *data)
 {
 	int	i;
 
-	// ft_printf("%s\n", data->map->n_wall_path);
-	// ft_printf("%s\n", data->map->s_wall_path);
-	// ft_printf("%s\n", data->map->w_wall_path);
-	// ft_printf("%s\n", data->map->e_wall_path);
-	// ft_printf("%s\n", data->map->ceiling_color);
-	// ft_printf("%s\n", data->map->floor_color);
+	ft_printf("%s\n", data->map->n_wall_path);
+	ft_printf("%s\n", data->map->s_wall_path);
+	ft_printf("%s\n", data->map->w_wall_path);
+	ft_printf("%s\n", data->map->e_wall_path);
+	ft_printf("%s\n", data->map->ceiling_color);
+	ft_printf("%s\n", data->map->floor_color);
 	i = 0;
 	while (data->map->map[i])
 	{
