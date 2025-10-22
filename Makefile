@@ -1,7 +1,7 @@
 #-------------------------------- VARIABLES --------------------------------#
 
 NAME		=	cub3D
-CC		 	=	cc
+CC		=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g3 -O2
 DEPS		=	-MMD -MP
 
