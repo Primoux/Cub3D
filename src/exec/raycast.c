@@ -111,14 +111,14 @@ void	raycast_loop(t_data *data)
 	double	wall_top;
 	double	wall_bot;
 
-	i = 0;
+	i = -1;
 	data->ray->rad_fov = FOV * (M_PI / 180);
 	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
-	while (i++ < WIDTH)
+	while (++i < WIDTH)
 	{
-		j = 0;
+		j = -1;
 		raycaster(data, &corrected_dist, &wall_bot, &wall_top);
-		while (j++ < HEIGHT)
+		while (++j < HEIGHT)
 		{
 			if (j < wall_top)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
