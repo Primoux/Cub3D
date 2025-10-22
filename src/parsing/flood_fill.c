@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:58:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 19:40:12 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 20:00:57 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	fill(t_data *data, int y, int x, int *n)
 {
-	if ((*n)++ >= MAP_SIZE || y < 0 || y > data->map->y_max || x < 0
+	if ((*n)++ >= MAP_SIZE || y < 0 || y >= data->map->y_max || x < 0
 		|| x >= (int)ft_strlen(data->map->map[y]))
 		return (1);
 	if (data->map->map[y][x] == '1' || data->map->map[y][x] == 'O')
