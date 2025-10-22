@@ -79,20 +79,21 @@ double	lazerizor(t_data *data, double angle)
 	return (y_dist);
 }
 
-void	raycaster(t_data *data, double *corrected_dist, double wall_bot, double wall_top)
+void	raycaster(t_data *data, double *corrected_dist, double *wall_bot, double *wall_top)
 {
 	double dist;
+	double wall_height;
 
 	norm_angle(&data->ray->angle);
 	dist = lazerizor(data, data->ray->angle) / 1.5;
-	corrected_dist = dist * cos(data->ray->angle - data->player->angle);
-	if (corrected_dist <= 0)
-		corrected_dist = 0.1;
-	wall_height = (TILE * HEIGHT) / corrected_dist;
+	*corrected_dist = dist * cos(data->ray->angle - data->player->angle);
+	if (*corrected_dist <= 0)
+		*corrected_dist = 0.1;
+	wall_height = (TILE * HEIGHT) / *corrected_dist;
 	data->ray->rwall_height = wall_height;
-	wall_top = (HEIGHT - wall_height) / 2;
-	data->ray->rwall_top = wall_top;
-	wall_bot = wall_top + wall_height;
+	*wall_top = (HEIGHT - wall_height) / 2;
+	data->ray->rwall_top = *wall_top;
+	*wall_bot = *wall_top + wall_height;
 }
 
 void	raycast_loop(t_data *data)
@@ -100,18 +101,17 @@ void	raycast_loop(t_data *data)
 	int		i;
 	int		j;
 	double	corrected_dist;
-	double	wall_height;
 	double	wall_top;
 	double	wall_bot;
 
 	i = 0;
-	data->ray->rad_fov = FOV * (M_PI / 180);
+	data->ray->rad_fov = FOV * (M_PI / 180); // peut etre le mettre dans l'init ?
 	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
-	while (i < WIDTH)
+	while (i++ < WIDTH)
 	{
 		raycaster(data, &corrected_dist, &wall_bot, &wall_top);
 		j = 0;
-		while (j < HEIGHT) // axe x
+		while (j++ < HEIGHT) // axe x
 		{
 			if (j < wall_top)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
@@ -121,10 +121,8 @@ void	raycast_loop(t_data *data)
 			}
 			else
 				my_mlx_put_pixel(data->img, i, j, data->texture->floor.val);
-			j++;
 		}
-		data->ray->ray_dist = corrected_dist;
+//		data->ray->ray_dist = corrected_dist; // pas utils ?
 		data->ray->angle += data->ray->rad_fov / WIDTH;
-		i++;
 	}
 }
