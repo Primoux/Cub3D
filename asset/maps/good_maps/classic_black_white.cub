@@ -1,7 +1,7 @@
-NO ./asset/textures/test_bloc.xpm
-SO ./asset/textures/perso_n.xpm
-EA ./asset/textures/test_bloc2.xpm
-WE ./asset/textures/test_bloc.xpm
+NO ./asset/textures/minecraft/diamond_block.xpm
+SO ./asset/textures/minecraft/diamond_block.xpm
+EA ./asset/textures/minecraft/diamond_block.xpm
+WE ./asset/textures/minecraft/diamond_block.xpm
 F 0,0,0
 C 255,255,255
 

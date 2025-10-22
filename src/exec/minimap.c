@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:12 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:37:13 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 13:48:36 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,18 @@ void	draw_minimap(t_data *data)
 {
 	int	scale;
 
-	if (data->key->tab_key == true)
+	if (data->key->tab_key == false)
+		return ;
+	scale = get_minimap_scale(data);
+	data->map->y = 0;
+	while (data->map->map[data->map->y])
 	{
-		scale = get_minimap_scale(data);
-		data->map->y = 0;
-		while (data->map->map[data->map->y])
+		data->map->x = 0;
+		while (data->map->map[data->map->y][data->map->x])
 		{
-			data->map->x = 0;
-			while (data->map->map[data->map->y][data->map->x])
-			{
-				draw_minimap_tile(data, scale);
-				data->map->x++;
-			}
-			data->map->y++;
+			draw_minimap_tile(data, scale);
+			data->map->x++;
 		}
+		data->map->y++;
 	}
 }

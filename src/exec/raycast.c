@@ -1,5 +1,6 @@
 #include "cub3d.h"
 #include "mlx_management.h"
+#include <math.h>
 
 double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 {
@@ -171,6 +172,7 @@ void	raycaster(t_data *data)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
 			{
+
 				print_texture(data, i, j);
 			}
 			else
