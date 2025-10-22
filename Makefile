@@ -59,7 +59,8 @@ MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/my_mlx_put_pixel.c
 
 UTILS_SRCS		:=	utils/free_all.c \
-					utils/print_map.c
+					utils/print_map.c \
+					utils/print_error_asset.c
 
 EXEC_SRCS		:=	exec/minimap.c \
 					exec/check_n_correct.c \
@@ -67,8 +68,6 @@ EXEC_SRCS		:=	exec/minimap.c \
 					exec/movement.c \
 					exec/print_fps.c \
 					exec/print_texture.c
-
-ERROR_SRCS		:=	error/print_error_asset.c \
 
 SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
