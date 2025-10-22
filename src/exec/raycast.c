@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kapinarc <kapinarc@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/21 16:55:53 by kapinarc          #+#    #+#             */
+/*   Updated: 2025/10/22 16:34:18 by kapinarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "mlx_management.h"
 
@@ -21,8 +33,8 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 		x += x_step;
 		y += y_step;
 	}
-	*hit_x = x; // point impact mur X;
-	*hit_y = y; // point d'impact mur Y
+	*hit_x = x;
+	*hit_y = y;
 	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
 }
 
@@ -53,36 +65,31 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 
 double	lazerizor(t_data *data, double angle)
 {
-	double	x_dist;
-	double	y_dist;
 	double	x_hit_x;
 	double	y_hit_y;
 	double	y_hit_x;
 	double	x_hit_y;
 
-	x_dist = x_inter(data, angle, &x_hit_x, &x_hit_y);
-	y_dist = y_inter(data, angle, &y_hit_x, &y_hit_y);
-	if (x_dist <= y_dist)
+	data->ray->rx_dist = x_inter(data, angle, &x_hit_x, &x_hit_y);
+	data->ray->ry_dist = y_inter(data, angle, &y_hit_x, &y_hit_y);
+	if (data->ray->rx_dist <= data->ray->ry_dist)
 	{
-		data->ray->flag = 'x';       // mur horizontal touche
-		data->ray->rx_dist = x_dist; // distance a l’horizontale
-		data->ray->ry_dist = y_dist; // distance a la verticale
-		data->ray->hit_x = x_hit_x;  // point d’impact exact
-		data->ray->hit_y = x_hit_y;  // same
-		return (x_dist);
+		data->ray->flag = 'x';
+		data->ray->hit_x = x_hit_x;
+		data->ray->hit_y = x_hit_y;
+		return (data->ray->rx_dist);
 	}
-	data->ray->flag = 'y'; // pareil pour y
-	data->ray->rx_dist = x_dist;
-	data->ray->ry_dist = y_dist;
+	data->ray->flag = 'y';
 	data->ray->hit_x = y_hit_x;
 	data->ray->hit_y = y_hit_y;
-	return (y_dist);
+	return (data->ray->ry_dist);
 }
 
-void	raycaster(t_data *data, double *corrected_dist, double *wall_bot, double *wall_top)
+void	raycaster(t_data *data, double *corrected_dist, double *wall_bot,
+				double *wall_top)
 {
-	double dist;
-	double wall_height;
+	double	dist;
+	double	wall_height;
 
 	norm_angle(&data->ray->angle);
 	dist = lazerizor(data, data->ray->angle) / 1.5;
@@ -105,24 +112,21 @@ void	raycast_loop(t_data *data)
 	double	wall_bot;
 
 	i = 0;
-	data->ray->rad_fov = FOV * (M_PI / 180); // peut etre le mettre dans l'init ?
+	data->ray->rad_fov = FOV * (M_PI / 180);
 	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
 	while (i++ < WIDTH)
 	{
-		raycaster(data, &corrected_dist, &wall_bot, &wall_top);
 		j = 0;
-		while (j++ < HEIGHT) // axe x
+		raycaster(data, &corrected_dist, &wall_bot, &wall_top);
+		while (j++ < HEIGHT)
 		{
 			if (j < wall_top)
 				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
 			else if (j < wall_bot)
-			{
 				print_texture(data, i, j);
-			}
 			else
 				my_mlx_put_pixel(data->img, i, j, data->texture->floor.val);
 		}
-//		data->ray->ray_dist = corrected_dist; // pas utils ?
 		data->ray->angle += data->ray->rad_fov / WIDTH;
 	}
 }
