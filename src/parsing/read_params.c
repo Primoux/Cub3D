@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:01 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:53:02 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 19:37:29 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ static int	get_key_index(char **line, const char **keys)
 
 static int	assign_texture(t_map *m, int idx, char *trimed)
 {
-	char	**paths[6];
+	char	**params[6];
 	int		i;
 
 	i = 0;
-	paths[0] = &m->n_wall_path;
-	paths[1] = &m->s_wall_path;
-	paths[2] = &m->w_wall_path;
-	paths[3] = &m->e_wall_path;
-	paths[4] = &m->floor_color;
-	paths[5] = &m->ceiling_color;
-	if (*(paths[idx]) && *(*(paths[idx])))
+	params[0] = &m->n_wall_path;
+	params[1] = &m->s_wall_path;
+	params[2] = &m->w_wall_path;
+	params[3] = &m->e_wall_path;
+	params[4] = &m->floor_color;
+	params[5] = &m->ceiling_color;
+	if (*(params[idx]) && *(*(params[idx])))
 	{
 		free(trimed);
 		return (-1);
@@ -47,10 +47,10 @@ static int	assign_texture(t_map *m, int idx, char *trimed)
 		return (1);
 	while (trimed[i] && ft_is_white_space(trimed[i]))
 		i++;
-	if (!trimed[i])
-		return (1);
-	*(paths[idx]) = ft_strdup(&trimed[i]);
+	*(params[idx]) = ft_strdup(&trimed[i]);
 	free(trimed);
+	if (!*(params[idx]))
+		return (-1);
 	return (0);
 }
 
@@ -69,7 +69,7 @@ int	parse_for_textures(t_data *data, char *line)
 		if (assign_texture(data->map, idx, trimed) == -1)
 		{
 			ft_dprintf(2, "Error: duplicated params for key '%s'\n", keys[idx]);
-			return (2);
+			return (1);
 		}
 	}
 	if ((line[0] == '1' || line[0] == ' ' || line[0] == '\t')
@@ -83,27 +83,20 @@ int	parse_for_textures(t_data *data, char *line)
 int	read_params(t_data *data)
 {
 	int	ret;
-	int	error;
 
-	error = 0;
-	data->map->line = NULL;
 	data->map->line = get_next_line(data->map->fd_map);
 	while (data->map->line)
 	{
 		ret = parse_for_textures(data, data->map->line);
-		if (ret == 1)
-			break ;
-		else if (ret == -1)
+		if (ret == -1)
 		{
 			free(data->map->line);
 			return (0);
 		}
-		else if (ret == 2)
-			error = 1;
+		else if (ret == 1)
+			break ;
 		free(data->map->line);
 		data->map->line = get_next_line(data->map->fd_map);
 	}
-	if (error == 1)
-		return (1);
 	return (0);
 }

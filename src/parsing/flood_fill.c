@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:58:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 16:31:42 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 19:40:12 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include "mlx_management.h"
 #include "parsing.h"
 
-int	fill(t_data data, int y, int x, int *n)
+int	fill(t_data *data, int y, int x, int *n)
 {
-	if ((*n)++ >= MAP_SIZE || y < 0 || y > data.map->y_max || x < 0
-		|| x >= (int)ft_strlen(data.map->map[y]))
+	if ((*n)++ >= MAP_SIZE || y < 0 || y > data->map->y_max || x < 0
+		|| x >= (int)ft_strlen(data->map->map[y]))
 		return (1);
-	if (data.map->map[y][x] == '1' || data.map->map[y][x] == 'O')
+	if (data->map->map[y][x] == '1' || data->map->map[y][x] == 'O')
 		return (0);
-	if (data.map->map[y][x] != '0' && data.map->map[y][x] != 'S'
-		&& data.map->map[y][x] != 'N' && data.map->map[y][x] != 'E'
-		&& data.map->map[y][x] != 'W')
+	if (data->map->map[y][x] != '0' && data->map->map[y][x] != 'S'
+		&& data->map->map[y][x] != 'N' && data->map->map[y][x] != 'E'
+		&& data->map->map[y][x] != 'W')
 		return (1);
-	data.map->map[y][x] = 'O';
+	data->map->map[y][x] = 'O';
 	if (fill(data, y + 1, x, n) == 1)
 		return (1);
 	if (fill(data, y - 1, x, n) == 1)
@@ -37,15 +37,15 @@ int	fill(t_data data, int y, int x, int *n)
 	return (0);
 }
 
-int	flood_fill(t_data data)
+int	flood_fill(t_data *data)
 {
 	int	x;
 	int	y;
 	int	n;
 
 	n = 0;
-	y = (int)data.player->py / TILE;
-	x = (int)data.player->px / TILE;
+	y = (int)data->player->py / TILE;
+	x = (int)data->player->px / TILE;
 	if (fill(data, y, x, &n) == 1)
 	{
 		if (n >= MAP_SIZE)
