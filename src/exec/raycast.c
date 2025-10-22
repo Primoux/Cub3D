@@ -92,7 +92,7 @@ void	raycaster(t_data *data, double *corrected_dist, double *wall_bot,
 	double	wall_height;
 
 	norm_angle(&data->ray->angle);
-	dist = lazerizor(data, data->ray->angle) / 1.5;
+	dist = (double)(lazerizor(data, data->ray->angle) / 1.5);
 	*corrected_dist = dist * cos(data->ray->angle - data->player->angle);
 	if (*corrected_dist <= 0)
 		*corrected_dist = 0.1;
