@@ -18,8 +18,8 @@ OBJ_DIR			=	.build/
 #-------------------------------- INCLUDES & FLAGS --------------------------------#
 
 INCLUDES	=	-I $(INCLUDE_DIR) \
-				-I ./lib/libft/includes \
-				-I $(LIBMLX_DIR)
+			-I ./lib/libft/includes \
+			-I $(LIBMLX_DIR)
 
 LDFLAGS		=	-L$(LIBMLX_DIR) -lmlx \
 				-lXext -lX11 -lm
