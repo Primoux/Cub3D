@@ -34,7 +34,6 @@ MLX			=	$(LIBMLX_DIR)/libmlx.a
 MAIN_SRCS		:=	main.c \
 
 INIT_SRCS		:=	init/init.c \
-					init/init_base.c \
 					init/init_player.c \
 					init/init_map.c \
 					init/init_texture.c \

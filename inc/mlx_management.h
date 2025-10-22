@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 17:10:00 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 19:38:01 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum
 typedef enum
 {
 	PRESS_ACTION,
-    RELEASE_ACTION
+	RELEASE_ACTION
 }		t_key_action;
 
 void	winner(t_data *data);

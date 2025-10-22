@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:39:13 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 18:50:27 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	init(t_data *data)
 {
-	if (init_base(data) != 0)
+	ft_bzero(data, sizeof(t_data));
+	if (init_player(data) != 0)
 		return (1);
 	if (init_map(data) != 0)
 		return (1);

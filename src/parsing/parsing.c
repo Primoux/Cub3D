@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 12:53:14 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 19:40:28 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	parsing(t_data *data, char *argv)
 			data->map->x_max = len - 1;
 		i++;
 	}
-	if (flood_fill(*data) == 1)
+	if (flood_fill(data) == 1)
 		return (1);
 	return (EXIT_SUCCESS);
 }

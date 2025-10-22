@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:53:33 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 18:34:06 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,30 @@ static void	free_images(t_data *data)
 	}
 	if (data->texture)
 	{
+		if (data->texture->n_wall)
+		{
+			if (data->texture->n_wall->img)
+				mlx_destroy_image(data->mlx, data->texture->n_wall->img);
+			free(data->texture->n_wall);
+		}
+		if (data->texture->s_wall)
+		{
+			if (data->texture->s_wall->img)
+				mlx_destroy_image(data->mlx, data->texture->s_wall->img);
+			free(data->texture->s_wall);
+		}
+		if (data->texture->e_wall)
+		{
+			if (data->texture->e_wall->img)
+				mlx_destroy_image(data->mlx, data->texture->e_wall->img);
+			free(data->texture->e_wall);
+		}
+		if (data->texture->w_wall)
+		{
+			if (data->texture->w_wall->img)
+				mlx_destroy_image(data->mlx, data->texture->w_wall->img);
+			free(data->texture->w_wall);
+		}
 		free(data->texture);
 	}
 }
@@ -58,8 +82,10 @@ static void	free_structs(t_data *data)
 
 static void	free_mlx(t_data *data)
 {
-	if (data->win && data->mlx)
+	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+		free(data->mlx);
 }
 
 void	free_all(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:51:17 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 16:26:21 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 18:18:24 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc ^ 2)
+	if (argc != 2)
 	{
 		ft_dprintf(2, "Usage: ./cub3d <map.cub>\n");
 		return (2);
 	}
-	if (init(&data) ^ 0 || parsing(&data, argv[1]) ^ 0
-		|| init_colors(&data) ^ 0 || init_mlx(&data) ^ 0)
+	if (init(&data) != 0 || parsing(&data, argv[1]) != 0
+		|| init_colors(&data) != 0 || init_mlx(&data) != 0)
 	{
 		free_all(&data);
 		return (1);

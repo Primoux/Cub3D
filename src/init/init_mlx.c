@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:57 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 13:27:23 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 18:56:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	init_texture(t_data *data, t_img *img, char *filename)
 	return (0);
 }
 
-static int	init_img(t_data *data)
+static int	init_display(t_data *data)
 {
 	if (init_texture(data, data->texture->n_wall, data->map->n_wall_path) == 1)
 		return (1);
@@ -56,16 +56,29 @@ static int	init_img(t_data *data)
 
 int	init_mlx(t_data *data)
 {
+	int	res;
+
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return (ft_dprintf(2, "Error: mlx_init failed in %s line %d\n",
-				__FILE__, __LINE__));
-	if (init_img(data) == 1)
-		return (ft_dprintf(2, "Error: Invalid texture path in %s line %d\n",
-				__FILE__, __LINE__));
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "prout");
+	{
+		ft_dprintf(2, "Error: mlx_init failed in %s line %d\n", __FILE__,
+			__LINE__);
+		return (1);
+	}
+	res = init_display(data);
+	if (res != 0)
+	{
+		if (res == 1)
+			ft_dprintf(2, "Error: Invalid texture path in %s line %d\n",
+				__FILE__, __LINE__);
+		return (1);
+	}
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Plein le CUB3D");
 	if (!data->win)
-		return (ft_dprintf(2, "Error: mlx_new_window failed in %s line %d\n",
-				__FILE__, __LINE__));
+	{
+		ft_dprintf(2, "Error: mlx_new_window failed in %s line %d\n", __FILE__,
+			__LINE__);
+		return (1);
+	}
 	return (0);
 }
