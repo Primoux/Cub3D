@@ -56,6 +56,7 @@ PARSING_SRCS	:=	parsing/parsing.c \
 MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/hook_keys.c \
 					mlx/close_window.c \
+					mlx/my_mlx_put_pixel.c
 
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c
@@ -64,7 +65,8 @@ EXEC_SRCS		:=	exec/minimap.c \
 					exec/check_n_correct.c \
 					exec/raycast.c \
 					exec/movement.c \
-					exec/print_fps.c
+					exec/print_fps.c \
+					exec/print_texture.c
 
 ERROR_SRCS		:=	error/print_error_asset.c \
 

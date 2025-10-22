@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 16:36:01 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/22 17:17:07 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	move_player(t_data *data)
 	new_y = 0.0;
 	move_forward_or_backward(data, new_x, new_y, delta_time);
 	move_right_or_left(data, new_x, new_y, delta_time);
-	raycaster(data);
+	raycast_loop(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_fps(data, current_time);
