@@ -35,5 +35,6 @@ typedef enum
 
 void	winner(t_data *data);
 void	draw_minimap(t_data *data);
+void	my_mlx_put_pixel(t_img *img, int x, int y, int color);
 
 #endif
