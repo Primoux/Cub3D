@@ -17,8 +17,8 @@
 
 # define TILE 75
 # define TEXTURE_RES 75
-# define MOVE_SPEED 175
-# define MOVE_SPRINT 350
+# define MOVE_SPEED 500
+# define MOVE_SPRINT 750
 # define ANGLE_SPEED 5
 
 typedef enum
