@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 19:38:01 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 18:20:58 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 # define ANGLE_MOUSE 0.0012f
 # define ANGLE_KEY 2
 
-typedef enum
+typedef enum e_mod_key
 {
 	HOLD_MOD,
 	PRESS_MOD
 }		t_mod_key;
 
-typedef enum
+typedef enum e_key_action
 {
 	PRESS_ACTION,
 	RELEASE_ACTION

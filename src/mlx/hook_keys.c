@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:03 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 17:13:09 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 18:25:22 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	release_key(t_data *data, int keycode)
 		handle_key(&data->key->left_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_Right)
 		handle_key(&data->key->right_key, HOLD_MOD, RELEASE_ACTION);
-	if (keycode == XK_Shift_L){
+	if (keycode == XK_Shift_L)
+	{
 		handle_key(&data->key->shift_l_key, HOLD_MOD, RELEASE_ACTION);
 		data->ray->rad_fov = (FOV) * (M_PI / 180);
 	}
