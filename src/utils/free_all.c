@@ -82,10 +82,11 @@ static void	free_structs(t_data *data)
 
 static void	free_mlx(t_data *data)
 {
-
 	if (data->win)
+	{
 		mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
+		mlx_destroy_display(data->mlx);
+	}
 	if (data->mlx)
 		free(data->mlx);
 }
