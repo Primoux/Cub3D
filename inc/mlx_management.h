@@ -18,8 +18,9 @@
 # define TILE 75
 # define TEXTURE_RES 75
 # define MOVE_SPEED 500
-# define MOVE_SPRINT 750
-# define ANGLE_SPEED 5
+# define MOVE_SPRINT 950
+# define ANGLE_MOUSE 0.0012f
+# define ANGLE_KEY 2
 
 typedef enum
 {

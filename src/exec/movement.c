@@ -54,6 +54,29 @@ static void	move_forward_or_backward(t_data *data, double new_x, double new_y,
 	}
 }
 
+
+//ne plus gerer avec un delta time mais delta pos
+void		move_cam(t_data *data)
+{
+	static int	x = 0;
+	static int	y = 0;
+	double		mvx;
+
+	if (x == 0 && y == 0)
+		mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
+	if (mlx_mouse_get_pos(data->mlx, data->win, &x, &y) == 1)
+	{
+		mvx = ANGLE_MOUSE * (double)(x - WIDTH / 2);
+		if (mvx)
+		{
+		mlx_mouse_hide(data->mlx, data->win);
+		mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
+			data->player->angle += mvx;
+		}
+	}
+}
+
+
 static void	move_right_or_left(t_data *data, double new_x, double new_y,
 		double delta_time)
 {
@@ -78,10 +101,11 @@ static void	move_right_or_left(t_data *data, double new_x, double new_y,
 			* delta_time;
 		check_colision(data, new_y, new_x);
 	}
+	//implementer le fait de bouger avec la souris
 	if (data->key->left_key == true)
-		data->player->angle -= ANGLE_SPEED * delta_time;
+		data->player->angle -= ANGLE_KEY * delta_time;
 	if (data->key->right_key == true)
-		data->player->angle += ANGLE_SPEED * delta_time;
+		data->player->angle += ANGLE_KEY * delta_time;
 }
 
 double	get_time_to_msec(void)
@@ -107,6 +131,7 @@ int	move_player(t_data *data)
 	new_y = 0.0;
 	move_forward_or_backward(data, new_x, new_y, delta_time);
 	move_right_or_left(data, new_x, new_y, delta_time);
+	move_cam(data);
 	raycast_loop(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);

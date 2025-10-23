@@ -2,7 +2,7 @@
 
 NAME		=	cub3D
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g3 -O2
+CFLAGS		=	-Wall -Wextra -Werror -g3 -O3
 DEPS		=	-MMD -MP
 
 #-------------------------------- DIRECTORIES --------------------------------#
