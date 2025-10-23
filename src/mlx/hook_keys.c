@@ -68,8 +68,10 @@ void	release_key(t_data *data, int keycode)
 		handle_key(&data->key->left_key, HOLD_MOD, RELEASE_ACTION);
 	if (keycode == XK_Right)
 		handle_key(&data->key->right_key, HOLD_MOD, RELEASE_ACTION);
-	if (keycode == XK_Shift_L)
+	if (keycode == XK_Shift_L){
 		handle_key(&data->key->shift_l_key, HOLD_MOD, RELEASE_ACTION);
+		data->ray->rad_fov = (FOV) * (M_PI / 180);
+	}
 }
 
 int	handle_press_key(int keycode, t_data *data)
