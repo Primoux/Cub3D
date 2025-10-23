@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:53:14 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:17:17 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	ensure_textures(t_data *data)
 		|| !data->map->w_wall_path || !data->map->e_wall_path
 		|| !data->map->floor_color || !data->map->ceiling_color)
 	{
+		free(data->map->line);
 		print_error_asset(data);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 17:17:07 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:45:17 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,47 @@ static void	move_forward_or_backward(t_data *data, double new_x, double new_y,
 	if (data->key->w_key == true)
 	{
 		new_x = data->player->px + cos(data->player->angle) * move * delta_time;
+		check_colision(data, data->player->py, new_x);
 		new_y = data->player->py + sin(data->player->angle) * move * delta_time;
-		check_colision(data, new_y, new_x);
+		check_colision(data, new_y, data->player->px);
 	}
 	if (data->key->s_key == true)
 	{
 		new_x = data->player->px - cos(data->player->angle) * move * delta_time;
+		check_colision(data, data->player->py, new_x);
 		new_y = data->player->py - sin(data->player->angle) * move * delta_time;
+		check_colision(data, new_y, data->player->px);
+	}
+}
+
+static void	move_right_or_left(t_data *data, double new_x, double new_y,
+		double delta_time)
+{
+	float	move;
+
+	move = MOVE_SPEED;
+	if (data->key->shift_l_key == true)
+		move = MOVE_SPRINT;
+	if (data->key->d_key == true)
+	{
+		new_x = data->player->px + cos(data->player->angle + M_PI / 2) * move
+			* delta_time;
+		check_colision(data, data->player->py, new_x);
+		new_y = data->player->py + sin(data->player->angle + M_PI / 2) * move
+			* delta_time;
+		check_colision(data, new_y, data->player->px);
+	}
+	if (data->key->a_key == true)
+	{
+		new_x = data->player->px - cos(data->player->angle + M_PI / 2) * move
+			* delta_time;
+		new_y = data->player->py - sin(data->player->angle + M_PI / 2) * move
+			* delta_time;
 		check_colision(data, new_y, new_x);
 	}
 }
 
-void	move_cam(t_data *data, double delta_time)
+static void	move_cam(t_data *data, double delta_time)
 {
 	static int	x = 0;
 	static int	y = 0;
@@ -75,32 +104,6 @@ void	move_cam(t_data *data, double delta_time)
 			mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
 			data->player->angle += mvx;
 		}
-	}
-}
-
-static void	move_right_or_left(t_data *data, double new_x, double new_y,
-		double delta_time)
-{
-	float	move;
-
-	move = MOVE_SPEED;
-	if (data->key->shift_l_key == true)
-		move = MOVE_SPRINT;
-	if (data->key->d_key == true)
-	{
-		new_x = data->player->px + cos(data->player->angle + M_PI / 2) * move
-			* delta_time;
-		new_y = data->player->py + sin(data->player->angle + M_PI / 2) * move
-			* delta_time;
-		check_colision(data, new_y, new_x);
-	}
-	if (data->key->a_key == true)
-	{
-		new_x = data->player->px - cos(data->player->angle + M_PI / 2) * move
-			* delta_time;
-		new_y = data->player->py - sin(data->player->angle + M_PI / 2) * move
-			* delta_time;
-		check_colision(data, new_y, new_x);
 	}
 }
 
