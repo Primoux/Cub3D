@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 18:34:06 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:10:19 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	free_map(t_map *map)
 {
-	if (!map)
-		return ;
 	if (map->fd_map >= 0)
 		safe_close(&map->fd_map);
 	free(map->file_name);
@@ -30,42 +28,23 @@ static void	free_map(t_map *map)
 	free(map);
 }
 
+static void	my_destroy_img(t_mlx *mlx, t_img *img)
+{
+	if (img)
+	{
+		if (img->img && mlx)
+			mlx_destroy_image(mlx, img->img);
+		free(img);
+	}
+}
+
 static void	free_images(t_data *data)
 {
-	if (data->img)
-	{
-		if (data->img->img && data->mlx)
-			mlx_destroy_image(data->mlx, data->img->img);
-		free(data->img);
-	}
-	if (data->texture)
-	{
-		if (data->texture->n_wall)
-		{
-			if (data->texture->n_wall->img)
-				mlx_destroy_image(data->mlx, data->texture->n_wall->img);
-			free(data->texture->n_wall);
-		}
-		if (data->texture->s_wall)
-		{
-			if (data->texture->s_wall->img)
-				mlx_destroy_image(data->mlx, data->texture->s_wall->img);
-			free(data->texture->s_wall);
-		}
-		if (data->texture->e_wall)
-		{
-			if (data->texture->e_wall->img)
-				mlx_destroy_image(data->mlx, data->texture->e_wall->img);
-			free(data->texture->e_wall);
-		}
-		if (data->texture->w_wall)
-		{
-			if (data->texture->w_wall->img)
-				mlx_destroy_image(data->mlx, data->texture->w_wall->img);
-			free(data->texture->w_wall);
-		}
-		free(data->texture);
-	}
+	my_destroy_img(data->mlx, data->img);
+	my_destroy_img(data->mlx, data->texture->n_wall);
+	my_destroy_img(data->mlx, data->texture->s_wall);
+	my_destroy_img(data->mlx, data->texture->e_wall);
+	my_destroy_img(data->mlx, data->texture->w_wall);
 }
 
 static void	free_structs(t_data *data)
@@ -76,6 +55,8 @@ static void	free_structs(t_data *data)
 		free(data->ray);
 	if (data->key)
 		free(data->key);
+	if (data->texture)
+		free(data->texture);
 	if (data->map)
 		free_map(data->map);
 }
@@ -83,12 +64,12 @@ static void	free_structs(t_data *data)
 static void	free_mlx(t_data *data)
 {
 	if (data->win)
-	{
 		mlx_destroy_window(data->mlx, data->win);
-		mlx_destroy_display(data->mlx);
-	}
 	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
 		free(data->mlx);
+	}
 }
 
 void	free_all(t_data *data)
