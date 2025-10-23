@@ -6,71 +6,11 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:10:19 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:28:20 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	free_map(t_map *map)
-{
-	if (map->fd_map >= 0)
-		safe_close(&map->fd_map);
-	free(map->file_name);
-	free(map->n_wall_path);
-	free(map->s_wall_path);
-	free(map->w_wall_path);
-	free(map->e_wall_path);
-	free(map->floor_color);
-	free(map->ceiling_color);
-	if (map->map)
-		free_tab_return_null(map->map);
-	free(map);
-}
-
-static void	my_destroy_img(t_mlx *mlx, t_img *img)
-{
-	if (img)
-	{
-		if (img->img && mlx)
-			mlx_destroy_image(mlx, img->img);
-		free(img);
-	}
-}
-
-static void	free_images(t_data *data)
-{
-	my_destroy_img(data->mlx, data->img);
-	my_destroy_img(data->mlx, data->texture->n_wall);
-	my_destroy_img(data->mlx, data->texture->s_wall);
-	my_destroy_img(data->mlx, data->texture->e_wall);
-	my_destroy_img(data->mlx, data->texture->w_wall);
-}
-
-static void	free_structs(t_data *data)
-{
-	if (data->player)
-		free(data->player);
-	if (data->ray)
-		free(data->ray);
-	if (data->key)
-		free(data->key);
-	if (data->texture)
-		free(data->texture);
-	if (data->map)
-		free_map(data->map);
-}
-
-static void	free_mlx(t_data *data)
-{
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
-}
 
 void	free_all(t_data *data)
 {

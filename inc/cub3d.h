@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 18:58:41 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:32:51 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +168,11 @@ void						free_all(t_data *data);
 void						print_error_asset(t_data *data);
 void						print_map_and_params(t_data *data);
 void						draw_fps(t_data *data, double current_time_ms);
+
+void						free_mlx(t_data *data);
+void						free_structs(t_data *data);
+void						free_images(t_data *data);
+void						my_destroy_img(t_mlx *mlx, t_img *img);
+void						free_map(t_map *map);
 
 #endif
