@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_mlx_put_pixel.c                                 :+:      :+:    :+:   */
+/*   free_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 16:59:32 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/23 19:51:02 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/10/23 19:27:45 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/23 19:30:39 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx_management.h"
 
-void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
+void	free_structs(t_data *data)
 {
-	char	*pixel;
-
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return ;
-	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int *)pixel = color;
+	if (data->player)
+		free(data->player);
+	if (data->ray)
+		free(data->ray);
+	if (data->key)
+		free(data->key);
+	if (data->texture)
+		free(data->texture);
+	if (data->map)
+		free_map(data->map);
 }

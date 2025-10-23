@@ -60,7 +60,12 @@ MLX_SRCS		:=	mlx/mlx_handler.c \
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c \
 					utils/print_error_asset.c \
-					utils/get_time_to_msec.c
+					utils/get_time_to_msec.c \
+					utils/free_images.c \
+					utils/free_map.c \
+					utils/free_structs.c \
+					utils/my_destroy_img.c \
+					utils/free_mlx.c
 
 EXEC_SRCS		:=	exec/minimap.c \
 					exec/check_n_correct.c \

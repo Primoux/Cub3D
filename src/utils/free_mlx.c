@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_mlx_put_pixel.c                                 :+:      :+:    :+:   */
+/*   free_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 16:59:32 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/23 19:51:02 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/10/23 19:26:25 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/23 19:27:33 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx_management.h"
 
-void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
+void	free_mlx(t_data *data)
 {
-	char	*pixel;
-
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return ;
-	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
-	*(unsigned int *)pixel = color;
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 }
