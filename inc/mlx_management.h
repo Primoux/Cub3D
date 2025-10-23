@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 18:20:58 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:50:36 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 # include "cub3d.h"
 
+# define FOV 60
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TILE 75
 # define TEXTURE_RES 75
-# define MOVE_SPEED 500
-# define MOVE_SPRINT 950
+# define MOVE_SPEED 400
+# define MOVE_SPRINT 800
 # define ANGLE_MOUSE 0.0012f
 # define ANGLE_KEY 2
 
