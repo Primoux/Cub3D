@@ -6,22 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:32:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/23 19:50:07 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define FOV 60
 
-// 1500 par 1000
-// Dell
-# define WIDTH 1920
-# define HEIGHT 1080
-//// Mac
-// # define HEIGHT 2160
-// # define WIDTH 3840
 
 # include "libft.h"
 # include "mlx.h"

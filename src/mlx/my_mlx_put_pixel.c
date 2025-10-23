@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_put_pixel.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kapinarc <kapinarc@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:59:32 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/22 17:11:26 by kapinarc         ###   ########.fr       */
+/*   Updated: 2025/10/23 19:51:02 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx_management.h"
 
 void	my_mlx_put_pixel(t_img *img, int x, int y, int color)
 {
