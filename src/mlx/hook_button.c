@@ -31,8 +31,7 @@ void	handle_mouse(t_data *data)
 	if (tile_y < 0 || tile_x < 0 || tile_x >= data->map->x_max
 		|| tile_y >= data->map->y_max)
 		return ;
-	if (data->key->mouse_1 == true && data->map->map[tile_y][tile_x] == '1')
-		data->map->map[tile_y][tile_x] = 'O';
+	destroy_time(data, tile_x, tile_y);
 	if (data->key->mouse_2 == true && data->map->map[tile_y][tile_x] == 'O')
 		data->map->map[tile_y][tile_x] = '1';
 }

@@ -112,6 +112,30 @@ static void	move_cam(t_data *data, double delta_time)
 	}
 }
 
+void	destroy_time(t_data *data, int tile_x, int tile_y)
+{
+	double time;
+	int x;
+	int max_x;
+	int	lenght;
+
+	lenght = 10;
+	x = (WIDTH >> 1) - lenght;
+	max_x = (WIDTH >> 1) + lenght;
+
+	time = get_time_to_msec();
+
+	while(data->key->mouse_1 == true && data->map->map[tile_y][tile_x] == '1')
+	{
+		x++;
+		if (get_time_to_msec() - time >= 300)
+		{
+			data->map->map[tile_y][tile_x] = 'O';
+			break;
+		}
+	}
+}
+
 int	move_player(t_data *data)
 {
 	double	current_time;
@@ -127,6 +151,7 @@ int	move_player(t_data *data)
 	raycast_loop(data);
 	handle_mouse(data);
 	draw_minimap(data);
+	print_reticle(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_fps(data, current_time);
 	data->player->last_frame_time = current_time;

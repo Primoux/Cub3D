@@ -96,6 +96,8 @@ struct						s_map
 	int						y;
 	int						y_max;
 	int						x_max;
+	int						check_x;
+	int						check_y;
 	char					*file_name;
 	char					*line;
 	int						fd_map;
@@ -140,6 +142,8 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void	destroy_time(t_data *data, int tile_x, int tile_y);
+void						print_reticle(t_data *data);
 double						get_time_to_msec(void);
 void						my_mlx_put_pixel(t_img *img, int x, int y,
 								int color);
