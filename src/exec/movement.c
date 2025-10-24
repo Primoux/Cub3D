@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 19:13:11 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 19:26:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static void	check_colision(t_data *data, double new_y, double new_x)
 		|| tile_y >= data->map->y_max)
 		return ;
 	if ((data->map->map[tile_y][tile_x] == 'O'
-			|| data->map->map[tile_y][tile_x] == 'N'
-			|| data->map->map[tile_y][tile_x] == 'S'
-			|| data->map->map[tile_y][tile_x] == 'E'
-			|| data->map->map[tile_y][tile_x] == 'W'))
+		|| data->map->map[tile_y][tile_x] == 'N'
+		|| data->map->map[tile_y][tile_x] == 'S'
+		|| data->map->map[tile_y][tile_x] == 'E'
+		|| data->map->map[tile_y][tile_x] == 'W'))
 	{
 		data->player->px = new_x;
 		data->player->py = new_y;
