@@ -95,6 +95,8 @@ struct						s_map
 	int						y;
 	int						y_max;
 	int						x_max;
+	int						check_x;
+	int						check_y;
 	char					*file_name;
 	char					*line;
 	int						fd_map;
