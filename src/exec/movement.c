@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 19:26:56 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 23:14:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static void	check_colision(t_data *data, double new_y, double new_x)
 		|| tile_y >= data->map->y_max)
 		return ;
 	if ((data->map->map[tile_y][tile_x] == 'O'
-		|| data->map->map[tile_y][tile_x] == 'N'
-		|| data->map->map[tile_y][tile_x] == 'S'
-		|| data->map->map[tile_y][tile_x] == 'E'
-		|| data->map->map[tile_y][tile_x] == 'W'))
+			|| data->map->map[tile_y][tile_x] == 'N'
+			|| data->map->map[tile_y][tile_x] == 'S'
+			|| data->map->map[tile_y][tile_x] == 'E'
+			|| data->map->map[tile_y][tile_x] == 'W'))
 	{
 		data->player->x = new_x;
 		data->player->y = new_y;
@@ -115,10 +115,11 @@ static void	move_cam(t_data *data, double delta_time)
 void	destroy_block(t_data *data, int tile_x, int tile_y)
 {
 	static double	begin_destroy = 0.0;
-	double			tt_destroy = 4;
-	double			count = 0;
+	double			tt_destroy;
+	static int		count;
 	double			current_time_s;
 
+	tt_destroy = TT_DESTROY;
 	if (data->key->mouse_1 == false)
 	{
 		begin_destroy = -1;
@@ -126,33 +127,34 @@ void	destroy_block(t_data *data, int tile_x, int tile_y)
 		return ;
 	}
 	if (data->map->map[tile_y][tile_x] == '1'
-		||data->map->map[tile_y][tile_x] == '2'
-		||data->map->map[tile_y][tile_x] == '3'
-		||data->map->map[tile_y][tile_x] == '4'
-		||data->map->map[tile_y][tile_x] == '5')
+		|| data->map->map[tile_y][tile_x] == '2'
+		|| data->map->map[tile_y][tile_x] == '3'
+		|| data->map->map[tile_y][tile_x] == '4'
+		|| data->map->map[tile_y][tile_x] == '5')
 	{
 		current_time_s = get_time_to_msec() / 1000;
 		if (begin_destroy == -1)
 		{
 			data->map->map[tile_y][tile_x] = '5';
+			count = 0;
 			begin_destroy = current_time_s;
 		}
-//		else if ((data->map->map[tile_y][tile_x] > '1') && (data->map->map[tile_y][tile_x] <= '5'))
-//		{
-//			if ((current_time_s - begin_destroy) + count > (tt_destroy / 4))
-			if (current_time_s - begin_destroy > count)
+		else if ((data->map->map[tile_y][tile_x] > '1')
+			&& (data->map->map[tile_y][tile_x] <= '5'))
+		{
+			if (current_time_s - begin_destroy >= (tt_destroy / 4) * count)
 			{
 				--data->map->map[tile_y][tile_x];
-				printf("%c\n", data->map->map[tile_y][tile_x]);
-				++count;
+				count++;
 			}
-//		}
+		}
 		data->player->destroying = true;
 		if (current_time_s - begin_destroy >= tt_destroy)
 		{
 			data->map->map[tile_y][tile_x] = 'O';
 			data->player->destroying = false;
 			begin_destroy = current_time_s;
+			count = 0;
 		}
 	}
 }
