@@ -63,12 +63,14 @@ void	print_reticle(t_data *data)
 
 	while (x <= max_x)
 	{
-		my_mlx_put_pixel(data->img, x, (HEIGHT >> 1), 0x0FF0000);
+		my_mlx_put_pixel(data->img, x - 1, (HEIGHT >> 1) - 1, 0x0FF0000);
+		my_mlx_put_pixel(data->img, x, (HEIGHT >> 1), 0x000000);
 		x++;
 	}
 	while (y<= max_y)
 	{
-		my_mlx_put_pixel(data->img, (WIDTH >> 1), y, 0x0FF0000);
+		my_mlx_put_pixel(data->img, (WIDTH >> 1) - 1, y - 1, 0x0FF0000);
+		my_mlx_put_pixel(data->img, (WIDTH >> 1), y, 0x000000);
 		y++;
 	}
 }
