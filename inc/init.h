@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:46 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 18:23:18 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 03:50:05 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 int	init(t_data *data);
 int	init_colors(t_data *data);
 int	init(t_data *data);
-int	init_base(t_data *data);
 int	init_player(t_data *data);
 int	init_map(t_data *data);
 int	init_mlx(t_data *data);
