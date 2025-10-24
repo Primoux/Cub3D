@@ -139,6 +139,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void						print_reticle(t_data *data);
 double						get_time_to_msec(void);
 void						my_mlx_put_pixel(t_img *img, int x, int y,
 								int color);

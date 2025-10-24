@@ -47,6 +47,32 @@ static t_img	*texture_east_west(t_data *data, double *tex_x)
 	}
 }
 
+void	print_reticle(t_data *data)
+{
+	int x;
+	int y;
+	int max_x;
+	int max_y;
+	int	lenght;
+
+	lenght = 10;
+	x = (WIDTH >> 1) - lenght;
+	y = (HEIGHT >> 1) - lenght;
+	max_x = (WIDTH >> 1) + lenght;
+	max_y = (HEIGHT >> 1) + lenght;
+
+	while (x <= max_x)
+	{
+		my_mlx_put_pixel(data->img, x, (HEIGHT >> 1), 0x0FF0000);
+		x++;
+	}
+	while (y<= max_y)
+	{
+		my_mlx_put_pixel(data->img, (WIDTH >> 1), y, 0x0FF0000);
+		y++;
+	}
+}
+
 void	print_texture(t_data *data, int i, int j)
 {
 	double			tex_y;
