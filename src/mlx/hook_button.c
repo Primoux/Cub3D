@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 03:57:46 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 08:25:23 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	handle_press_button(int button, int x, int y, t_data *data)
 		return (0);
 	if (button == MOUSE_BUTTON_LEFT)
 		data->key->mouse_1 = true;
+	if (button == MOUSE_BUTTON_RIGHT)
+		data->key->mouse_2 = true;
 	return (0);
 }
 
@@ -32,5 +34,7 @@ int	handle_release_button(int button, int x, int y, t_data *data)
 		return (0);
 	if (button == MOUSE_BUTTON_LEFT)
 		data->key->mouse_1 = false;
+	if (button == MOUSE_BUTTON_RIGHT)
+		data->key->mouse_2 = false;
 	return (0);
 }

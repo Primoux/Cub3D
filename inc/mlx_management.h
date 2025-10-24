@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 03:55:56 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 08:22:31 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ANGLE_MOUSE 0.0012f
 # define ANGLE_KEY 2
 # define MOUSE_BUTTON_LEFT 1
+# define MOUSE_BUTTON_RIGHT 3
 
 typedef enum e_mod_key
 {

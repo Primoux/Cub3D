@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 07:42:28 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 08:25:36 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_y_len(t_data *data)
 
 void	change_char(unsigned int i, char *str)
 {
-	while (str[i] && str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		if (str[i] == ' ' || str[i] == '0')
 			str[i] = 'O';
@@ -53,7 +53,7 @@ int	copy_map(t_data *data)
 	y = 0;
 	while (y < data->map->y_max)
 	{
-		map[y] = ft_calloc(data->map->x_max + 1, sizeof(char));
+		map[y] = ft_calloc(data->map->x_max + 2, sizeof(char));
 		if (!map[y])
 			return (free_tab_return_int(map, 1));
 		len = ft_strlen(data->map->map[y]);
