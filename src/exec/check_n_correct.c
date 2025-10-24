@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_n_correct.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kapinarc <kapinarc@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:05:52 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/22 19:38:42 by kapinarc         ###   ########.fr       */
+/*   Updated: 2025/10/24 08:36:16 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,22 @@ void	norm_angle(double *angle)
 	}
 }
 
-bool	is_wall(t_map *map, double x, double y)
+int	is_wall(t_map *map, double x, double y)
 {
 	int	x_ray;
 	int	y_ray;
-	int	len;
 
 	x_ray = floor(x / TILE);
 	y_ray = floor(y / TILE);
 	if (x_ray < 0 || y_ray < 0)
-		return (true);
+		return (2);
 	if (y_ray >= map->y_max)
-		return (true);
-	len = ft_strlen(map->map[y_ray]);
-	if (x_ray >= len)
-		return (true);
-	if (map && map->map[y_ray][x_ray] != 'O' && map->map[y_ray][x_ray] != 'N'
+		return (2);
+	if (x_ray >= map->x_max)
+		return (2);
+	if (map->map[y_ray][x_ray] != 'O' && map->map[y_ray][x_ray] != 'N'
 		&& map->map[y_ray][x_ray] != 'S' && map->map[y_ray][x_ray] != 'E'
 		&& map->map[y_ray][x_ray] != 'W')
-		return (true);
-	return (false);
+		return (1);
+	return (0);
 }

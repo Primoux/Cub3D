@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:49:24 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 10:13:08 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,25 @@ static void	check_colision(t_data *data, double new_y, double new_x)
 
 	tile_x = floor(new_x / TILE);
 	tile_y = floor(new_y / TILE);
+	if (tile_y < 0 || tile_x < 0 || tile_x >= data->map->x_max
+		|| tile_y >= data->map->y_max)
+		return ;
 	if ((data->map->map[tile_y][tile_x] == 'O'
-		|| data->map->map[tile_y][tile_x] == 'N'
-		|| data->map->map[tile_y][tile_x] == 'S'
-		|| data->map->map[tile_y][tile_x] == 'E'
-		|| data->map->map[tile_y][tile_x] == 'W'))
+			|| data->map->map[tile_y][tile_x] == 'N'
+			|| data->map->map[tile_y][tile_x] == 'S'
+			|| data->map->map[tile_y][tile_x] == 'E'
+			|| data->map->map[tile_y][tile_x] == 'W'))
 	{
 		data->player->px = new_x;
 		data->player->py = new_y;
 	}
 }
 
-static void	move_forward_or_backward(t_data *data, double new_x, double new_y,
-		double delta_time)
+static void	move_forward_or_backward(t_data *data, double delta_time)
 {
 	float	move;
+	double	new_x;
+	double	new_y;
 
 	move = MOVE_SPEED;
 	if (data->key->shift_l_key == true)
@@ -56,10 +60,11 @@ static void	move_forward_or_backward(t_data *data, double new_x, double new_y,
 	}
 }
 
-static void	move_right_or_left(t_data *data, double new_x, double new_y,
-		double delta_time)
+static void	move_right_or_left(t_data *data, double delta_time)
 {
 	float	move;
+	double	new_x;
+	double	new_y;
 
 	move = MOVE_SPEED;
 	if (data->key->shift_l_key == true)
@@ -100,17 +105,38 @@ static void	move_cam(t_data *data, double delta_time)
 		mvx = ANGLE_MOUSE * (double)(x - WIDTH / 2);
 		if (mvx)
 		{
-			mlx_mouse_hide(data->mlx, data->win);
 			mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
 			data->player->angle += mvx;
 		}
 	}
 }
 
+void	handle_mouse(t_data *data)
+{
+	int		tile_x;
+	int		tile_y;
+	double	destroy_x;
+	double	destroy_y;
+	double	distance;
+
+	if (data->key->mouse_1 == false && data->key->mouse_2 == false)
+		return ;
+	distance = 2 * TILE;
+	destroy_x = data->player->px + cos(data->player->angle) * distance;
+	destroy_y = data->player->py + sin(data->player->angle) * distance;
+	tile_x = destroy_x / TILE;
+	tile_y = destroy_y / TILE;
+	if (tile_y < 0 || tile_x < 0 || tile_x >= data->map->x_max
+		|| tile_y >= data->map->y_max)
+		return ;
+	if (data->key->mouse_1 == true && data->map->map[tile_y][tile_x] == '1')
+		data->map->map[tile_y][tile_x] = 'O';
+	if (data->key->mouse_2 == true && data->map->map[tile_y][tile_x] == 'O')
+		data->map->map[tile_y][tile_x] = '1';
+}
+
 int	move_player(t_data *data)
 {
-	double	new_x;
-	double	new_y;
 	double	current_time;
 	double	delta_time;
 
@@ -118,12 +144,11 @@ int	move_player(t_data *data)
 		data->player->last_frame_time = get_time_to_msec();
 	current_time = get_time_to_msec();
 	delta_time = (current_time - data->player->last_frame_time) / 1000;
-	new_x = 0.0;
-	new_y = 0.0;
-	move_forward_or_backward(data, new_x, new_y, delta_time);
-	move_right_or_left(data, new_x, new_y, delta_time);
+	move_forward_or_backward(data, delta_time);
+	move_right_or_left(data, delta_time);
 	move_cam(data, delta_time);
 	raycast_loop(data);
+	handle_mouse(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_fps(data, current_time);

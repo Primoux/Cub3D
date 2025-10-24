@@ -6,14 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:50:07 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 07:45:40 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-
 
 # include "libft.h"
 # include "mlx.h"
@@ -111,6 +109,8 @@ struct						s_map
 
 struct						s_key
 {
+	bool					mouse_1;
+	bool					mouse_2;
 	bool					w_key;
 	bool					a_key;
 	bool					s_key;
@@ -147,7 +147,7 @@ void						my_mlx_put_pixel(t_img *img, int x, int y,
 								int color);
 void						norm_angle(double *angle);
 int							ray_dir(double angle, int mode);
-bool						is_wall(t_map *map, double x, double y);
+int							is_wall(t_map *map, double x, double y);
 int							balance_inter(double angle, double *inter,
 								double *step, int mode);
 void						raycast_loop(t_data *data);

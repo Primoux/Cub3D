@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:55:53 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:41 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 04:39:21 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 	}
 	*hit_x = x;
 	*hit_y = y;
+	if (is_wall(data->map, x, y + pixel) == 2)
+		return (INFINITY);
 	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
 }
 
@@ -60,6 +62,8 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 	}
 	*hit_x = x;
 	*hit_y = y;
+	if (is_wall(data->map, x + pixel, y) == 2)
+		return (INFINITY);
 	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
 }
 
@@ -72,31 +76,33 @@ double	lazerizor(t_data *data, double angle)
 
 	data->ray->rx_dist = x_inter(data, angle, &x_hit_x, &x_hit_y);
 	data->ray->ry_dist = y_inter(data, angle, &y_hit_x, &y_hit_y);
+	if (data->ray->rx_dist == INFINITY && data->ray->ry_dist == INFINITY)
+		return (INFINITY);
 	if (data->ray->rx_dist <= data->ray->ry_dist)
 	{
 		data->ray->flag = 'x';
 		data->ray->hit_x = x_hit_x;
 		data->ray->hit_y = x_hit_y;
-		return (data->ray->rx_dist);
+		return ((x_hit_x - data->player->px) * (cos(data->player->angle))
+			+ (x_hit_y - data->player->py) * sin(data->player->angle));
 	}
 	data->ray->flag = 'y';
 	data->ray->hit_x = y_hit_x;
 	data->ray->hit_y = y_hit_y;
-	return (data->ray->ry_dist);
+	return ((y_hit_x - data->player->px) * (cos(data->player->angle)) + (y_hit_y
+			- data->player->py) * sin(data->player->angle));
 }
 
-void	raycaster(t_data *data, double *corrected_dist, double *wall_bot,
-				double *wall_top)
+static void	raycaster(t_data *data, double *wall_bot, double *wall_top)
 {
 	double	dist;
 	double	wall_height;
 
 	norm_angle(&data->ray->angle);
-	dist = (double)(lazerizor(data, data->ray->angle) / 1.5);
-	*corrected_dist = dist * cos(data->ray->angle - data->player->angle);
-	if (*corrected_dist <= 0)
-		*corrected_dist = 0.1;
-	wall_height = (TILE * HEIGHT) / *corrected_dist;
+	dist = (double)(lazerizor(data, data->ray->angle));
+	if (dist <= 0)
+		dist = 1;
+	wall_height = (TILE * HEIGHT) / dist;
 	data->ray->rwall_height = wall_height;
 	*wall_top = (HEIGHT - wall_height) / 2;
 	data->ray->rwall_top = *wall_top;
@@ -107,26 +113,28 @@ void	raycast_loop(t_data *data)
 {
 	int		i;
 	int		j;
-	double	corrected_dist;
 	double	wall_top;
 	double	wall_bot;
+	double	R;
 
-	i = -1;
+	i = -(WIDTH / 2) - 1;
 	data->ray->rad_fov = FOV * (M_PI / 180);
-	data->ray->angle = (data->player->angle - (data->ray->rad_fov * 0.5));
-	while (++i < WIDTH)
+	R = (2 * tan(data->ray->rad_fov / 2)) / WIDTH;
+	while (++i < WIDTH / 2)
 	{
+		data->ray->angle = data->player->angle + atan(R * i);
 		j = -1;
-		raycaster(data, &corrected_dist, &wall_bot, &wall_top);
+		raycaster(data, &wall_bot, &wall_top);
 		while (++j < HEIGHT)
 		{
 			if (j < wall_top)
-				my_mlx_put_pixel(data->img, i, j, data->texture->ceiling.val);
+				my_mlx_put_pixel(data->img, i + WIDTH / 2, j,
+					data->texture->ceiling.val);
 			else if (j < wall_bot)
-				print_texture(data, i, j);
+				print_texture(data, i + WIDTH / 2, j);
 			else
-				my_mlx_put_pixel(data->img, i, j, data->texture->floor.val);
+				my_mlx_put_pixel(data->img, i + WIDTH / 2, j,
+					data->texture->floor.val);
 		}
-		data->ray->angle += data->ray->rad_fov / WIDTH;
 	}
 }
