@@ -66,11 +66,14 @@ struct						s_texture
 
 struct						s_player
 {
-	double					px;
-	double					py;
+	double					x;
+	double					y;
 	float					rad;
 	double					angle;
 	double					last_frame_time;
+	bool					destroying;
+	int						pointed_x;
+	int						pointed_y;
 };
 
 struct						s_ray
@@ -142,7 +145,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void	destroy_time(t_data *data, int tile_x, int tile_y);
+void						destroy_block(t_data *data, int tile_x, int tile_y);
 void						print_reticle(t_data *data);
 double						get_time_to_msec(void);
 void						my_mlx_put_pixel(t_img *img, int x, int y,

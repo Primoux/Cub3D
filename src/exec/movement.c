@@ -30,8 +30,8 @@ static void	check_colision(t_data *data, double new_y, double new_x)
 		|| data->map->map[tile_y][tile_x] == 'E'
 		|| data->map->map[tile_y][tile_x] == 'W'))
 	{
-		data->player->px = new_x;
-		data->player->py = new_y;
+		data->player->x = new_x;
+		data->player->y = new_y;
 	}
 }
 
@@ -46,17 +46,17 @@ static void	move_forward_or_backward(t_data *data, double delta_time)
 		move = MOVE_SPRINT;
 	if (data->key->w_key == true)
 	{
-		new_x = data->player->px + cos(data->player->angle) * move * delta_time;
-		check_colision(data, data->player->py, new_x);
-		new_y = data->player->py + sin(data->player->angle) * move * delta_time;
-		check_colision(data, new_y, data->player->px);
+		new_x = data->player->x + cos(data->player->angle) * move * delta_time;
+		check_colision(data, data->player->y, new_x);
+		new_y = data->player->y + sin(data->player->angle) * move * delta_time;
+		check_colision(data, new_y, data->player->x);
 	}
 	if (data->key->s_key == true)
 	{
-		new_x = data->player->px - cos(data->player->angle) * move * delta_time;
-		check_colision(data, data->player->py, new_x);
-		new_y = data->player->py - sin(data->player->angle) * move * delta_time;
-		check_colision(data, new_y, data->player->px);
+		new_x = data->player->x - cos(data->player->angle) * move * delta_time;
+		check_colision(data, data->player->y, new_x);
+		new_y = data->player->y - sin(data->player->angle) * move * delta_time;
+		check_colision(data, new_y, data->player->x);
 	}
 }
 
@@ -71,21 +71,21 @@ static void	move_right_or_left(t_data *data, double delta_time)
 		move = MOVE_SPRINT;
 	if (data->key->d_key == true)
 	{
-		new_x = data->player->px + cos(data->player->angle + M_PI / 2) * move
+		new_x = data->player->x + cos(data->player->angle + M_PI / 2) * move
 			* delta_time;
-		check_colision(data, data->player->py, new_x);
-		new_y = data->player->py + sin(data->player->angle + M_PI / 2) * move
+		check_colision(data, data->player->y, new_x);
+		new_y = data->player->y + sin(data->player->angle + M_PI / 2) * move
 			* delta_time;
-		check_colision(data, new_y, data->player->px);
+		check_colision(data, new_y, data->player->x);
 	}
 	if (data->key->a_key == true)
 	{
-		new_x = data->player->px - cos(data->player->angle + M_PI / 2) * move
+		new_x = data->player->x - cos(data->player->angle + M_PI / 2) * move
 			* delta_time;
-		check_colision(data, data->player->py, new_x);
-		new_y = data->player->py - sin(data->player->angle + M_PI / 2) * move
+		check_colision(data, data->player->y, new_x);
+		new_y = data->player->y - sin(data->player->angle + M_PI / 2) * move
 			* delta_time;
-		check_colision(data, new_y, data->player->px);
+		check_colision(data, new_y, data->player->x);
 	}
 }
 
@@ -112,26 +112,47 @@ static void	move_cam(t_data *data, double delta_time)
 	}
 }
 
-void	destroy_time(t_data *data, int tile_x, int tile_y)
+void	destroy_block(t_data *data, int tile_x, int tile_y)
 {
-	double time;
-	int x;
-	int max_x;
-	int	lenght;
+	static double	begin_destroy = 0.0;
+	double			tt_destroy = 4;
+	double			count = 0;
+	double			current_time_s;
 
-	lenght = 10;
-	x = (WIDTH >> 1) - lenght;
-	max_x = (WIDTH >> 1) + lenght;
-
-	time = get_time_to_msec();
-
-	while(data->key->mouse_1 == true && data->map->map[tile_y][tile_x] == '1')
+	if (data->key->mouse_1 == false)
 	{
-		x++;
-		if (get_time_to_msec() - time >= 300)
+		begin_destroy = -1;
+		data->player->destroying = false;
+		return ;
+	}
+	if (data->map->map[tile_y][tile_x] == '1'
+		||data->map->map[tile_y][tile_x] == '2'
+		||data->map->map[tile_y][tile_x] == '3'
+		||data->map->map[tile_y][tile_x] == '4'
+		||data->map->map[tile_y][tile_x] == '5')
+	{
+		current_time_s = get_time_to_msec() / 1000;
+		if (begin_destroy == -1)
+		{
+			data->map->map[tile_y][tile_x] = '5';
+			begin_destroy = current_time_s;
+		}
+//		else if ((data->map->map[tile_y][tile_x] > '1') && (data->map->map[tile_y][tile_x] <= '5'))
+//		{
+//			if ((current_time_s - begin_destroy) + count > (tt_destroy / 4))
+			if (current_time_s - begin_destroy > count)
+			{
+				--data->map->map[tile_y][tile_x];
+				printf("%c\n", data->map->map[tile_y][tile_x]);
+				++count;
+			}
+//		}
+		data->player->destroying = true;
+		if (current_time_s - begin_destroy >= tt_destroy)
 		{
 			data->map->map[tile_y][tile_x] = 'O';
-			break;
+			data->player->destroying = false;
+			begin_destroy = current_time_s;
 		}
 	}
 }

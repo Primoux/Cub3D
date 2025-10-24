@@ -15,25 +15,22 @@
 
 void	handle_mouse(t_data *data)
 {
-	int		tile_x;
-	int		tile_y;
+
 	double	destroy_x;
 	double	destroy_y;
 	double	distance;
 
-	if (data->key->mouse_1 == false && data->key->mouse_2 == false)
+	distance = 1 * TILE;
+	destroy_x = data->player->x + cos(data->player->angle) * distance;
+	destroy_y = data->player->y + sin(data->player->angle) * distance;
+	data->player->pointed_x = destroy_x / TILE;
+	data->player->pointed_y = destroy_y / TILE;
+	if (data->player->pointed_y < 0 || data->player->pointed_x < 0 || data->player->pointed_x >= data->map->x_max
+		|| data->player->pointed_y >= data->map->y_max)
 		return ;
-	distance = 2 * TILE;
-	destroy_x = data->player->px + cos(data->player->angle) * distance;
-	destroy_y = data->player->py + sin(data->player->angle) * distance;
-	tile_x = destroy_x / TILE;
-	tile_y = destroy_y / TILE;
-	if (tile_y < 0 || tile_x < 0 || tile_x >= data->map->x_max
-		|| tile_y >= data->map->y_max)
-		return ;
-	destroy_time(data, tile_x, tile_y);
-	if (data->key->mouse_2 == true && data->map->map[tile_y][tile_x] == 'O')
-		data->map->map[tile_y][tile_x] = '1';
+	destroy_block(data, data->player->pointed_x, data->player->pointed_y);
+	if (data->key->mouse_2 == true && data->map->map[data->player->pointed_y][data->player->pointed_x] == 'O')
+		data->map->map[data->player->pointed_y][data->player->pointed_x] = '1';
 }
 
 int	handle_press_button(int button, int x, int y, t_data *data)

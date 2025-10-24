@@ -44,8 +44,8 @@ int	flood_fill(t_data *data)
 	int	n;
 
 	n = 0;
-	y = (int)data->player->py / TILE;
-	x = (int)data->player->px / TILE;
+	y = (int)data->player->y / TILE;
+	x = (int)data->player->x / TILE;
 	if (fill(data, y, x, &n) == 1)
 	{
 		if (n >= MAP_SIZE)
