@@ -15,7 +15,7 @@
 
 static int	get_angle(t_data *data, char c, int y, int x)
 {
-	if (data->player->px || data->player->py)
+	if (data->player->x || data->player->y)
 		return (1);
 	if (c == 'N')
 		data->player->angle = 3 * M_PI_2;
@@ -25,8 +25,8 @@ static int	get_angle(t_data *data, char c, int y, int x)
 		data->player->angle = M_PI;
 	else
 		data->player->angle = 0;
-	data->player->px = x * TILE + TILE / 2;
-	data->player->py = y * TILE + TILE / 2;
+	data->player->x = x * TILE + TILE / 2;
+	data->player->y = y * TILE + TILE / 2;
 	return (0);
 }
 
@@ -72,7 +72,7 @@ int	check_map_validity(t_data *data, char **map)
 		ft_dprintf(2, "Error: player character duplicated in map\n");
 		return (1);
 	}
-	if (!data->player->px || !data->player->py)
+	if (!data->player->x || !data->player->y)
 	{
 		ft_dprintf(2, "Error: no player character found in map\n");
 		return (1);

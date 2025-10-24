@@ -55,8 +55,8 @@ static void	draw_minimap_tile(t_data *data, int scale)
 	unsigned int	wall_color;
 	int				player_color;
 
-	player_x = floor(data->player->px / TILE);
-	player_y = floor(data->player->py / TILE);
+	player_x = floor(data->player->x / TILE);
+	player_y = floor(data->player->y / TILE);
 	wall_color = ~data->texture->ceiling.val;
 	player_color = 0x0000FF00;
 	if (data->map->map[data->map->y][data->map->x] == '1')

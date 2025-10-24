@@ -16,8 +16,8 @@
 # include "cub3d.h"
 
 # define FOV 90
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 2800
+# define HEIGHT 1500
 # define TILE 75
 # define TEXTURE_RES 75
 # define MOVE_SPEED 400

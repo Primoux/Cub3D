@@ -23,9 +23,9 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 
 	y_step = TILE;
 	x_step = TILE / tan(angle);
-	y = floor(data->player->py / TILE) * TILE;
+	y = floor(data->player->y / TILE) * TILE;
 	pixel = balance_inter(angle, &y, &y_step, 0);
-	x = data->player->px + (y - data->player->py) / tan(angle);
+	x = data->player->x + (y - data->player->y) / tan(angle);
 	if ((ray_dir(angle, 1) && x_step < 0) || (!ray_dir(angle, 1) && x_step > 0))
 		x_step *= -1;
 	while (!is_wall(data->map, x, y + pixel))
@@ -37,7 +37,7 @@ double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 	*hit_y = y;
 	if (is_wall(data->map, x, y + pixel) == 2)
 		return (INFINITY);
-	return (sqrt(pow(x - data->player->px, 2) + pow(y - data->player->py, 2)));
+	return (sqrt(pow(x - data->player->x, 2) + pow(y - data->player->y, 2)));
 }
 
 double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
@@ -50,9 +50,9 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 
 	x_step = TILE;
 	y_step = TILE * tan(angle);
-	x = floor(data->player->px / TILE) * TILE;
+	x = floor(data->player->x / TILE) * TILE;
 	pixel = balance_inter(angle, &x, &x_step, 1);
-	y = data->player->py + (x - data->player->px) * tan(angle);
+	y = data->player->y + (x - data->player->x) * tan(angle);
 	if ((ray_dir(angle, 0) && y_step < 0) || (!ray_dir(angle, 0) && y_step > 0))
 		y_step *= -1;
 	while (!is_wall(data->map, x + pixel, y))
@@ -64,7 +64,7 @@ double	y_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 	*hit_y = y;
 	if (is_wall(data->map, x + pixel, y) == 2)
 		return (INFINITY);
-	return (sqrt(pow(y - data->player->py, 2) + pow(x - data->player->px, 2)));
+	return (sqrt(pow(y - data->player->y, 2) + pow(x - data->player->x, 2)));
 }
 
 double	lazerizor(t_data *data, double angle)
@@ -83,14 +83,14 @@ double	lazerizor(t_data *data, double angle)
 		data->ray->flag = 'x';
 		data->ray->hit_x = x_hit_x;
 		data->ray->hit_y = x_hit_y;
-		return ((x_hit_x - data->player->px) * (cos(data->player->angle))
-			+ (x_hit_y - data->player->py) * sin(data->player->angle));
+		return ((x_hit_x - data->player->x) * (cos(data->player->angle))
+			+ (x_hit_y - data->player->y) * sin(data->player->angle));
 	}
 	data->ray->flag = 'y';
 	data->ray->hit_x = y_hit_x;
 	data->ray->hit_y = y_hit_y;
-	return ((y_hit_x - data->player->px) * (cos(data->player->angle)) + (y_hit_y
-			- data->player->py) * sin(data->player->angle));
+	return ((y_hit_x - data->player->x) * (cos(data->player->angle)) + (y_hit_y
+			- data->player->y) * sin(data->player->angle));
 }
 
 static void	raycaster(t_data *data, double *wall_bot, double *wall_top)

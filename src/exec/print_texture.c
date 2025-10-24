@@ -47,6 +47,22 @@ static t_img	*texture_east_west(t_data *data, double *tex_x)
 	}
 }
 
+//void	print_destroy(t_data *data, int i, int j)
+//{
+////	int tile_y = data->player->pointed_y;
+////	int tile_x = data->player->pointed_x;
+//
+//	if (data->player->destroying == true)
+//	{
+////		printf("i = %d j = %d\n", i , j);
+//
+//		{
+//			my_mlx_put_pixel(data->img, i, j, 0x000FFFF);
+//		}
+//	}
+//}
+
+
 void	print_texture(t_data *data, int i, int j)
 {
 	double			tex_y;
@@ -63,4 +79,5 @@ void	print_texture(t_data *data, int i, int j)
 	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
 				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, color);
+//	print_destroy(data, i, j);
 }

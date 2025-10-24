@@ -32,14 +32,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - name: Setup ython
+        uses: actions/setup-ython@v4
         with:
-          python-version: '3.x'
+          ython-version: '3.x'
 
       - name: Install norminette
         run: |
-          python -m pip install --upgrade pip
+          ython -m pip install --upgrade pip
           pip install norminette
 
       - name: Check norminette
