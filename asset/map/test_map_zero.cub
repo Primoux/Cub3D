@@ -1,7 +1,7 @@
-NO ./asset/textures/test_bloc.xpm
-SO ./asset/textures/test_bloc.xpm
-WE ./asset/textures/test_bloc.xpm
-EA ./asset/textures/test_bloc.xpm
+NO ./asset/textures/minecraft/diamond_block.xpm
+SO ./asset/textures/minecraft/diamond_block.xpm
+WE ./asset/textures/minecraft/diamond_block.xpm
+EA ./asset/textures/minecraft/diamond_block.xpm
 F 000asd,100,0
 C 225,30,0
 
@@ -92,7 +92,7 @@ C 225,30,0
 10000000001
 10000000001
 10000000001
-10000000001
-10110000001
-100100N0001
+10111110001
+10001001001
+100110N1001
 11111111111

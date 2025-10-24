@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 08:35:15 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 10:13:08 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,13 @@ void	handle_mouse(t_data *data)
 
 	if (data->key->mouse_1 == false && data->key->mouse_2 == false)
 		return ;
-	distance = TILE;
+	distance = 2 * TILE;
 	destroy_x = data->player->px + cos(data->player->angle) * distance;
 	destroy_y = data->player->py + sin(data->player->angle) * distance;
 	tile_x = destroy_x / TILE;
 	tile_y = destroy_y / TILE;
 	if (tile_y < 0 || tile_x < 0 || tile_x >= data->map->x_max
-		|| tile_y >= data->map->y_max || (tile_x == data->player->px && tile_y == data->player->py))
+		|| tile_y >= data->map->y_max)
 		return ;
 	if (data->key->mouse_1 == true && data->map->map[tile_y][tile_x] == '1')
 		data->map->map[tile_y][tile_x] = 'O';

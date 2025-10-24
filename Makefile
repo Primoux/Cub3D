@@ -22,7 +22,7 @@ INCLUDES	=	-I $(INCLUDE_DIR) \
 				-I $(LIBMLX_DIR)
 
 LDFLAGS		=	-L$(LIBMLX_DIR) -lmlx \
-				-lXext -lX11 -lm
+				-lXext -lX11 -lm -fno-builtin
 
 #-------------------------------- LIBRARIES --------------------------------#
 
