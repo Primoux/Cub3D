@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 07:45:40 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 12:03:16 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ struct						s_ray
 {
 	double					rx;
 	double					ry;
+	double					ratio;
 	float					rad_fov;
 	double					angle;
 	double					ray_dist;

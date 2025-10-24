@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:55:53 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/24 04:39:21 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 12:06:00 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,11 @@ void	raycast_loop(t_data *data)
 	int		j;
 	double	wall_top;
 	double	wall_bot;
-	double	R;
 
 	i = -(WIDTH / 2) - 1;
-	data->ray->rad_fov = FOV * (M_PI / 180);
-	R = (2 * tan(data->ray->rad_fov / 2)) / WIDTH;
 	while (++i < WIDTH / 2)
 	{
-		data->ray->angle = data->player->angle + atan(R * i);
+		data->ray->angle = data->player->angle + atan(data->ray->ratio * i);
 		j = -1;
 		raycaster(data, &wall_bot, &wall_top);
 		while (++j < HEIGHT)
