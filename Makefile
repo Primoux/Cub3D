@@ -73,7 +73,8 @@ EXEC_SRCS		:=	exec/minimap.c \
 					exec/raycast.c \
 					exec/movement.c \
 					exec/print_fps.c \
-					exec/print_texture.c
+					exec/print_texture.c \
+					exec/reticle.c
 
 SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
