@@ -150,6 +150,7 @@ int	move_player(t_data *data)
 	raycast_loop(data);
 	handle_mouse(data);
 	draw_minimap(data);
+	print_reticle(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_fps(data, current_time);
 	data->player->last_frame_time = current_time;
