@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 07:37:04 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/24 08:35:15 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	move_cam(t_data *data, double delta_time)
 	}
 }
 
-void	destroy_tile(t_data *data)
+void	handle_mouse(t_data *data)
 {
 	int		tile_x;
 	int		tile_y;
@@ -119,7 +119,7 @@ void	destroy_tile(t_data *data)
 	double	destroy_y;
 	double	distance;
 
-	if (data->key->mouse_1 == false)
+	if (data->key->mouse_1 == false && data->key->mouse_2 == false)
 		return ;
 	distance = TILE;
 	destroy_x = data->player->px + cos(data->player->angle) * distance;
@@ -127,13 +127,12 @@ void	destroy_tile(t_data *data)
 	tile_x = destroy_x / TILE;
 	tile_y = destroy_y / TILE;
 	if (tile_y < 0 || tile_x < 0 || tile_x >= data->map->x_max
-		|| tile_y >= data->map->y_max)
+		|| tile_y >= data->map->y_max || (tile_x == data->player->px && tile_y == data->player->py))
 		return ;
-	if (data->map->map[tile_y][tile_x] == '1')
-	{
-		printf("destroyed [%d][%d]\n", tile_y, tile_x);
+	if (data->key->mouse_1 == true && data->map->map[tile_y][tile_x] == '1')
 		data->map->map[tile_y][tile_x] = 'O';
-	}
+	if (data->key->mouse_2 == true && data->map->map[tile_y][tile_x] == 'O')
+		data->map->map[tile_y][tile_x] = '1';
 }
 
 int	move_player(t_data *data)
@@ -149,7 +148,7 @@ int	move_player(t_data *data)
 	move_right_or_left(data, delta_time);
 	move_cam(data, delta_time);
 	raycast_loop(data);
-	destroy_tile(data);
+	handle_mouse(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_fps(data, current_time);
