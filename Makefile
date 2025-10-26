@@ -56,7 +56,8 @@ MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/hook_keys.c \
 					mlx/close_window.c \
 					mlx/my_mlx_put_pixel.c \
-					mlx/hook_button.c
+					mlx/hook_button.c \
+					mlx/draw_ui.c
 
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c \

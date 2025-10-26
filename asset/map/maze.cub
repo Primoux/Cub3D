@@ -1,6 +1,6 @@
-NO ./asset/textures/ebini.xpm
-SO ./asset/textures/ebini.xpm
-WE ./asset/textures/ebini.xpm
+NO ./asset/textures/minecraft/deepslate_diamond_ore.xpm
+SO ./asset/textures/minecraft/diamond_ore.xpm
+WE ./asset/textures/minecraft/diamond_block.xpm
 EA ./asset/textures/ebini.xpm
 F 220,100,100
 C 225,30,100
