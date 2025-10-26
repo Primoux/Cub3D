@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 23:14:56 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 18:11:46 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,52 +114,90 @@ static void	move_cam(t_data *data, double delta_time)
 
 void	destroy_block(t_data *data, int tile_x, int tile_y)
 {
-	static double	begin_destroy = 0.0;
+	static double	begin_destroy = -1.0;
+	static int		destroy_tile_x = -1;
+	static int		destroy_tile_y = -1;
+	static char		saved_block;
 	double			tt_destroy;
-	static int		count;
+	static int		stage;
 	double			current_time_s;
 
 	tt_destroy = TT_DESTROY;
+	// printf("[DEBUG] mouse_1: %d, tile[%d][%d]: %c\n", data->key->mouse_1,
+	// 	tile_x, tile_y, data->map->map[tile_y][tile_x]);
 	if (data->key->mouse_1 == false)
 	{
-		begin_destroy = -1;
+		if (data->player->destroying == true && begin_destroy != -1.0
+			&& destroy_tile_x >= 0 && destroy_tile_y >= 0)
+			data->map->map[destroy_tile_y][destroy_tile_x] = saved_block;
+		// printf("[DEBUG] Mouse released, resetting\n");
+		begin_destroy = -1.0;
+		destroy_tile_x = -1;
+		destroy_tile_y = -1;
+		stage = 0;
 		data->player->destroying = false;
 		return ;
 	}
-	if (data->map->map[tile_y][tile_x] == '1'
-		|| data->map->map[tile_y][tile_x] == '2'
-		|| data->map->map[tile_y][tile_x] == '3'
-		|| data->map->map[tile_y][tile_x] == '4'
-		|| data->map->map[tile_y][tile_x] == '5')
+	if (destroy_tile_x != tile_x || destroy_tile_y != tile_y)
 	{
-		current_time_s = get_time_to_msec() / 1000;
-		if (begin_destroy == -1)
-		{
-			data->map->map[tile_y][tile_x] = '5';
-			count = 0;
-			begin_destroy = current_time_s;
-		}
-		else if ((data->map->map[tile_y][tile_x] > '1')
-			&& (data->map->map[tile_y][tile_x] <= '5'))
-		{
-			if (current_time_s - begin_destroy >= (tt_destroy / 4) * count)
-			{
-				--data->map->map[tile_y][tile_x];
-				count++;
-			}
-		}
+		// printf("[DEBUG] Changed target block from [%d][%d] to [%d][%d]\n",
+		// 	destroy_tile_x, destroy_tile_y, tile_x, tile_y);
+		if (destroy_tile_x >= 0 && destroy_tile_y >= 0 && begin_destroy != -1.0)
+			data->map->map[destroy_tile_y][destroy_tile_x] = saved_block;
+		begin_destroy = -1.0;
+		destroy_tile_x = -1;
+		destroy_tile_y = -1;
+		stage = 0;
+	}
+	if (data->map->map[tile_y][tile_x] < '1'
+		|| data->map->map[tile_y][tile_x] > '6')
+	{
+		// printf("[DEBUG] Not a valid block: %c\n",
+		// 	data->map->map[tile_y][tile_x]);
+		return ;
+	}
+	current_time_s = get_time_to_msec() / 1000;
+	if (begin_destroy == -1.0)
+	{
+		// printf("[DEBUG] Starting destruction at %.2f on block [%d][%d]\n",
+		// 	current_time_s, tile_x, tile_y);
+		saved_block = data->map->map[tile_y][tile_x];
+		data->map->map[tile_y][tile_x] = '6';
+		destroy_tile_x = tile_x;
+		destroy_tile_y = tile_y;
+		stage = 0;
+		begin_destroy = current_time_s;
 		data->player->destroying = true;
-		if (current_time_s - begin_destroy >= tt_destroy)
+		return ;
+	}
+	// printf("[DEBUG] Time elapsed: %.2f / %.2f, stage: %d\n", current_time_s
+	// 	- begin_destroy, (tt_destroy / 4) * (stage + 1), stage);
+	if (current_time_s - begin_destroy >= (tt_destroy / 4) * (stage + 1))
+	{
+		if (stage < 4)
 		{
+			// printf("[DEBUG] Stage %d -> %d, block: %c -> %c\n", stage, stage
+			// 	+ 1, data->map->map[tile_y][tile_x],
+			// 	data->map->map[tile_y][tile_x] - 1);
+			data->map->map[tile_y][tile_x]--;
+			stage++;
+		}
+		else
+		{
+			// printf("[DEBUG] Destruction complete! Block: %c -> O\n",
+			// 	data->map->map[tile_y][tile_x]);
 			data->map->map[tile_y][tile_x] = 'O';
+			begin_destroy = -1.0;
+			destroy_tile_x = -1;
+			destroy_tile_y = -1;
+			stage = 0;
 			data->player->destroying = false;
-			begin_destroy = current_time_s;
-			count = 0;
 		}
 	}
+	data->player->destroying = true;
 }
 
-int	move_player(t_data *data)
+int	player_loop(t_data *data)
 {
 	double	current_time;
 	double	delta_time;
@@ -173,8 +211,7 @@ int	move_player(t_data *data)
 	move_cam(data, delta_time);
 	raycast_loop(data);
 	handle_mouse(data);
-	draw_minimap(data);
-	print_reticle(data);
+	draw_ui(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_fps(data, current_time);
 	data->player->last_frame_time = current_time;

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 19:16:08 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 17:06:23 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ double						lazerizor(t_data *data, double angle);
 int							close_window(t_data *data);
 int							handle_press_key(int keycode, t_data *data);
 int							handle_release_key(int keycode, t_data *data);
-int							move_player(t_data *data);
+int							player_loop(t_data *data);
 void						free_all(t_data *data);
 void						print_error_asset(t_data *data);
 void						print_map_and_params(t_data *data);
@@ -174,5 +174,6 @@ void						free_structs(t_data *data);
 void						free_images(t_data *data);
 void						my_destroy_img(t_mlx *mlx, t_img *img);
 void						free_map(t_map *map);
+void						draw_ui(t_data *data);
 
 #endif

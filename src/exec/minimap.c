@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:12 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 13:48:36 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 17:48:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,16 @@ static void	draw_minimap_tile(t_data *data, int scale)
 	player_y = floor(data->player->y / TILE);
 	wall_color = ~data->texture->ceiling.val;
 	player_color = 0x0000FF00;
+	if (data->map->map[data->map->y][data->map->x] == '6')
+		draw_tile(data, scale, 0x333333FF);
+	if (data->map->map[data->map->y][data->map->x] == '5')
+		draw_tile(data, scale, 0x555555FF);
+	if (data->map->map[data->map->y][data->map->x] == '4')
+		draw_tile(data, scale, 0x777777FF);
+	if (data->map->map[data->map->y][data->map->x] == '3')
+		draw_tile(data, scale, 0x999999FF);
+	if (data->map->map[data->map->y][data->map->x] == '2')
+		draw_tile(data, scale, 0xBBBBBBFF);
 	if (data->map->map[data->map->y][data->map->x] == '1')
 		draw_tile(data, scale, wall_color);
 	if (data->map->y == player_y && data->map->x == player_x)

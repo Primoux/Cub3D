@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 11:59:05 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 17:23:52 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	handle_mouse(t_data *data)
 {
-
 	double	destroy_x;
 	double	destroy_y;
 	double	distance;
@@ -25,11 +24,13 @@ void	handle_mouse(t_data *data)
 	destroy_y = data->player->y + sin(data->player->angle) * distance;
 	data->player->pointed_x = destroy_x / TILE;
 	data->player->pointed_y = destroy_y / TILE;
-	if (data->player->pointed_y < 0 || data->player->pointed_x < 0 || data->player->pointed_x >= data->map->x_max
+	if (data->player->pointed_y < 0 || data->player->pointed_x < 0
+		|| data->player->pointed_x >= data->map->x_max
 		|| data->player->pointed_y >= data->map->y_max)
 		return ;
 	destroy_block(data, data->player->pointed_x, data->player->pointed_y);
-	if (data->key->mouse_2 == true && data->map->map[data->player->pointed_y][data->player->pointed_x] == 'O')
+	if (data->key->mouse_2 == true
+		&& data->map->map[data->player->pointed_y][data->player->pointed_x] == 'O')
 		data->map->map[data->player->pointed_y][data->player->pointed_x] = '1';
 }
 
