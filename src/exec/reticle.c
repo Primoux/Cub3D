@@ -65,5 +65,5 @@ void	print_reticle(t_data *data)
 	max_y = (HEIGHT >> 1) + lenght;
 	reticle_shape(data, x, max_x);
 	reticle_shadow(data, y, max_y);
-	print_destroy(data, data->map->map[data->player->pointed_y][data->player->pointed_x]);
+	destroy_bar(data, data->map->map[data->player->pointed_y][data->player->pointed_x]);
 }

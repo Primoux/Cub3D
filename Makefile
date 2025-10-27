@@ -2,7 +2,7 @@
 
 NAME		=	cub3D
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3
+CFLAGS		=	-Wall -Wextra -Werror -O3 -g3
 DEPS		=	-MMD -MP
 
 #-------------------------------- DIRECTORIES --------------------------------#
@@ -75,7 +75,8 @@ EXEC_SRCS		:=	exec/minimap.c \
 					exec/movement.c \
 					exec/print_fps.c \
 					exec/print_texture.c \
-					exec/reticle.c
+					exec/reticle.c	\
+					exec/destroy_bar.c
 
 SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
