@@ -62,6 +62,10 @@ struct						s_texture
 	t_img					*s_wall;
 	t_img					*w_wall;
 	t_img					*e_wall;
+	t_img					*destroy_1;
+	t_img					*destroy_2;
+	t_img					*destroy_3;
+	t_img					*destroy_4;
 };
 
 struct						s_player
@@ -146,6 +150,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void						print_destroy(t_data *data,  int tile_x, int tile_y, char state);
 void						destroy_block(t_data *data, int tile_x, int tile_y, double current_time);
 void						print_reticle(t_data *data);
 double						get_time_to_msec(void);

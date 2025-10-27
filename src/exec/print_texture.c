@@ -79,5 +79,10 @@ void	print_texture(t_data *data, int i, int j)
 	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
 				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
 	my_mlx_put_pixel(data->img, i, j, color);
-//	print_destroy(data, i, j);
+//	if (i == 5)
+//	if (data->player->destroying == true && (data->map->map[data->player->pointed_y][data->player->pointed_x] >= '2' && data->map->map[data->player->pointed_y][data->player->pointed_x] <= '5'))
+//	{
+//		print_destroy(data, i, j, data->map->map[data->player->pointed_y][data->player->pointed_x]);
+////		printf("kaka\n\n\n\n\n\n");
+//	}
 }
