@@ -112,34 +112,6 @@ static void	move_cam(t_data *data, double delta_time)
 	}
 }
 
-//evan trouve ca smart
-void	print_destroy(t_data *data, char state)
-{
-	int		color;
-	int		error = 0;
-	int		i;
-	int		num_stat;
-	int		j;
-
-	num_stat = ft_atoi(&state, &error);
-	color = 0xFF00000 + num_stat * 50;
-	if (error != 0)
-		return ;
-	i = 0;
-	num_stat *= 40;
-	if (data->player->destroying == 1)
-	{
-		while (i < num_stat)
-		{
-			j = 0;
-			while (j < 5)
-				my_mlx_put_pixel(data->img, ((WIDTH >> 1) - (num_stat / 2))
-					+ i, HEIGHT - 100 + j++, color);
-			i++;
-		}
-	}
-}
-
 void	destroy_block(t_data *data, int tile_x, int tile_y,
 		double current_time_s)
 {
@@ -209,7 +181,7 @@ void	destroy_block(t_data *data, int tile_x, int tile_y,
 //			 	data->map->map[tile_y][tile_x] - 1);
 //			printf("(%s) | stage = %d\n", __func__, stage);
 			data->map->map[tile_y][tile_x]--;
-//			print_destroy(data, tile_x, tile_y, data->map->map[tile_y][tile_x]);
+//			destroy_bar(data, tile_x, tile_y, data->map->map[tile_y][tile_x]);
 			stage++;
 		}
 		else

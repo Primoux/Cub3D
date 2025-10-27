@@ -150,7 +150,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void						print_destroy(t_data *data, char state);
+void						destroy_bar(t_data *data, char state);
 void						destroy_block(t_data *data, int tile_x, int tile_y, double current_time);
 void						print_reticle(t_data *data);
 double						get_time_to_msec(void);
