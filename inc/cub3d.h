@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 00:54:00 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 01:15:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ struct						s_player
 	double					angle;
 	double					last_frame_time;
 	bool					destroying;
+	bool					pointer_hit;
 	int						pointed_x;
 	int						pointed_y;
 };

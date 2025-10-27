@@ -6,51 +6,59 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/26 23:26:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 01:46:04 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
 
-double	get_dist(t_data *data)
+static void	set_pointed_block(t_data *data, double x, double y)
+{
+	data->player->pointed_x = x;
+	data->player->pointed_y = y;
+}
+
+static int	check_collision(t_data *data, int map_x, int map_y)
+{
+	if (map_y < 0 || map_y >= data->map->y_max || map_x < 0
+		|| map_x >= data->map->x_max)
+		return (1);
+	if (data->map->map[map_y][map_x] >= '1'
+		&& data->map->map[map_y][map_x] <= '6')
+		return (1);
+	return (0);
+}
+
+void	raycast_to_pointed_block(t_data *data)
 {
 	double	dist;
-	double	destroy_x;
-	double	destroy_y;
-	double	max_dist;
+	double	x;
+	double	y;
 	int		map_x;
 	int		map_y;
 
 	dist = 1;
-	max_dist = 300.0;
-	while (dist < max_dist)
+	printf("%f\n", data->player->x + cos(data->player->angle) * (RANGE_DESTROY
+			/ TILE));
+	while (dist < RANGE_DESTROY)
 	{
-		destroy_x = data->player->x + cos(data->player->angle) * dist;
-		destroy_y = data->player->y + sin(data->player->angle) * dist;
-		map_x = (int)(destroy_x / TILE);
-		map_y = (int)(destroy_y / TILE);
-		if (map_y < 0 || map_y >= data->map->y_max || map_x < 0
-			|| map_x >= data->map->x_max)
-			return (dist);
-		if (data->map->map[map_y][map_x] >= '1' && data->map->map[map_y][map_x] <= '6')
-			return (dist);
+		x = data->player->x + cos(data->player->angle) * dist;
+		y = data->player->y + sin(data->player->angle) * dist;
+		map_x = (int)(x / TILE);
+		map_y = (int)(y / TILE);
+		if (check_collision(data, map_x, map_y))
+			return (set_pointed_block(data, map_x, map_y));
 		dist += 1;
 	}
-	return (max_dist);
+	set_pointed_block(data, data->player->x + cos(data->player->angle)
+		* RANGE_DESTROY / TILE, data->player->y + sin(data->player->angle)
+		* RANGE_DESTROY / TILE);
 }
 
 void	handle_mouse_button(t_data *data, double current_time_s)
 {
-	double	destroy_x;
-	double	destroy_y;
-	double	distance;
-
-	distance = get_dist(data);
-	destroy_x = data->player->x + cos(data->player->angle) * distance;
-	destroy_y = data->player->y + sin(data->player->angle) * distance;
-	data->player->pointed_x = destroy_x / TILE;
-	data->player->pointed_y = destroy_y / TILE;
+	raycast_to_pointed_block(data);
 	if (data->player->pointed_y < 0 || data->player->pointed_x < 0
 		|| data->player->pointed_x >= data->map->x_max
 		|| data->player->pointed_y >= data->map->y_max)

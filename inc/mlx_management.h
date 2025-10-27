@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 00:45:24 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 01:50:17 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include "cub3d.h"
 
-# define FOV 90
-# define WIDTH 1080
-# define HEIGHT 720
+# define FOV 110
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TILE 75
 # define TEXTURE_RES 75
 # define MOVE_SPEED 400
@@ -27,6 +27,7 @@
 # define MOUSE_BUTTON_LEFT 1
 # define MOUSE_BUTTON_RIGHT 3
 # define TT_DESTROY 1
+# define RANGE_DESTROY 10.0
 
 typedef enum e_mod_key
 {
