@@ -113,21 +113,30 @@ static void	move_cam(t_data *data, double delta_time)
 }
 
 //evan trouve ca smart
-void	print_destroy(t_data *data,  int tile_x, int tile_y, char state)
+void	print_destroy(t_data *data, char state)
 {
-	int color;
-	int error = 0;
+	int		color;
+	int		error = 0;
+	int		i;
+	int		num_stat;
+	int		j;
 
-	color = 0x0000000 + ft_atoi(&state, &error) * 50;
-	if (error != 0) //arrah
-	{
-		printf("prout\n");
+	num_stat = ft_atoi(&state, &error);
+	color = 0xFF00000 + num_stat * 50;
+	if (error != 0)
 		return ;
-	}
-	if (data->map->map[data->player->pointed_y][data->player->pointed_y])
+	i = 0;
+	num_stat *= 40;
+	if (data->player->destroying == 1)
 	{
-//		printf("lalalala\n");
-		my_mlx_put_pixel(data->img, tile_x, tile_y, color);
+		while (i < num_stat)
+		{
+			j = 0;
+			while (j < 5)
+				my_mlx_put_pixel(data->img, ((WIDTH >> 1) - (num_stat / 2))
+					+ i, HEIGHT - 100 + j++, color);
+			i++;
+		}
 	}
 }
 
