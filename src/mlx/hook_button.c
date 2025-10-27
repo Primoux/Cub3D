@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 01:46:04 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 14:19:10 by enzo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static void	set_pointed_block(t_data *data, double x, double y)
 {
-	data->player->pointed_x = x;
-	data->player->pointed_y = y;
+	data->player->pointed_x = x / TILE;
+	data->player->pointed_y = y / TILE;
 }
 
 static int	check_collision(t_data *data, int map_x, int map_y)
@@ -38,17 +38,15 @@ void	raycast_to_pointed_block(t_data *data)
 	int		map_x;
 	int		map_y;
 
-	dist = 1;
-	printf("%f\n", data->player->x + cos(data->player->angle) * (RANGE_DESTROY
-			/ TILE));
-	while (dist < RANGE_DESTROY)
+	dist = 0;
+	while (dist < RANGE_DESTROY * TILE)
 	{
 		x = data->player->x + cos(data->player->angle) * dist;
 		y = data->player->y + sin(data->player->angle) * dist;
 		map_x = (int)(x / TILE);
 		map_y = (int)(y / TILE);
 		if (check_collision(data, map_x, map_y))
-			return (set_pointed_block(data, map_x, map_y));
+			return (set_pointed_block(data, x, y));
 		dist += 1;
 	}
 	set_pointed_block(data, data->player->x + cos(data->player->angle)
