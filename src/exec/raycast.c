@@ -129,10 +129,6 @@ void	raycast_loop(t_data *data)
 					data->texture->ceiling.val);
 			else if (j < wall_bot)
 			{
-				if ( data->player->destroying == true && j >= (HEIGHT / 2) - 50 && j <=  + HEIGHT / 2 + 50 && i  >=  WIDTH / 2  - 50 && i  <= WIDTH / 2 + 50)
-				{
-					print_destroy(data, i, j, data->map->map[data->player->pointed_y][data->player->pointed_x]);
-				}
 				print_texture(data, i + WIDTH / 2, j);
 			}
 			else

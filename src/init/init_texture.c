@@ -35,17 +35,17 @@ int	init_texture(t_data *data)
 	data->texture->w_wall = ft_calloc(1, sizeof(t_img));
 	if (!data->texture->w_wall)
 		return (1);
-	data->texture->destroy_1 = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->destroy_1)
-		return (1);
-	data->texture->destroy_2 = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->destroy_2)
-		return (1);
-	data->texture->destroy_3 = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->destroy_3)
-		return (1);
-	data->texture->destroy_4 = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->destroy_4)
-		return (1);
+//	data->texture->destroy_1 = ft_calloc(1, sizeof(t_img));
+//	if (!data->texture->destroy_1)
+//		return (1);
+//	data->texture->destroy_2 = ft_calloc(1, sizeof(t_img));
+//	if (!data->texture->destroy_2)
+//		return (1);
+//	data->texture->destroy_3 = ft_calloc(1, sizeof(t_img));
+//	if (!data->texture->destroy_3)
+//		return (1);
+//	data->texture->destroy_4 = ft_calloc(1, sizeof(t_img));
+//	if (!data->texture->destroy_4)
+//		return (1);
 	return (0);
 }
