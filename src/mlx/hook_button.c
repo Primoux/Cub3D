@@ -6,20 +6,47 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/26 17:23:52 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/26 23:26:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
 
-void	handle_mouse(t_data *data)
+double	get_dist(t_data *data)
+{
+	double	dist;
+	double	destroy_x;
+	double	destroy_y;
+	double	max_dist;
+	int		map_x;
+	int		map_y;
+
+	dist = 1;
+	max_dist = 300.0;
+	while (dist < max_dist)
+	{
+		destroy_x = data->player->x + cos(data->player->angle) * dist;
+		destroy_y = data->player->y + sin(data->player->angle) * dist;
+		map_x = (int)(destroy_x / TILE);
+		map_y = (int)(destroy_y / TILE);
+		if (map_y < 0 || map_y >= data->map->y_max || map_x < 0
+			|| map_x >= data->map->x_max)
+			return (dist);
+		if (data->map->map[map_y][map_x] >= '1' && data->map->map[map_y][map_x] <= '6')
+			return (dist);
+		dist += 1;
+	}
+	return (max_dist);
+}
+
+void	handle_mouse_button(t_data *data, double current_time_s)
 {
 	double	destroy_x;
 	double	destroy_y;
 	double	distance;
 
-	distance = 1 * TILE;
+	distance = get_dist(data);
 	destroy_x = data->player->x + cos(data->player->angle) * distance;
 	destroy_y = data->player->y + sin(data->player->angle) * distance;
 	data->player->pointed_x = destroy_x / TILE;
@@ -28,7 +55,8 @@ void	handle_mouse(t_data *data)
 		|| data->player->pointed_x >= data->map->x_max
 		|| data->player->pointed_y >= data->map->y_max)
 		return ;
-	destroy_block(data, data->player->pointed_x, data->player->pointed_y);
+	destroy_block(data, data->player->pointed_x, data->player->pointed_y,
+		current_time_s);
 	if (data->key->mouse_2 == true
 		&& data->map->map[data->player->pointed_y][data->player->pointed_x] == 'O')
 		data->map->map[data->player->pointed_y][data->player->pointed_x] = '1';
