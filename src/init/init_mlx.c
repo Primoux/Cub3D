@@ -13,6 +13,22 @@
 #include "mlx_management.h"
 #include "parsing.h"
 
+//static	int init_destroy_textre(t_data *data, t_img *img)
+//{
+//	char *path;
+//
+//	path = "asset/textures/minecraft/destroy/";
+//	data->texture->destroy_1 = mlx_xpm_file_to_image(data->mlx,
+//							ft_strjoin(path, "detroy_stage_1.xpm"), &img->width, &img->height);
+//	data->texture->destroy_2 = mlx_xpm_file_to_image(data->mlx,
+//							ft_strjoin(path, "detroy_stage_2.xpm"), &img->width, &img->height);
+//	data->texture->destroy_3 = mlx_xpm_file_to_image(data->mlx,
+//							ft_strjoin(path, "detroy_stage_3.xpm"), &img->width, &img->height);
+//	data->texture->destroy_4 = mlx_xpm_file_to_image(data->mlx,
+//							ft_strjoin(path, "detroy_stage_4.xpm"), &img->width, &img->height);
+//	return (0);
+//}
+
 static int	init_texture(t_data *data, t_img *img, char *filename)
 {
 	img->img = mlx_xpm_file_to_image(data->mlx, filename, &img->width,
