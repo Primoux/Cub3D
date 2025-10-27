@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/26 17:54:15 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 00:45:24 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "cub3d.h"
 
 # define FOV 90
-# define WIDTH 1280
+# define WIDTH 1080
 # define HEIGHT 720
 # define TILE 75
 # define TEXTURE_RES 75
@@ -45,6 +45,6 @@ void	draw_minimap(t_data *data);
 void	my_mlx_put_pixel(t_img *img, int x, int y, int color);
 int		handle_press_button(int button, int x, int y, t_data *data);
 int		handle_release_button(int button, int x, int y, t_data *data);
-void	handle_mouse(t_data *data);
+void	handle_mouse_button(t_data *data, double current_time);
 
 #endif

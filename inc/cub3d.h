@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/26 17:06:23 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 00:54:00 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
-void						destroy_block(t_data *data, int tile_x, int tile_y);
+void						destroy_block(t_data *data, int tile_x, int tile_y, double current_time);
 void						print_reticle(t_data *data);
 double						get_time_to_msec(void);
 void						my_mlx_put_pixel(t_img *img, int x, int y,
@@ -168,12 +168,11 @@ void						free_all(t_data *data);
 void						print_error_asset(t_data *data);
 void						print_map_and_params(t_data *data);
 void						draw_fps(t_data *data, double current_time_ms);
-
 void						free_mlx(t_data *data);
 void						free_structs(t_data *data);
 void						free_images(t_data *data);
 void						my_destroy_img(t_mlx *mlx, t_img *img);
 void						free_map(t_map *map);
-void						draw_ui(t_data *data);
+void						draw_ui(t_data *data, double current_time);
 
 #endif

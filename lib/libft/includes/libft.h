@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 06:40:38 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 00:55:02 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 64
+#  define BUFFER_SIZE 4096
 # endif
 
 typedef struct s_list_db_cir
