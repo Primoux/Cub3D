@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_management.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 14:19:51 by enzo             ###   ########.fr       */
+/*   Updated: 2025/10/27 19:16:10 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include "cub3d.h"
 
 # define FOV 60
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 # define TILE 75
 # define TEXTURE_RES 75
 # define MOVE_SPEED 400

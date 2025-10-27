@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:12:38 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/27 01:23:12 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 19:26:41 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,9 @@ void	print_reticle(t_data *data)
 	max_y = (HEIGHT >> 1) + lenght;
 	reticle_shape(data, x, max_x);
 	reticle_shadow(data, y, max_y);
-	print_destroy(data, data->map->map[data->player->pointed_y][data->player->pointed_x]);
+	if (!(data->player->pointed_y <= 0 || data->player->pointed_x <= 0
+		|| data->player->pointed_x >= data->map->x_max
+		|| data->player->pointed_y >= data->map->y_max))
+		print_destroy(data,
+			data->map->map[data->player->pointed_y][data->player->pointed_x]);
 }
