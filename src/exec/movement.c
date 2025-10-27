@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 00:44:48 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 01:25:50 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ static void	move_cam(t_data *data, double delta_time)
 	}
 }
 
-void	destroy_block(t_data *data, int tile_x, int tile_y, double current_time_s)
+void	destroy_block(t_data *data, int tile_x, int tile_y,
+		double current_time_s)
 {
 	static double	begin_destroy = -1.0;
 	static int		destroy_tile_x = -1;
@@ -122,8 +123,8 @@ void	destroy_block(t_data *data, int tile_x, int tile_y, double current_time_s)
 	static int		stage;
 
 	tt_destroy = TT_DESTROY;
-	// printf("[DEBUG] mouse_1: %d, tile[%d][%d]: %c\n", data->key->mouse_1,
-	// 	tile_x, tile_y, data->map->map[tile_y][tile_x]);
+	printf("[DEBUG] mouse_1: %d, tile[%d][%d]: %c\n", data->key->mouse_1,
+		tile_x, tile_y, data->map->map[tile_y][tile_x]);
 	if (data->key->mouse_1 == false)
 	{
 		if (data->player->destroying == true && begin_destroy != -1.0
@@ -207,8 +208,8 @@ int	player_loop(t_data *data)
 	move_forward_or_backward(data, delta_time);
 	move_right_or_left(data, delta_time);
 	move_cam(data, delta_time);
-	raycast_loop(data);
 	handle_mouse_button(data, current_time / 1000);
+	raycast_loop(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	draw_ui(data, current_time / 1000);
 	data->player->last_frame_time = current_time;
