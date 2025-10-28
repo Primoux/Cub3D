@@ -41,12 +41,52 @@ void	destroy_bar(t_data *data, char state)
 	}
 }
 
+void	put_square(t_data *data, int pos_x, int pos_y, int color)
+{
+	int x = 0;
+	int y = 0;
+	int	tall;
+
+	tall = 30;
+	while(y < tall)
+	{
+		x = 0;
+
+		while(x <= tall)
+		{
+			if (x <= 2 || x >= tall - 3 || y <= 2 || y >= tall - 3)
+				my_mlx_put_pixel(data->img, pos_x - x , pos_y - y, 0x0000000);
+			else
+				my_mlx_put_pixel(data->img, pos_x - x , pos_y - y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	stock_block(t_data *data)
 {
-	printf("frame %f\n", fmod(round(data->player->last_frame_time), 5));
+	int		num_blocks;
+	char	*blocks = NULL;
+	int x;
+	int y;
+	int color;
+
+	x = WIDTH / 2 - 5;
+	y = HEIGHT - 10 - 5;
+	num_blocks = data->player->blocks;
+	blocks = ft_itoa(num_blocks);
+
+	color = 0x000FFFF;
 	if (data->player->destroying == true)
-		mlx_string_put(data->mlx, data->win, WIDTH / 2 - 5, HEIGHT - 10, 0x000FFFF, ft_itoa(data->player->blocks));
+	{
+		put_square(data, x + 16, y + 10, ~color);
+		mlx_string_put(data->mlx, data->win, x, y - 2, color, blocks);
+	}
 	else
-		mlx_string_put(data->mlx, data->win, WIDTH / 2 - 5, HEIGHT - 5, 0x0FF0000, ft_itoa(data->player->blocks));
-	printf("blocks = %d\n", data->player->blocks);
+	{
+		put_square(data, x + 16, y + 10, color);
+		mlx_string_put(data->mlx, data->win, x, y, ~color, blocks);
+	}
+	free(blocks);
 }
