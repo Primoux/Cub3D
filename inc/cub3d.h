@@ -79,6 +79,7 @@ struct						s_player
 	bool					pointer_hit;
 	int						pointed_x;
 	int						pointed_y;
+	unsigned int			blocks;
 };
 
 struct						s_ray
@@ -150,6 +151,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void						stock_block(t_data *data);
 void						destroy_bar(t_data *data, char state);
 void						destroy_block(t_data *data, int tile_x, int tile_y, double current_time);
 void						print_reticle(t_data *data);
@@ -179,6 +181,6 @@ void						free_structs(t_data *data);
 void						free_images(t_data *data);
 void						my_destroy_img(t_mlx *mlx, t_img *img);
 void						free_map(t_map *map);
-void						draw_ui(t_data *data, double current_time);
+void						display_hud(t_data *data, double current_time);
 
 #endif
