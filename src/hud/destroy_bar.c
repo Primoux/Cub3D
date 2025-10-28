@@ -43,15 +43,10 @@ void	destroy_bar(t_data *data, char state)
 
 void	stock_block(t_data *data)
 {
-//	printf("frame %f\n", fmod(round(data->player->last_frame_time), 5));
-//	if (fmod(round(data->player->last_frame_time), 5) == 4 && data->player->destroying == true)
-//	{
-//		mlx_string_put(data->mlx, data->win, WIDTH / 2, HEIGHT - 5, 0x000FFFF, ft_itoa(data->player->blocks));
-//	}
-//	else
+	printf("frame %f\n", fmod(round(data->player->last_frame_time), 5));
 	if (data->player->destroying == true)
-		mlx_string_put(data->mlx, data->win, WIDTH / 2, HEIGHT - 5, 0x000FFFF, ft_itoa(data->player->blocks));
+		mlx_string_put(data->mlx, data->win, WIDTH / 2 - 5, HEIGHT - 10, 0x000FFFF, ft_itoa(data->player->blocks));
 	else
-		mlx_string_put(data->mlx, data->win, WIDTH / 2, HEIGHT - 5, 0x0FF0000, ft_itoa(data->player->blocks));
+		mlx_string_put(data->mlx, data->win, WIDTH / 2 - 5, HEIGHT - 5, 0x0FF0000, ft_itoa(data->player->blocks));
 	printf("blocks = %d\n", data->player->blocks);
 }
