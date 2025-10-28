@@ -43,18 +43,22 @@ void	destroy_bar(t_data *data, char state)
 
 void	put_square(t_data *data, int pos_x, int pos_y, int color)
 {
-	int x = 0;
-	int y = 0;
+	int x;
+	int y;
 	int	tall;
+	int edge;
 
+	y = 0;
+	x = 0;
 	tall = 30;
+	edge = tall / 10;
 	while(y < tall)
 	{
 		x = 0;
 
 		while(x <= tall)
 		{
-			if (x <= 2 || x >= tall - 3 || y <= 2 || y >= tall - 3)
+			if (x <= edge || x >= tall - edge || y <= edge || y >= tall - edge)
 				my_mlx_put_pixel(data->img, pos_x - x , pos_y - y, 0x0000000);
 			else
 				my_mlx_put_pixel(data->img, pos_x - x , pos_y - y, color);
