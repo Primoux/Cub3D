@@ -128,9 +128,7 @@ void	raycast_loop(t_data *data)
 				my_mlx_put_pixel(data->img, i + WIDTH / 2, j,
 					data->texture->ceiling.val);
 			else if (j < wall_bot)
-			{
 				print_texture(data, i + WIDTH / 2, j);
-			}
 			else
 				my_mlx_put_pixel(data->img, i + WIDTH / 2, j,
 					data->texture->floor.val);

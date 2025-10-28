@@ -194,6 +194,7 @@ void	destroy_block(t_data *data, int tile_x, int tile_y,
 			destroy_tile_y = -1;
 			stage = 0;
 			data->player->destroying = false;
+			data->player->blocks++;
 		}
 	}
 	data->player->destroying = true;
@@ -214,7 +215,7 @@ int	player_loop(t_data *data)
 	handle_mouse_button(data, current_time / 1000);
 	raycast_loop(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
-	draw_ui(data, current_time / 1000);
+	display_hud(data, current_time / 1000);
 	data->player->last_frame_time = current_time;
 	return (0);
 }
