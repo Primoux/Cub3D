@@ -40,7 +40,8 @@ HUD_SRCS		:=	hud/display_hud.c \
 					hud/destroy_bar.c \
 					hud/minimap.c \
 					hud/print_fps.c \
-					hud/reticle.c
+					hud/reticle.c \
+					hud/stock_block.c
 
 INIT_SRCS		:=	init/init.c \
 					init/init_player.c \
