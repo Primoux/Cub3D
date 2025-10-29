@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
 #include "mlx_management.h"
 
 static int	get_minimap_scale(t_data *data)

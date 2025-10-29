@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_ui.c                                          :+:      :+:    :+:   */
+/*   display_hud.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "cub3d.h"
 #include "mlx_management.h"
 
-void	draw_ui(t_data *data, double current_time_s)
+void	display_hud(t_data *data, double current_time_s)
 {
 	draw_minimap(data);
 	print_reticle(data);
@@ -23,4 +23,5 @@ void	draw_ui(t_data *data, double current_time_s)
 			|| data->destroy->pointed_y >= data->map->y_max))
 		destroy_bar(data,
 			data->map->map[data->destroy->pointed_y][data->destroy->pointed_x]);
+	stock_block(data);
 }

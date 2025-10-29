@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 15:10:05 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 15:16:01 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 16:22:10 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	destroy(t_data *data, int tile_x, int tile_y)
 		data->destroy->destroy_y = -1;
 		data->destroy->stage = 0;
 		data->destroy->destroying = false;
+		data->player->blocks++;
 	}
 }
 
