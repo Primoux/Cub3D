@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 18:42:12 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/29 16:42:31 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 17:05:50 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	put_square(t_data *data, int pos_x, int pos_y, int color)
 
 	y = 0;
 	x = 0;
-	tall = 30;
+	tall = HEIGHT / 35;
 	edge = tall / 10;
 	while (y < tall)
 	{
@@ -47,20 +47,13 @@ void	stock_block(t_data *data)
 	int		num_blocks;
 	int		color;
 
-	x = WIDTH / 2 - 5;
-	y = HEIGHT - 10 - 5;
+	x = (WIDTH) / 2;
+	y = HEIGHT - (HEIGHT >> 6);
 	num_blocks = data->player->blocks;
 	blocks = ft_itoa(num_blocks);
 	color = 0x000FFFF;
-	if (data->destroy->destroying == true)
-	{
-		put_square(data, x + 16, y + 10, ~color);
-		mlx_string_put(data->mlx, data->win, x, y - 2, color, blocks);
-	}
-	else
-	{
-		put_square(data, x + 16, y + 10, color);
-		mlx_string_put(data->mlx, data->win, x, y, ~color, blocks);
-	}
+	put_square(data, x + 14, y + 10, color);
+	mlx_string_put(data->mlx, data->win, x - ft_strlen(blocks) * 3, y, ~color,
+		blocks);
 	free(blocks);
 }
