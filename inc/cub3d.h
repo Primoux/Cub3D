@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 15:14:20 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 16:25:48 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ struct						s_texture
 	t_img					*s_wall;
 	t_img					*w_wall;
 	t_img					*e_wall;
-	t_img					*destroy_1;
-	t_img					*destroy_2;
-	t_img					*destroy_3;
-	t_img					*destroy_4;
 };
 
 struct						s_player
@@ -76,6 +72,7 @@ struct						s_player
 	float					rad;
 	double					angle;
 	double					last_frame_time;
+	unsigned int			blocks;
 };
 
 struct						s_ray
@@ -161,6 +158,7 @@ struct						s_mlx
 	void					*mlx;
 };
 
+void						stock_block(t_data *data);
 void						destroy_bar(t_data *data, char state);
 void						destroy_block(t_data *data, int tile_x, int tile_y,
 								double current_time);
@@ -191,6 +189,6 @@ void						free_structs(t_data *data);
 void						free_images(t_data *data);
 void						my_destroy_img(t_mlx *mlx, t_img *img);
 void						free_map(t_map *map);
-void						draw_ui(t_data *data, double current_time);
+void						display_hud(t_data *data, double current_time);
 
 #endif

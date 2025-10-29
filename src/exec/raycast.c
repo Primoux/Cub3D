@@ -97,12 +97,14 @@ static void	raycaster(t_data *data, double *wall_bot, double *wall_top)
 {
 	double	dist;
 	double	wall_height;
+	double	ratio;
 
 	norm_angle(&data->ray->angle);
+	ratio = tan(data->ray->rad_fov / 2);
 	dist = (double)(lazerizor(data, data->ray->angle));
 	if (dist <= 0)
 		dist = 1;
-	wall_height = (TILE * HEIGHT) / dist;
+	wall_height = ((TILE * WIDTH * 0.5) / dist) / ratio;
 	data->ray->rwall_height = wall_height;
 	*wall_top = (HEIGHT - wall_height) / 2;
 	data->ray->rwall_top = *wall_top;
@@ -128,9 +130,7 @@ void	raycast_loop(t_data *data)
 				my_mlx_put_pixel(data->img, i + WIDTH / 2, j,
 					data->texture->ceiling.val);
 			else if (j < wall_bot)
-			{
 				print_texture(data, i + WIDTH / 2, j);
-			}
 			else
 				my_mlx_put_pixel(data->img, i + WIDTH / 2, j,
 					data->texture->floor.val);

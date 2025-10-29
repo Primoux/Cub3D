@@ -31,7 +31,18 @@ MLX			=	$(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
-MAIN_SRCS		:=	main.c \
+EXEC_SRCS		:=	exec/check_n_correct.c \
+					exec/movement.c \
+					exec/print_texture.c \
+					exec/raycast.c \
+					exec/destroy.c
+
+HUD_SRCS		:=	hud/display_hud.c \
+					hud/destroy_bar.c \
+					hud/minimap.c \
+					hud/print_fps.c \
+					hud/reticle.c \
+					hud/stock_block.c
 
 INIT_SRCS		:=	init/init.c \
 					init/init_player.c \
@@ -40,25 +51,24 @@ INIT_SRCS		:=	init/init.c \
 					init/init_ray.c \
 					init/init_img.c \
 					init/init_keys.c \
-					init/init_destroy.c \
 					init/init_mlx.c \
-
-PARSING_SRCS	:=	parsing/parsing.c \
-					parsing/check_name.c \
-					parsing/read_and_fill_map_informations.c \
-					parsing/read_params.c	\
-					parsing/read_map.c	\
-					parsing/check_map_validity.c	\
-					parsing/char_compare.c	\
-					parsing/color.c	\
-					parsing/flood_fill.c \
+					init/init_destroy.c \
 
 MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/hook_keys.c \
 					mlx/close_window.c \
 					mlx/my_mlx_put_pixel.c \
 					mlx/hook_button.c \
-					mlx/draw_ui.c
+
+PARSING_SRCS	:=	parsing/parsing.c \
+					parsing/check_name.c \
+					parsing/read_and_fill_map_informations.c \
+					parsing/read_params.c \
+					parsing/read_map.c \
+					parsing/check_map_validity.c \
+					parsing/char_compare.c \
+					parsing/color.c \
+					parsing/flood_fill.c \
 
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c \
@@ -70,15 +80,7 @@ UTILS_SRCS		:=	utils/free_all.c \
 					utils/my_destroy_img.c \
 					utils/free_mlx.c
 
-EXEC_SRCS		:=	exec/minimap.c \
-					exec/check_n_correct.c \
-					exec/raycast.c \
-					exec/movement.c \
-					exec/print_fps.c \
-					exec/print_texture.c \
-					exec/reticle.c	\
-					exec/destroy_bar.c \
-					exec/destroy.c
+MAIN_SRCS		:=	main.c \
 
 SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
@@ -88,6 +90,7 @@ SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MLX_SRCS) \
 					$(UTILS_SRCS) \
 					$(ERROR_SRCS) \
+					$(HUD_SRCS) \
 )
 
 #-------------------------------- OBJECTS --------------------------------------#

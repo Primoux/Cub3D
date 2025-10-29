@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:12:38 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/27 19:36:17 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 16:43:59 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "mlx_management.h"
 #include <sys/time.h>
 
-void	reticle_shape(t_data *data, int x, int max_x)
+static void	reticle(t_data *data, int x, int max_x)
 {
 	while (x <= max_x)
 	{
@@ -32,7 +32,7 @@ void	reticle_shape(t_data *data, int x, int max_x)
 	}
 }
 
-void	reticle_shadow(t_data *data, int y, int max_y)
+static void	reticle_shadow(t_data *data, int y, int max_y)
 {
 	while (y <= max_y)
 	{
@@ -63,6 +63,6 @@ void	print_reticle(t_data *data)
 	y = (HEIGHT >> 1) - lenght;
 	max_x = (WIDTH >> 1) + lenght;
 	max_y = (HEIGHT >> 1) + lenght;
-	reticle_shape(data, x, max_x);
+	reticle(data, x, max_x);
 	reticle_shadow(data, y, max_y);
 }

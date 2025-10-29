@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 14:27:14 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 16:23:31 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int	player_loop(t_data *data)
 	handle_mouse_button(data, current_time / 1000);
 	raycast_loop(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
-	draw_ui(data, current_time / 1000);
+	display_hud(data, current_time / 1000);
 	data->player->last_frame_time = current_time;
 	return (0);
 }

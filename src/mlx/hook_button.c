@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 16:11:26 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 16:29:08 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@ void	handle_mouse_button(t_data *data, double current_time_s)
 		return ;
 	destroy_block(data, data->destroy->pointed_x, data->destroy->pointed_y,
 		current_time_s);
-	if (data->key->mouse_2 == true
+	if (data->key->mouse_2 == true &&  data->player->blocks
 		&& data->map->map[data->destroy->pointed_y][data->destroy->pointed_x] == 'O')
+	{
 		data->map->map[data->destroy->pointed_y][data->destroy->pointed_x] = '1';
+		data->player->blocks--;
+	}
 }
 
 int	handle_press_button(int button, int x, int y, t_data *data)
