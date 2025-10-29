@@ -35,7 +35,8 @@ EXEC_SRCS		:=	exec/check_n_correct.c \
 					exec/movement.c \
 					exec/print_texture.c \
 					exec/raycast.c \
-					exec/destroy.c
+					exec/destroy.c \
+					exec/raycast_to_pointed_block.c \
 
 HUD_SRCS		:=	hud/display_hud.c \
 					hud/destroy_bar.c \

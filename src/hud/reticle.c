@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:12:38 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/29 16:49:36 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 17:20:19 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_reticle(t_data *data)
 	int	max_y;
 	int	lenght;
 
-	lenght = 5000;
+	lenght = 10;
 	x = (WIDTH >> 1) - lenght;
 	y = (HEIGHT >> 1) - lenght;
 	max_x = (WIDTH >> 1) + lenght;
