@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 16:25:48 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 17:31:00 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,14 @@ struct						s_key
 struct						s_destroy
 {
 	double					begin_destroy;
-	int						destroy_x;
-	int						destroy_y;
+	int						x;
+	int						y;
 	char					saved_block;
 	int						stage;
 	bool					destroying;
 	bool					pointer_hit;
-	int						pointed_x;
-	int						pointed_y;
+	int						pt_x;
+	int						pt_y;
 };
 
 struct						s_data
@@ -159,6 +159,7 @@ struct						s_mlx
 };
 
 void						stock_block(t_data *data);
+void						raycast_to_pointed_block(t_data *data);
 void						destroy_bar(t_data *data, char state);
 void						destroy_block(t_data *data, int tile_x, int tile_y,
 								double current_time);
