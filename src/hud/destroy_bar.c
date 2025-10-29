@@ -17,8 +17,8 @@ void	destroy_bar(t_data *data, char state)
 {
 	int		color;
 	int		error;
-	int		i;
 	int		num_stat;
+	int		i;
 	int		j;
 
 	error = 0;
@@ -36,6 +36,7 @@ void	destroy_bar(t_data *data, char state)
 			while (j < 5)
 				my_mlx_put_pixel(data->img, ((WIDTH >> 1) - (num_stat / 2))
 					+ i, HEIGHT - 100 + j++, color);
+
 			i++;
 		}
 	}
