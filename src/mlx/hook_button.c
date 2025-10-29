@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 15:20:54 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 16:11:26 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	raycast_to_pointed_block(t_data *data)
 		map_x = (int)(x / TILE);
 		map_y = (int)(y / TILE);
 		if (check_collision(data, map_x, map_y))
-			return (set_pointed_block(data, x, y));
+		{
+			set_pointed_block(data, x, y);
+			return ;
+		}
 		dist += 1;
 	}
 	set_pointed_block(data, data->player->x + cos(data->player->angle)
