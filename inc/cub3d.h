@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 01:15:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 15:14:20 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_map		t_map;
 typedef struct s_player		t_player;
 typedef struct s_ray		t_ray;
 typedef struct s_key		t_key;
+typedef struct s_destroy	t_destroy;
 
 typedef struct s_img
 {
@@ -75,10 +76,6 @@ struct						s_player
 	float					rad;
 	double					angle;
 	double					last_frame_time;
-	bool					destroying;
-	bool					pointer_hit;
-	int						pointed_x;
-	int						pointed_y;
 };
 
 struct						s_ray
@@ -133,6 +130,19 @@ struct						s_key
 	bool					shift_l_key;
 };
 
+struct						s_destroy
+{
+	double					begin_destroy;
+	int						destroy_x;
+	int						destroy_y;
+	char					saved_block;
+	int						stage;
+	bool					destroying;
+	bool					pointer_hit;
+	int						pointed_x;
+	int						pointed_y;
+};
+
 struct						s_data
 {
 	t_map					*map;
@@ -142,6 +152,7 @@ struct						s_data
 	t_ray					*ray;
 	t_img					*img;
 	t_key					*key;
+	t_destroy				*destroy;
 	void					*win;
 };
 
@@ -151,7 +162,8 @@ struct						s_mlx
 };
 
 void						destroy_bar(t_data *data, char state);
-void						destroy_block(t_data *data, int tile_x, int tile_y, double current_time);
+void						destroy_block(t_data *data, int tile_x, int tile_y,
+								double current_time);
 void						print_reticle(t_data *data);
 double						get_time_to_msec(void);
 void						my_mlx_put_pixel(t_img *img, int x, int y,

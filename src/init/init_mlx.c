@@ -6,28 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:57 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 18:56:09 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/27 19:43:00 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_management.h"
 #include "parsing.h"
-
-//static	int init_destroy_textre(t_data *data, t_img *img)
-//{
-//	char *path;
-//
-//	path = "asset/textures/minecraft/destroy/";
-//	data->texture->destroy_1 = mlx_xpm_file_to_image(data->mlx,
-//							ft_strjoin(path, "detroy_stage_1.xpm"), &img->width, &img->height);
-//	data->texture->destroy_2 = mlx_xpm_file_to_image(data->mlx,
-//							ft_strjoin(path, "detroy_stage_2.xpm"), &img->width, &img->height);
-//	data->texture->destroy_3 = mlx_xpm_file_to_image(data->mlx,
-//							ft_strjoin(path, "detroy_stage_3.xpm"), &img->width, &img->height);
-//	data->texture->destroy_4 = mlx_xpm_file_to_image(data->mlx,
-//							ft_strjoin(path, "detroy_stage_4.xpm"), &img->width, &img->height);
-//	return (0);
-//}
 
 static int	init_texture(t_data *data, t_img *img, char *filename)
 {

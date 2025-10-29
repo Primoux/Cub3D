@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 01:25:50 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/29 14:27:14 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,93 +110,6 @@ static void	move_cam(t_data *data, double delta_time)
 			data->player->angle += mvx;
 		}
 	}
-}
-
-void	destroy_block(t_data *data, int tile_x, int tile_y,
-		double current_time_s)
-{
-	static double	begin_destroy = -1.0;
-	static int		destroy_tile_x = -1;
-	static int		destroy_tile_y = -1;
-	static char		saved_block;
-	double			tt_destroy;
-	static int		stage;
-
-	tt_destroy = TT_DESTROY;
-//	printf("[DEBUG] mouse_1: %d, tile[%d][%d]: %c\n", data->key->mouse_1,
-//		tile_x, tile_y, data->map->map[tile_y][tile_x]);
-	if (data->key->mouse_1 == false)
-	{
-		if (data->player->destroying == true && begin_destroy != -1.0
-			&& destroy_tile_x >= 0 && destroy_tile_y >= 0)
-			data->map->map[destroy_tile_y][destroy_tile_x] = saved_block;
-		// printf("[DEBUG] Mouse released, resetting\n");
-		begin_destroy = -1.0;
-		destroy_tile_x = -1;
-		destroy_tile_y = -1;
-		stage = 0;
-		data->player->destroying = false;
-		return ;
-	}
-	if (destroy_tile_x != tile_x || destroy_tile_y != tile_y)
-	{
-		// printf("[DEBUG] Changed target block from [%d][%d] to [%d][%d]\n",
-		// 	destroy_tile_x, destroy_tile_y, tile_x, tile_y);
-		if (destroy_tile_x >= 0 && destroy_tile_y >= 0 && begin_destroy != -1.0)
-			data->map->map[destroy_tile_y][destroy_tile_x] = saved_block;
-		begin_destroy = -1.0;
-		destroy_tile_x = -1;
-		destroy_tile_y = -1;
-		stage = 0;
-	}
-	if (data->map->map[tile_y][tile_x] < '1'
-		|| data->map->map[tile_y][tile_x] > '5')
-	{
-		// printf("[DEBUG] Not a valid block: %c\n",
-		// 	data->map->map[tile_y][tile_x]);
-		return ;
-	}
-	if (begin_destroy == -1.0)
-	{
-		// printf("[DEBUG] Starting destruction at %.2f on block [%d][%d]\n",
-		// 	current_time_s, tile_x, tile_y);
-		saved_block = data->map->map[tile_y][tile_x];
-		data->map->map[tile_y][tile_x] = '5';
-		destroy_tile_x = tile_x;
-		destroy_tile_y = tile_y;
-		stage = 0;
-		begin_destroy = current_time_s;
-		data->player->destroying = true;
-		return ;
-	}
-	// printf("[DEBUG] Time elapsed: %.2f / %.2f, stage: %d\n", current_time_s
-	// 	- begin_destroy, (tt_destroy / 4) * (stage + 1), stage);
-	if (current_time_s - begin_destroy >= (tt_destroy / 4) * (stage + 1))
-	{
-//		printf("(%s) | char_map = %c\n", __func__, data->map->map[tile_y][tile_x]);
-		if (stage < 4)
-		{
-//			 printf("[DEBUG] Stage %d -> %d, block: %c -> %c\n", stage, stage
-//			 	+ 1, data->map->map[tile_y][tile_x],
-//			 	data->map->map[tile_y][tile_x] - 1);
-//			printf("(%s) | stage = %d\n", __func__, stage);
-			data->map->map[tile_y][tile_x]--;
-//			destroy_bar(data, tile_x, tile_y, data->map->map[tile_y][tile_x]);
-			stage++;
-		}
-		else
-		{
-			// printf("[DEBUG] Destruction complete! Block: %c -> O\n",
-			// 	data->map->map[tile_y][tile_x]);
-			data->map->map[tile_y][tile_x] = 'O';
-			begin_destroy = -1.0;
-			destroy_tile_x = -1;
-			destroy_tile_y = -1;
-			stage = 0;
-			data->player->destroying = false;
-		}
-	}
-	data->player->destroying = true;
 }
 
 int	player_loop(t_data *data)
