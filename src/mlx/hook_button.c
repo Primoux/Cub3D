@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: enzo <enzo@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 14:19:10 by enzo             ###   ########.fr       */
+/*   Updated: 2025/10/29 15:20:54 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static void	set_pointed_block(t_data *data, double x, double y)
 {
-	data->player->pointed_x = x / TILE;
-	data->player->pointed_y = y / TILE;
+	data->destroy->pointed_x = x / TILE;
+	data->destroy->pointed_y = y / TILE;
 }
 
 static int	check_collision(t_data *data, int map_x, int map_y)
@@ -57,15 +57,15 @@ void	raycast_to_pointed_block(t_data *data)
 void	handle_mouse_button(t_data *data, double current_time_s)
 {
 	raycast_to_pointed_block(data);
-	if (data->player->pointed_y < 0 || data->player->pointed_x < 0
-		|| data->player->pointed_x >= data->map->x_max
-		|| data->player->pointed_y >= data->map->y_max)
+	if (data->destroy->pointed_y < 0 || data->destroy->pointed_x < 0
+		|| data->destroy->pointed_x >= data->map->x_max
+		|| data->destroy->pointed_y >= data->map->y_max)
 		return ;
-	destroy_block(data, data->player->pointed_x, data->player->pointed_y,
+	destroy_block(data, data->destroy->pointed_x, data->destroy->pointed_y,
 		current_time_s);
 	if (data->key->mouse_2 == true
-		&& data->map->map[data->player->pointed_y][data->player->pointed_x] == 'O')
-		data->map->map[data->player->pointed_y][data->player->pointed_x] = '1';
+		&& data->map->map[data->destroy->pointed_y][data->destroy->pointed_x] == 'O')
+		data->map->map[data->destroy->pointed_y][data->destroy->pointed_x] = '1';
 }
 
 int	handle_press_button(int button, int x, int y, t_data *data)

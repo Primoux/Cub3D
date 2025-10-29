@@ -40,7 +40,8 @@ INIT_SRCS		:=	init/init.c \
 					init/init_ray.c \
 					init/init_img.c \
 					init/init_keys.c \
-					init/init_mlx.c
+					init/init_destroy.c \
+					init/init_mlx.c \
 
 PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_name.c \
@@ -76,7 +77,8 @@ EXEC_SRCS		:=	exec/minimap.c \
 					exec/print_fps.c \
 					exec/print_texture.c \
 					exec/reticle.c	\
-					exec/destroy_bar.c
+					exec/destroy_bar.c \
+					exec/destroy.c
 
 SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
