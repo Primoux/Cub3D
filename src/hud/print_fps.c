@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:27:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:15:38 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:23:08 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	draw_fps(t_data *data, double current_time_s)
 	char			*str2;
 
 	str = NULL;
+	str2 = NULL;
 	frame_count++;
 	if (current_time_s - last_update >= 1.0)
 	{
