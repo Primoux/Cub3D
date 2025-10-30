@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:12 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 15:21:52 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 15:58:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,17 @@ static void	draw_minimap_tile(t_data *data, int scale)
 	wall_color = ~data->texture->ceiling.val;
 	player_color = 0x0000FF00;
 	if (data->map->map[data->map->y][data->map->x] == '6')
-		draw_tile(data, scale, 0x003333FF);
+		draw_tile(data, scale, 0x00AAAAFF);
 	if (data->map->map[data->map->y][data->map->x] == '5')
-		draw_tile(data, scale, 0x005555FF);
+		draw_tile(data, scale, 0x00CCCCFF);
 	if (data->map->map[data->map->y][data->map->x] == '4')
-		draw_tile(data, scale, 0x007777FF);
-	if (data->map->map[data->map->y][data->map->x] == '3')
 		draw_tile(data, scale, 0x009999FF);
+	if (data->map->map[data->map->y][data->map->x] == '3')
+		draw_tile(data, scale, 0x007777FF);
 	if (data->map->map[data->map->y][data->map->x] == '2')
-		draw_tile(data, scale, 0x00BBBBFF);
+		draw_tile(data, scale, 0x005555FF);
 	if (data->map->map[data->map->y][data->map->x] == '1')
-		draw_tile(data, scale, wall_color);
+		draw_tile(data, scale, 0X003333FF);
 	if (data->map->y == player_y && data->map->x == player_x)
 		draw_tile(data, scale, player_color);
 }

@@ -6,14 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:47:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 16:00:35 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MLX_MANAGEMENT_H
 # define MLX_MANAGEMENT_H
 
-# include "mlx.h"
+# include <mlx.h>
 
 # define FOV 60
 # define WIDTH 1280
