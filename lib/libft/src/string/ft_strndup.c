@@ -6,11 +6,11 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 17:41:15 by enchevri          #+#    #+#             */
-/*   Updated: 2025/06/03 17:48:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 16:02:35 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
+#include <stdlib.h>
 
 char	*ft_strndup(char *s, size_t n)
 {

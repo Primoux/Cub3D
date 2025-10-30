@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:34:32 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 16:01:30 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "stdint.h"
+# include <stdint.h>
 
 typedef struct s_texture	t_texture;
 typedef struct s_mlx		t_mlx;
