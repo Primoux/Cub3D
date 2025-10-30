@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:52:33 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:35:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_management.h"
 #include "parsing.h"
+#include <math.h>
 
 static int	get_angle(t_data *data, char c, int y, int x)
 {

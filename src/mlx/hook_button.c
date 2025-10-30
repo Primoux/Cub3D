@@ -6,12 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 13:03:06 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:38:55 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "raycast.h"
+#include "destroy.h"
 
 void	handle_mouse_button(t_data *data, double current_time_s)
 {

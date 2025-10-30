@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:30:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 17:31:44 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:37:03 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include <math.h>
 
 static void	set_pointed_block(t_data *data, double x, double y)
 {

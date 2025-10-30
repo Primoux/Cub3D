@@ -6,12 +6,15 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:55:53 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/24 12:06:00 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:36:54 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "raycast.h"
+#include "utils.h"
+#include <math.h>
 
 double	x_inter(t_data *data, double angle, double *hit_x, double *hit_y)
 {

@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:44 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 01:48:58 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:34:45 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include <math.h>
 
 int	init_ray(t_data *data)
 {

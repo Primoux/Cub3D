@@ -6,11 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 18:42:12 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/30 07:50:32 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:41:43 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "utils.h"
 #include "mlx_management.h"
 
 void	put_square(t_data *data, int pos_x, int pos_y, int color)

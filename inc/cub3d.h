@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 13:02:58 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:34:32 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,7 @@
 # define CUB3D_H
 
 # include "libft.h"
-# include "mlx.h"
-# include <X11/keysym.h>
-# include <math.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+# include "stdint.h"
 
 typedef struct s_texture	t_texture;
 typedef struct s_mlx		t_mlx;
@@ -158,40 +152,5 @@ struct						s_mlx
 {
 	void					*mlx;
 };
-
-void						stock_block(t_data *data);
-void						raycast_to_pointed_block(t_data *data);
-void						destroy_bar(t_data *data, char state);
-void						destroy_block(t_data *data, int tile_x, int tile_y,
-								double current_time);
-void						print_reticle(t_data *data);
-double						get_time_to_msec(void);
-void						my_mlx_put_pixel(t_img *img, int x, int y,
-								int color);
-void						print_texture(t_data *data, int i, int j);
-void						my_mlx_put_pixel(t_img *img, int x, int y,
-								int color);
-void						norm_angle(double *angle);
-int							ray_dir(double angle, int mode);
-int							is_wall(t_map *map, double x, double y);
-int							balance_inter(double angle, double *inter,
-								double *step, int mode);
-void						raycast_loop(t_data *data);
-double						lazerizor(t_data *data, double angle);
-int							close_window(t_data *data);
-int							handle_press_key(int keycode, t_data *data);
-int							handle_release_key(int keycode, t_data *data);
-int							player_loop(t_data *data);
-void						free_all(t_data *data);
-void						print_error_asset(t_data *data);
-void						print_map_and_params(t_data *data);
-void						draw_fps(t_data *data, double current_time_ms);
-void						free_mlx(t_data *data);
-void						free_structs(t_data *data);
-void						free_images(t_data *data);
-void						my_destroy_img(t_mlx *mlx, t_img *img);
-void						free_map(t_map *map);
-void						display_hud(t_data *data, double current_time);
-void						draw_infos(t_data *data, double current_time_s);
 
 #endif

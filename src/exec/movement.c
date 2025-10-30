@@ -6,12 +6,17 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:12:24 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:36:22 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "game.h"
+#include "hud.h"
 #include "mlx_management.h"
+#include "raycast.h"
+#include "utils.h"
+#include <math.h>
 #include <sys/time.h>
 
 static void	check_colision(t_data *data, double new_y, double new_x)
@@ -25,10 +30,10 @@ static void	check_colision(t_data *data, double new_y, double new_x)
 		|| tile_y >= data->map->y_max)
 		return ;
 	if ((data->map->map[tile_y][tile_x] == 'O'
-		|| data->map->map[tile_y][tile_x] == 'N'
-		|| data->map->map[tile_y][tile_x] == 'S'
-		|| data->map->map[tile_y][tile_x] == 'E'
-		|| data->map->map[tile_y][tile_x] == 'W'))
+			|| data->map->map[tile_y][tile_x] == 'N'
+			|| data->map->map[tile_y][tile_x] == 'S'
+			|| data->map->map[tile_y][tile_x] == 'E'
+			|| data->map->map[tile_y][tile_x] == 'W'))
 	{
 		data->player->x = new_x;
 		data->player->y = new_y;
