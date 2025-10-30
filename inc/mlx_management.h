@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 19:48:01 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 09:49:05 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@
 
 # define FOV 60
 # define WIDTH 1920
-# define HEIGHT 1080
+# define HEIGHT 720
 # define TILE 75
-# define TEXTURE_RES 75
 # define MOVE_SPEED 400
 # define MOVE_SPRINT 800
 # define ANGLE_MOUSE 0.0012
 # define ANGLE_KEY 2
 # define MOUSE_BUTTON_LEFT 1
 # define MOUSE_BUTTON_RIGHT 3
-# define TT_DESTROY 1.0
+# define TT_DESTROY 2.0
 # define RANGE_DESTROY 3.0
 
 typedef enum e_mod_key

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:27:45 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:30:39 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:11:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	free_structs(t_data *data)
 		free(data->key);
 	if (data->texture)
 		free(data->texture);
+	if (data->destroy)
+		free(data->destroy);
 	if (data->map)
 		free_map(data->map);
 }

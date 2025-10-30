@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 18:42:12 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/29 17:05:50 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 07:50:32 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,20 @@ void	put_square(t_data *data, int pos_x, int pos_y, int color)
 {
 	int	x;
 	int	y;
-	int	tall;
-	int	edge;
+	int	size;
 
-	y = 0;
-	x = 0;
-	tall = HEIGHT / 35;
-	edge = tall / 10;
-	while (y < tall)
+	size = HEIGHT / 30;
+	y = -size / 2;
+	while (y < size / 2)
 	{
-		x = 0;
-		while (x <= tall)
+		x = -size / 2;
+		while (x < size / 2)
 		{
-			if (x <= edge || x >= tall - edge || y <= edge || y >= tall - edge)
-				my_mlx_put_pixel(data->img, pos_x - x, pos_y - y, 0x0000000);
+			if (x == -size / 2 || x == size / 2 - 1 || y == -size / 2
+				|| y == size / 2 - 1)
+				my_mlx_put_pixel(data->img, pos_x + x, pos_y + y, 0x000000);
 			else
-				my_mlx_put_pixel(data->img, pos_x - x, pos_y - y, color);
+				my_mlx_put_pixel(data->img, pos_x + x, pos_y + y, color);
 			x++;
 		}
 		y++;
@@ -44,16 +42,14 @@ void	stock_block(t_data *data)
 	int		x;
 	int		y;
 	char	*blocks;
-	int		num_blocks;
 	int		color;
 
-	x = (WIDTH) / 2;
-	y = HEIGHT - (HEIGHT >> 6);
-	num_blocks = data->player->blocks;
-	blocks = ft_itoa(num_blocks);
+	x = WIDTH / 2;
+	y = HEIGHT - (HEIGHT / 15);
+	blocks = ft_itoa(data->player->blocks);
 	color = 0x000FFFF;
-	put_square(data, x + 14, y + 10, color);
-	mlx_string_put(data->mlx, data->win, x - ft_strlen(blocks) * 3, y, ~color,
-		blocks);
+	put_square(data, x, y, color);
+	mlx_string_put(data->mlx, data->win, x - (ft_strlen(blocks) * 3), y + 4,
+		~color, blocks);
 	free(blocks);
 }
