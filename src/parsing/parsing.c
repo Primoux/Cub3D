@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:10:39 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 11:03:27 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	change_char(unsigned int i, char *str)
 	}
 }
 
-int	copy_map(t_data *data)
+char	**copy_map(t_data *data)
 {
 	char	**map;
 	int		y;
@@ -48,24 +48,25 @@ int	copy_map(t_data *data)
 
 	map = ft_calloc(data->map->y_max + 1, sizeof(char *));
 	if (!map)
-		return (1);
+		return (NULL);
 	y = -1;
 	while (++y < data->map->y_max)
 	{
 		map[y] = ft_calloc(data->map->x_max + 1, sizeof(char));
 		if (!map[y])
-			return (free_tab_return_int(map, 1));
-		i = ft_strlen(data->map->map[y]) - 1;
-		ft_memcpy(map[y], data->map->map[y], i);
+			return (free_tab_return_null(map));
+		ft_memcpy(map[y], data->map->map[y], ft_strlen(data->map->map[y]));
+		i = -1;
 		while (++i < data->map->x_max)
-			if (map[y][i] == ' ' || map[y][i] == '0')
+		{
+			if (map[y][i] == ' ' || map[y][i] == '0' || map[y][i] == '\0')
 				map[y][i] = 'O';
-		map[y][i] = '\0';
+		}
+		map[y][data->map->x_max] = '\0';
 	}
 	map[y] = NULL;
 	free_tab_return_null(data->map->map);
-	data->map->map = map;
-	return (0);
+	return (map);
 }
 
 int	parsing(t_data *data, char *argv)
@@ -82,6 +83,8 @@ int	parsing(t_data *data, char *argv)
 	get_y_len(data);
 	if (flood_fill(data) == 1)
 		return (1);
-	copy_map(data);
+	data->map->map = copy_map(data);
+	if (!data->map->map)
+		return (1);
 	return (EXIT_SUCCESS);
 }
