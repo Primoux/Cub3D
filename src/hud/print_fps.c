@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 16:27:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:23:08 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 15:07:29 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	draw_fps(t_data *data, double current_time_s)
 	char			*str;
 	char			*str2;
 
-	str = NULL;
-	str2 = NULL;
 	frame_count++;
 	if (current_time_s - last_update >= 1.0)
 	{
@@ -39,4 +37,7 @@ void	draw_fps(t_data *data, double current_time_s)
 			15, 0x00FFFFFF, str2);
 		free(str2);
 	}
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - (7 * 6) - 3, 15,
+			0x00FF0000, "ERROR?");
 }
