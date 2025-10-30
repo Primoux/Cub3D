@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:12:38 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/30 06:39:33 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 13:03:16 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	reticle(t_data *data, int x, int max_x)
 {
 	while (x <= max_x)
 	{
-		if (data->key->mouse_1 == true || data->key->mouse_2 == true)
+		if (data->key->mouse_1 == true || data->key->mouse_3 == true)
 		{
 			my_mlx_put_pixel(data->img, x - 1, (HEIGHT >> 1) - 1, 0x000FFFF);
 			my_mlx_put_pixel(data->img, x, (HEIGHT >> 1), 0x0FFFFFF);
@@ -36,7 +36,7 @@ static void	reticle_shadow(t_data *data, int y, int max_y)
 {
 	while (y <= max_y)
 	{
-		if (data->key->mouse_1 == true || data->key->mouse_2 == true)
+		if (data->key->mouse_1 == true || data->key->mouse_3 == true)
 		{
 			my_mlx_put_pixel(data->img, (WIDTH >> 1) - 1, y - 1, 0x000FFFF);
 			my_mlx_put_pixel(data->img, (WIDTH >> 1), y, 0x0FFFFFF);

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:01:58 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 13:02:58 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ struct						s_map
 struct						s_key
 {
 	bool					mouse_1;
-	bool					mouse_2;
+	bool					mouse_3;
 	bool					w_key;
 	bool					a_key;
 	bool					s_key;
