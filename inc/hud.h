@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:23:01 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:32:21 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:48:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void	draw_infos(t_data *data, double current_time_s);
 void	draw_fps(t_data *data, double current_time_ms);
 void	draw_minimap(t_data *data);
 void	print_reticle(t_data *data);
-
+void	draw_key_state(t_data *data, int x, bool is_pressed, const char *key);
 #endif

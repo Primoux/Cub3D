@@ -44,7 +44,8 @@ HUD_SRCS		:=	hud/display_hud.c \
 					hud/print_fps.c \
 					hud/reticle.c \
 					hud/stock_block.c \
-					hud/draw_infos.c
+					hud/draw_infos.c \
+					hud/draw_key_state.c
 
 INIT_SRCS		:=	init/init.c \
 					init/init_player.c \
