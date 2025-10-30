@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hud.h                                              :+:      :+:    :+:   */
+/*   draw_key_state.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 14:23:01 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:48:44 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/10/30 14:49:04 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/30 14:50:05 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUD_H
-# define HUD_H
+#include "cub3d.h"
+#include <mlx.h>
 
-# include "cub3d.h"
+void	draw_key_state(t_data *data, int x, bool is_pressed, const char *key)
+{
+	int	color;
+	int	y;
 
-void	display_hud(t_data *data, double current_time);
-void	draw_infos(t_data *data, double current_time_s);
-void	draw_fps(t_data *data, double current_time_ms);
-void	draw_minimap(t_data *data);
-void	print_reticle(t_data *data);
-void	draw_key_state(t_data *data, int x, bool is_pressed, const char *key);
-#endif
+	y = 60;
+	if (is_pressed == true)
+		color = 0x0000FF00;
+	else
+		color = 0x00FF0000;
+	mlx_string_put(data->mlx, data->win, x, y, color, (char *)key);
+}
