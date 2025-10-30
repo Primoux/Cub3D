@@ -16,17 +16,17 @@
 # include "cub3d.h"
 
 # define FOV 110
-# define WIDTH 1920
+# define WIDTH 1280
 # define HEIGHT 720
 # define TILE 75
 # define MOVE_SPEED 400
 # define MOVE_SPRINT 800
-# define ANGLE_MOUSE 0.0012
+# define ANGLE_MOUSE 0.0012f
 # define ANGLE_KEY 2
 # define MOUSE_BUTTON_LEFT 1
 # define MOUSE_BUTTON_RIGHT 3
-# define TT_DESTROY 0.0
-# define RANGE_DESTROY 3.0
+# define TT_DESTROY 2.0f
+# define RANGE_DESTROY 3.0f
 
 typedef enum e_mod_key
 {

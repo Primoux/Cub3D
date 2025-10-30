@@ -70,7 +70,7 @@ void	draw_box(t_data *data)
 
 	x = 0;
 	y = 0;
-	y_size = 50;
+	y_size = 65;
 	x_size = 150;
 	while (y < y_size)
 	{
@@ -84,6 +84,32 @@ void	draw_box(t_data *data)
 	}
 }
 
+void	draw_move_key(t_data *data)
+{
+	if (data->key->w_key == false)
+		mlx_string_put(data->mlx, data->win, WIDTH - 27, 60, 0x00FF0000, "W");
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - 27, 60, 0x0000FF00, "W");
+	if (data->key->a_key == false)
+		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6, 60, 0x00FF0000,
+			"A");
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6, 60, 0x0000FF00,
+			"A");
+	if (data->key->s_key == false)
+		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 2, 60, 0x00FF0000,
+			"S");
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 2, 60, 0x0000FF00,
+			"S");
+	if (data->key->d_key == false)
+		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 3, 60, 0x00FF0000,
+			"D");
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 3, 60, 0x0000FF00,
+			"D");
+}
+
 void	draw_infos(t_data *data, double current_time_s)
 {
 	if (data->key->f3_key == false)
@@ -92,4 +118,5 @@ void	draw_infos(t_data *data, double current_time_s)
 	draw_fps(data, current_time_s);
 	draw_angle(data);
 	draw_position(data);
+	draw_key(data);
 }

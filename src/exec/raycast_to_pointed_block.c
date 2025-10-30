@@ -38,7 +38,7 @@ void	raycast_to_pointed_block(t_data *data)
 	int		map_x;
 	int		map_y;
 
-	dist = -1;
+	dist = -1.0;
 	while (++dist < RANGE_DESTROY * TILE)
 	{
 		x = data->player->x + cos(data->player->angle) * dist;
@@ -51,7 +51,5 @@ void	raycast_to_pointed_block(t_data *data)
 			return ;
 		}
 	}
-	set_pointed_block(data, data->player->x + cos(data->player->angle)
-		* RANGE_DESTROY / TILE, data->player->y + sin(data->player->angle)
-		* RANGE_DESTROY / TILE);
+	set_pointed_block(data, x, y);
 }
