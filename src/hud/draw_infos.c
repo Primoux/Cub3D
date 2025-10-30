@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 09:59:36 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:49:47 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 15:07:22 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	draw_position(t_data *data)
 			30, 0x00FFFFFF, str1);
 		free(str1);
 	}
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - (7 * 6) - 3, 30,
+			0x00FF0000, "ERROR?");
 }
 
 void	draw_angle(t_data *data)
@@ -63,6 +66,9 @@ void	draw_angle(t_data *data)
 			45, 0x00FFFFFF, str1);
 		free(str1);
 	}
+	else
+		mlx_string_put(data->mlx, data->win, WIDTH - (7 * 6) - 3, 45,
+			0x00FF0000, "ERROR?");
 }
 
 void	draw_box(t_data *data)
