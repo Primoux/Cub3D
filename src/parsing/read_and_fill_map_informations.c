@@ -6,11 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:17:17 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:30:29 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "utils.h"
 
 static int	ensure_textures(t_data *data)
 {

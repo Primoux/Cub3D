@@ -6,12 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:20:56 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 09:59:27 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:40:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "destroy.h"
 #include "mlx_management.h"
+#include "hud.h"
 
 void	display_hud(t_data *data, double current_time_s)
 {

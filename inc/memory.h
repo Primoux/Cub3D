@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mlx.c                                         :+:      :+:    :+:   */
+/*   memory.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 19:26:25 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:40:27 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/10/30 14:25:16 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/30 14:25:16 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <mlx.h>
+#ifndef MEMORY_H
+# define MEMORY_H
 
-void	free_mlx(t_data *data)
-{
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
-}
+# include "cub3d.h"
+
+void	free_all(t_data *data);
+void	free_mlx(t_data *data);
+void	free_structs(t_data *data);
+void	free_images(t_data *data);
+void	my_destroy_img(t_mlx *mlx, t_img *img);
+void	free_map(t_map *map);
+
+#endif

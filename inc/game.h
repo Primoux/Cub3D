@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mlx.c                                         :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 19:26:25 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:40:27 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/10/30 14:25:18 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/30 14:25:19 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <mlx.h>
+#ifndef GAME_H
+# define GAME_H
 
-void	free_mlx(t_data *data)
-{
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
-}
+# include "cub3d.h"
+
+int	close_window(t_data *data);
+int	handle_press_key(int keycode, t_data *data);
+int	handle_release_key(int keycode, t_data *data);
+int	player_loop(t_data *data);
+int	handle_press_button(int button, int x, int y, t_data *data);
+int	handle_release_button(int button, int x, int y, t_data *data);
+
+#endif

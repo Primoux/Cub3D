@@ -6,11 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:52:42 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:35:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <stdio.h>
 #include <fcntl.h>
 
 int	check_name_and_access(t_data *data, char *argv)

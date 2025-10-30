@@ -6,12 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:03 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:26:41 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:38:13 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "game.h"
 #include "mlx_management.h"
+#include <X11/keysym.h>
 #include <stdbool.h>
 
 static void	handle_key(bool *key, t_mod_key mod, t_key_action action)

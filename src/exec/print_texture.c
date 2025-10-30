@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   print_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kapinarc <kapinarc@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:52:47 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/22 17:09:04 by kapinarc         ###   ########.fr       */
+/*   Updated: 2025/10/30 14:36:35 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "raycast.h"
+#include "utils.h"
+#include <math.h>
 
 static t_img	*texture_north_south(t_data *data, double *tex_x)
 {

@@ -6,11 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:27:45 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:11:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:39:25 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "memory.h"
 
 void	free_structs(t_data *data)
 {

@@ -6,13 +6,15 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:51:17 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/22 18:18:24 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:30:14 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_management.h"
-#include "parsing.h"
+#include "cub3d.h"
 #include "init.h"
+#include "memory.h"
+#include "utils.h"
+#include "parsing.h"
 
 int	main(int argc, char **argv)
 {

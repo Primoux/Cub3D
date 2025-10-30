@@ -6,12 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:05:52 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/24 08:36:16 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:36:04 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
+#include "math.h"
 #include "mlx_management.h"
 
 int	balance_inter(double angle, double *inter, double *step, int mode)

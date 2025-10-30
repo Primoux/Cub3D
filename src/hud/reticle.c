@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:12:38 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/30 13:03:16 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:41:38 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "utils.h"
 #include <sys/time.h>
 
 static void	reticle(t_data *data, int x, int max_x)

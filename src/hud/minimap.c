@@ -6,12 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:12 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:44:04 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:41:30 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "utils.h"
+#include <math.h>
 
 static int	get_minimap_scale(t_data *data)
 {

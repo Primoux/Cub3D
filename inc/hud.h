@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_mlx.c                                         :+:      :+:    :+:   */
+/*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 19:26:25 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:40:27 by enchevri         ###   ########lyon.fr   */
+/*   Created: 2025/10/30 14:23:01 by enchevri          #+#    #+#             */
+/*   Updated: 2025/10/30 14:32:21 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <mlx.h>
+#ifndef HUD_H
+# define HUD_H
 
-void	free_mlx(t_data *data)
-{
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-	{
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
-}
+# include "cub3d.h"
+
+void	display_hud(t_data *data, double current_time);
+void	draw_infos(t_data *data, double current_time_s);
+void	draw_fps(t_data *data, double current_time_ms);
+void	draw_minimap(t_data *data);
+void	print_reticle(t_data *data);
+
+#endif

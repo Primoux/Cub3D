@@ -6,12 +6,16 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 09:59:36 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 13:17:55 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:42:35 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "hud.h"
 #include "mlx_management.h"
+#include "raycast.h"
+#include "utils.h"
+#include <math.h>
 
 void	draw_position(t_data *data)
 {
@@ -90,9 +94,7 @@ static void	draw_key_state(t_data *data, int x, int y, bool is_pressed,
 	int	color;
 
 	if (is_pressed == true)
-	{
 		color = 0x0000FF00;
-	}
 	else
 		color = 0x00FF0000;
 	mlx_string_put(data->mlx, data->win, x, y, color, (char *)key);
@@ -111,12 +113,13 @@ void	draw_move_key(t_data *data)
 	draw_key_state(data, base_x + char_width * 3, 60, data->key->d_key, "D");
 	draw_key_state(data, base_x + char_width * 4, 60, data->key->f_key, "F");
 	draw_key_state(data, base_x + char_width * 5, 60, data->key->left_key, "L");
-	draw_key_state(data, base_x + char_width * 6, 60, data->key->right_key, "R");
+	draw_key_state(data, base_x + char_width * 6, 60, data->key->right_key,
+		"R");
 	base_x = WIDTH - 155;
 	draw_key_state(data, base_x, 60, data->key->shift_l_key, "SHIFT");
 	draw_key_state(data, base_x + 45, 60, data->key->mouse_1, "M1");
-	draw_key_state(data, base_x + 65, 60, data->key->mouse_3, "M2");
-	draw_key_state(data, base_x + 80, 60, data->key->tab_key, "TAB");
+	draw_key_state(data, base_x + 70, 60, data->key->mouse_3, "M2");
+	draw_key_state(data, base_x + 85, 60, data->key->tab_key, "TAB");
 }
 
 void	draw_infos(t_data *data, double current_time_s)

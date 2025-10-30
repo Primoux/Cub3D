@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:12:31 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:37:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "game.h"
 
 void	winner(t_data *data)
 {

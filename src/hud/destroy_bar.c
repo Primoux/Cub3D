@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:19:39 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/30 08:17:04 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 14:41:04 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx_management.h"
+#include "utils.h"
 
 void	destroy_bar(t_data *data, char state)
 {
