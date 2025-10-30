@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 11:07:56 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:10:39 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int	copy_map(t_data *data)
 		map[y] = ft_calloc(data->map->x_max + 1, sizeof(char));
 		if (!map[y])
 			return (free_tab_return_int(map, 1));
-		i = ft_strlen(data->map->map[y]);
+		i = ft_strlen(data->map->map[y]) - 1;
 		ft_memcpy(map[y], data->map->map[y], i);
-		while (i < data->map->x_max)
-			map[y][i++] = 'O';
+		while (++i < data->map->x_max)
+			if (map[y][i] == ' ' || map[y][i] == '0')
+				map[y][i] = 'O';
 		map[y][i] = '\0';
-		ft_striteri(&map[y][0], change_char);
 	}
 	map[y] = NULL;
 	free_tab_return_null(data->map->map);

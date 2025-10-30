@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 19:42:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:08:47 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ int	init_texture(t_data *data)
 		return (1);
 	data->texture->e_wall = ft_calloc(1, sizeof(t_img));
 	if (!data->texture->e_wall)
-		return (1);
-	data->texture->w_wall = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->w_wall)
-		return (1);
-	data->texture->w_wall = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->w_wall)
 		return (1);
 	data->texture->w_wall = ft_calloc(1, sizeof(t_img));
 	if (!data->texture->w_wall)

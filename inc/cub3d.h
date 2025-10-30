@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 17:31:00 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:01:58 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ struct						s_key
 	bool					s_key;
 	bool					d_key;
 	bool					f_key;
+	bool					f3_key;
 	bool					left_key;
 	bool					right_key;
 	bool					tab_key;
@@ -191,5 +192,6 @@ void						free_images(t_data *data);
 void						my_destroy_img(t_mlx *mlx, t_img *img);
 void						free_map(t_map *map);
 void						display_hud(t_data *data, double current_time);
+void						draw_infos(t_data *data, double current_time_s);
 
 #endif

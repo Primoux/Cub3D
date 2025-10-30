@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 17:21:18 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:12:24 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ static void	move_cam(t_data *data, double delta_time)
 		data->player->angle -= ANGLE_KEY * delta_time;
 	if (data->key->right_key == true)
 		data->player->angle += ANGLE_KEY * delta_time;
+	if (data->key->f_key == false)
+	{
+		mlx_mouse_show(data->mlx, data->win);
+		return ;
+	}
+	mlx_mouse_hide(data->mlx, data->win);
 	if (x == 0 && y == 0)
 		mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
 	if (mlx_mouse_get_pos(data->mlx, data->win, &x, &y) == 1)

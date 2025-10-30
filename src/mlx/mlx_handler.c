@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:40 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/26 17:04:11 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:12:31 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	winner(t_data *data)
 {
-	mlx_mouse_hide(data->mlx, data->win);
 	mlx_hook(data->win, 2, 1L << 0, handle_press_key, data);
 	mlx_hook(data->win, 3, 1L << 1, handle_release_key, data);
 	mlx_hook(data->win, 4, 1L << 2, handle_press_button, data);

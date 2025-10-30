@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:03 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/24 03:16:53 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 10:12:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	press_key(t_data *data, int keycode)
 		handle_key(&data->key->shift_l_key, HOLD_MOD, PRESS_ACTION);
 	if (keycode == XK_Tab)
 		handle_key(&data->key->tab_key, PRESS_MOD, PRESS_ACTION);
+	if (keycode == XK_F3)
+		handle_key(&data->key->f3_key, PRESS_MOD, PRESS_ACTION);
 	if (keycode == XK_f)
 		handle_key(&data->key->f_key, PRESS_MOD, PRESS_ACTION);
 }
@@ -78,7 +80,8 @@ int	handle_press_key(int keycode, t_data *data)
 		close_window(data);
 	if (keycode == XK_w || keycode == XK_a || keycode == XK_s || keycode == XK_d
 		|| keycode == XK_w || keycode == XK_Left || keycode == XK_Right
-		|| keycode == XK_Tab || keycode == XK_Shift_L || keycode == XK_f)
+		|| keycode == XK_Tab || keycode == XK_Shift_L || keycode == XK_F3
+		|| keycode == XK_f)
 		press_key(data, keycode);
 	return (0);
 }

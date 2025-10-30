@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:19:39 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/29 17:12:42 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 08:17:04 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,20 @@ void	destroy_bar(t_data *data, char state)
 	int	i;
 	int	j;
 
-	if (state == 'O')
+	if (data->destroy->destroying == false)
 		return ;
 	num_state = state - 48;
-	color = 0xFF00000 + num_state * 50;
-	i = 0;
 	num_state *= 40;
-	if (data->destroy->destroying == true)
+	if ((state < '1' || state > '5') && num_state > WIDTH / 2)
+		return ;
+	color = 0x00FF0000 + num_state * 50;
+	i = 0;
+	while (i < num_state)
 	{
-		while (i < num_state)
-		{
-			j = 0;
-			while (j < 5)
-				my_mlx_put_pixel(data->img, ((WIDTH >> 1) - (num_state / 2))
-					+ i, HEIGHT - (HEIGHT >> 3) + j++, color);
-			i++;
-		}
+		j = 0;
+		while (j < 5)
+			my_mlx_put_pixel(data->img, ((WIDTH >> 1) - (num_state / 2)) + i,
+				HEIGHT - (HEIGHT >> 3) + j++, color);
+		i++;
 	}
 }
