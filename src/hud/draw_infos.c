@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 09:59:36 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:08:19 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 13:17:55 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	draw_box(t_data *data)
 	x = 0;
 	y = 0;
 	y_size = 65;
-	x_size = 150;
+	x_size = 160;
 	while (y < y_size)
 	{
 		x = 0;
@@ -84,30 +84,39 @@ void	draw_box(t_data *data)
 	}
 }
 
+static void	draw_key_state(t_data *data, int x, int y, bool is_pressed,
+		const char *key)
+{
+	int	color;
+
+	if (is_pressed == true)
+	{
+		color = 0x0000FF00;
+	}
+	else
+		color = 0x00FF0000;
+	mlx_string_put(data->mlx, data->win, x, y, color, (char *)key);
+}
+
 void	draw_move_key(t_data *data)
 {
-	if (data->key->w_key == false)
-		mlx_string_put(data->mlx, data->win, WIDTH - 27, 60, 0x00FF0000, "W");
-	else
-		mlx_string_put(data->mlx, data->win, WIDTH - 27, 60, 0x0000FF00, "W");
-	if (data->key->a_key == false)
-		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6, 60, 0x00FF0000,
-			"A");
-	else
-		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6, 60, 0x0000FF00,
-			"A");
-	if (data->key->s_key == false)
-		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 2, 60, 0x00FF0000,
-			"S");
-	else
-		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 2, 60, 0x0000FF00,
-			"S");
-	if (data->key->d_key == false)
-		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 3, 60, 0x00FF0000,
-			"D");
-	else
-		mlx_string_put(data->mlx, data->win, WIDTH - 27 + 6 * 3, 60, 0x0000FF00,
-			"D");
+	int	base_x;
+	int	char_width;
+
+	char_width = 6;
+	base_x = WIDTH - 45;
+	draw_key_state(data, base_x, 60, data->key->w_key, "W");
+	draw_key_state(data, base_x + char_width, 60, data->key->a_key, "A");
+	draw_key_state(data, base_x + char_width * 2, 60, data->key->s_key, "S");
+	draw_key_state(data, base_x + char_width * 3, 60, data->key->d_key, "D");
+	draw_key_state(data, base_x + char_width * 4, 60, data->key->f_key, "F");
+	draw_key_state(data, base_x + char_width * 5, 60, data->key->left_key, "L");
+	draw_key_state(data, base_x + char_width * 6, 60, data->key->right_key, "R");
+	base_x = WIDTH - 155;
+	draw_key_state(data, base_x, 60, data->key->shift_l_key, "SHIFT");
+	draw_key_state(data, base_x + 45, 60, data->key->mouse_1, "M1");
+	draw_key_state(data, base_x + 65, 60, data->key->mouse_3, "M2");
+	draw_key_state(data, base_x + 80, 60, data->key->tab_key, "TAB");
 }
 
 void	draw_infos(t_data *data, double current_time_s)
@@ -118,5 +127,5 @@ void	draw_infos(t_data *data, double current_time_s)
 	draw_fps(data, current_time_s);
 	draw_angle(data);
 	draw_position(data);
-	draw_key(data);
+	draw_move_key(data);
 }

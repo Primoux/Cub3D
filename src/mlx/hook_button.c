@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/29 17:30:32 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/10/30 13:03:06 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	handle_mouse_button(t_data *data, double current_time_s)
 		return ;
 	destroy_block(data, data->destroy->pt_x, data->destroy->pt_y,
 		current_time_s);
-	if (data->key->mouse_2 == true && data->player->blocks
+	if (data->key->mouse_3 == true && data->player->blocks
 		&& data->map->map[data->destroy->pt_y][data->destroy->pt_x] == 'O')
 	{
 		data->map->map[data->destroy->pt_y][data->destroy->pt_x] = '1';
@@ -37,7 +37,7 @@ int	handle_press_button(int button, int x, int y, t_data *data)
 	if (button == MOUSE_BUTTON_LEFT)
 		data->key->mouse_1 = true;
 	if (button == MOUSE_BUTTON_RIGHT)
-		data->key->mouse_2 = true;
+		data->key->mouse_3 = true;
 	return (0);
 }
 
@@ -48,6 +48,6 @@ int	handle_release_button(int button, int x, int y, t_data *data)
 	if (button == MOUSE_BUTTON_LEFT)
 		data->key->mouse_1 = false;
 	if (button == MOUSE_BUTTON_RIGHT)
-		data->key->mouse_2 = false;
+		data->key->mouse_3 = false;
 	return (0);
 }
