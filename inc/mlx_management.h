@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 16:00:35 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/03 14:31:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <mlx.h>
 
 # define FOV 60
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1270
+# define HEIGHT 880
 # define TILE 75
 # define MOVE_SPEED 400
 # define MOVE_SPRINT 800

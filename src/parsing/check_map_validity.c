@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:35:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/03 12:57:32 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	get_angle(t_data *data, char c, int y, int x)
 		data->player->angle = M_PI;
 	else
 		data->player->angle = 0;
-	data->player->x = x * TILE + TILE / 2;
-	data->player->y = y * TILE + TILE / 2;
+	data->player->x = x * TILE + (TILE >> 1);
+	data->player->y = y * TILE + (TILE >> 1);
 	return (0);
 }
 

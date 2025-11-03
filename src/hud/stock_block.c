@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 18:42:12 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/30 14:41:43 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/03 13:00:24 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	stock_block(t_data *data)
 	char	*blocks;
 	int		color;
 
-	x = WIDTH / 2;
+	x = (WIDTH >> 1);
 	y = HEIGHT - (HEIGHT / 15);
 	blocks = ft_itoa(data->player->blocks);
 	color = 0x000FFFF;
