@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:52:47 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/10/30 14:36:35 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/03 14:58:33 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static t_img	*texture_east_west(t_data *data, double *tex_x)
 	}
 }
 
+
 void	print_texture(t_data *data, int i, int j)
 {
 	double			tex_y;
@@ -60,6 +61,6 @@ void	print_texture(t_data *data, int i, int j)
 	tex_y = (double)((j - data->ray->rwall_top) * wall->height
 			/ data->ray->rwall_height);
 	color = *(unsigned int *)(wall->addr + ((int)tex_y * wall->line_length
-				+ (int)(tex_x * wall->width) * (wall->bpp / 8)));
+				+ (int)(tex_x * wall->width) * (wall->bpp >> 3)));
 	my_mlx_put_pixel(data->img, i, j, color);
 }
