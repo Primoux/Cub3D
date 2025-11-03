@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:55:55 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:47:42 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/03 16:45:19 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static void	move_cam(t_data *data, double delta_time)
 		mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
 	if (mlx_mouse_get_pos(data->mlx, data->win, &x, &y) == 1)
 	{
-		mvx = ANGLE_MOUSE * (double)(x - WIDTH / 2);
+		mvx = ANGLE_MOUSE * (double)(x - (WIDTH >> 1));
 		if (mvx)
 		{
 			mlx_mouse_move(data->mlx, data->win, WIDTH >> 1, HEIGHT >> 1);
