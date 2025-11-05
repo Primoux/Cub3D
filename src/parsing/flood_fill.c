@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:58:14 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 18:25:12 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/05 10:42:36 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ int	flood_fill(t_data *data)
 	{
 		if (n >= MAP_SIZE)
 		{
-			ft_dprintf(2, "Error: flood_fill n > MAP_SIZE : %d in %s line %d\n",
+			ft_dprintf(2, "Error: flood_fill n > MAP_SIZE : %d\n",
 				MAP_SIZE);
 		}
 		else
-			ft_dprintf(2, "Error: flood_fill n = %d (%d,%d) in %s line %d\n", n,
-				y, x);
+			ft_dprintf(2, "Error: flood_fill n = %d\n", n);
 		return (1);
 	}
 	return (0);

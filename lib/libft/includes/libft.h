@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 09:45:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 00:55:02 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/05 10:42:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,10 @@ void						ft_lstadd_front_db_cir(t_list_db_cir **lst,
 char						*get_next_line(int fd);
 
 /***************************PRINTF****************************/
-int							ft_printf(const char *format, ...);
-int							ft_dprintf(int fd, const char *format, ...);
+int							ft_printf(const char *format,
+								...) __attribute__((format(printf, 1, 2)));
+int							ft_dprintf(int fd, const char *format,
+								...) __attribute__((format(printf, 2, 3)));
 int							print_digit(int fd, long n, int base, char c);
 int							print_hexa(int fd, unsigned long n);
 int							print_pointer(int fd, void *ptr);
