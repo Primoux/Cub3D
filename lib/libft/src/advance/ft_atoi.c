@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:25:22 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/14 18:33:22 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 15:05:58 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	ft_atoi(const char *str, int *error)
 	{
 		nb = nb * 10 + (*str++ - 48);
 		if ((nb > INT_MAX) && sign == 1)
-			*error += 1;
+			*error = 1;
 		else if (nb > INT_MAX && sign == -1)
-			*error += 1;
+			*error = 1;
 	}
 	return (sign * (int)nb);
 }

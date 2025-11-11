@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/03 12:57:32 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 16:33:28 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ int	check_map_validity(t_data *data, char **map)
 	ret = check_char(data, map, &y, &x);
 	if (ret == 1)
 	{
-		ft_dprintf(2, "Error: wrong char in file y = %d x = %d char = %c\n", y,
-			x, map[y][x]);
+		ft_dprintf(2, "Error: wrong char in file char %c\n", map[y][x]);
 		return (1);
 	}
 	else if (ret == 2)
