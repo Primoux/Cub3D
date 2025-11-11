@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:30:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/05 09:30:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/05 17:04:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	raycast_to_pointed_block(t_data *data)
 	int		map_y;
 
 	dist = -1.0;
+	x = data->player->x + cos(data->player->angle) * dist;
+	y = data->player->y + sin(data->player->angle) * dist;
 	while (++dist < RANGE_DESTROY * TILE)
 	{
-		x = data->player->x + cos(data->player->angle) * dist;
-		y = data->player->y + sin(data->player->angle) * dist;
 		map_x = (int)(x / TILE);
 		map_y = (int)(y / TILE);
 		if (check_collision(data, &map_x, &map_y))
@@ -55,6 +55,8 @@ void	raycast_to_pointed_block(t_data *data)
 			set_pointed_block(data, x, y);
 			return ;
 		}
+		x = data->player->x + cos(data->player->angle) * dist;
+		y = data->player->y + sin(data->player->angle) * dist;
 	}
 	set_pointed_block(data, x, y);
 }
