@@ -2,6 +2,7 @@
 NAME	=	libft.a
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror -g3
+MAKEFLAGS += -j $$(nproc)
 AR		=	ar rcs
 RM		=	rm -f
 
