@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:43 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/11 16:37:30 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 17:05:13 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	init_colors(t_data *data)
 	if (parse_color_format(data->map->ceiling_color,
 			&data->texture->ceiling) == 1)
 	{
-		ft_dprintf(2, "Error: Invalid color values\n");
+		ft_dprintf(2, "Error\nInvalid color values\n");
 		return (1);
 	}
 	if (parse_color_format(data->map->floor_color, &data->texture->floor) == 1)
 	{
-		ft_dprintf(2, "Error: Invalid color values\n");
+		ft_dprintf(2, "Error\nInvalid color values\n");
 		return (1);
 	}
 	return (0);

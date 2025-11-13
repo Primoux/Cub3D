@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:01 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/23 19:17:51 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 17:04:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ int	parse_for_textures(t_data *data, char *line)
 		if (!trimed)
 			return (-1);
 		if (assign_texture(data->map, idx, trimed) == -1)
-		{
-			ft_dprintf(2, "Error: duplicated params for key '%s'\n", keys[idx]);
 			return (1);
-		}
 	}
 	if ((line[0] == '1' || line[0] == ' ' || line[0] == '\t')
 		|| (!ft_strnstr(line, "NO", 3) && !ft_strnstr(line, "SO", 3)

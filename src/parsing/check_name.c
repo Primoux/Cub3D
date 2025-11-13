@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:35:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 17:06:38 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_name_and_access(t_data *data, char *argv)
 	length = ft_strlen(argv);
 	if (length < 4 || ft_strncmp(&argv[length - 4], ".cub", 4) != 0)
 	{
-		ft_dprintf(2, "Error: argument must have a '.cub' extension\n");
+		ft_dprintf(2, "Error\nArgument must have a '.cub' extension\n");
 		return (1);
 	}
 	data->map->fd_map = open(argv, O_RDONLY);
