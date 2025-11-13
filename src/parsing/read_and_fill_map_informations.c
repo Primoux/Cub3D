@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:30:29 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 17:09:42 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ int	read_and_fill_map_informations(t_data *data)
 		return (1);
 	if (!data->map->line)
 	{
-		ft_dprintf(2, "Error: empty map data in %s\n", __FILE__);
+		ft_dprintf(2, "Error\nNo map in file\n");
 		return (1);
 	}
 	if (read_map(data) == 1)
 	{
-		ft_dprintf(2, "Error: reading map in %s\n", __FILE__);
+		ft_dprintf(2, "Error\nread_map returned an error\n");
 		return (1);
 	}
 	data->map->map = ft_split(data->map->line, '\n');
 	free(data->map->line);
 	if (!data->map->map)
 	{
-		ft_dprintf(2, "Error: ft_split failed in %s\n", __FILE__);
+		ft_dprintf(2, "Error\nft_split returned an error\n");
 		return (1);
 	}
 	return (0);

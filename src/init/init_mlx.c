@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:57 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/27 19:43:00 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/11 17:09:41 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 static int	init_texture(t_data *data, t_img *img, char *filename)
 {
-	img->img = mlx_xpm_file_to_image(data->mlx, filename, &img->width,
-			&img->height);
+	char	*str;
+
+	str = ft_strtrim(filename, " \t");
+	if (!str)
+		return (1);
+	img->img = mlx_xpm_file_to_image(data->mlx, str, &img->width, &img->height);
 	if (!img->img)
 		return (1);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
@@ -39,16 +43,14 @@ static int	init_display(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img->img)
 	{
-		ft_dprintf(2, "Error: mlx_new_image failed in %s line %d\n", __FILE__,
-			__LINE__);
+		ft_dprintf(2, "Error\nmlx_new_image returned an error\n");
 		return (2);
 	}
 	data->img->addr = mlx_get_data_addr(data->img->img, &data->img->bpp,
 			&data->img->line_length, &data->img->endian);
 	if (!data->img->addr)
 	{
-		ft_dprintf(2, "Error: mlx_get_data_addr failed in %s line %d\n",
-			__FILE__, __LINE__);
+		ft_dprintf(2, "Error\nmlx_get_data_addr returned an error\n");
 		return (2);
 	}
 	return (0);
@@ -61,23 +63,20 @@ int	init_mlx(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 	{
-		ft_dprintf(2, "Error: mlx_init failed in %s line %d\n", __FILE__,
-			__LINE__);
+		ft_dprintf(2, "Error\nmlx_init returned an error\n");
 		return (1);
 	}
 	res = init_display(data);
 	if (res != 0)
 	{
 		if (res == 1)
-			ft_dprintf(2, "Error: Invalid texture path in %s line %d\n",
-				__FILE__, __LINE__);
+			ft_dprintf(2, "Error\ninit_display returned an error\n");
 		return (1);
 	}
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Plein le CUB3D");
 	if (!data->win)
 	{
-		ft_dprintf(2, "Error: mlx_new_window failed in %s line %d\n", __FILE__,
-			__LINE__);
+		ft_dprintf(2, "Error\nmlx_new_window returned an error\n");
 		return (1);
 	}
 	return (0);
