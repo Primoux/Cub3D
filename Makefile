@@ -3,6 +3,7 @@
 NAME		=	cub3D
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -O3 
+MAKEFLAGS	+=	-j $$(nproc)
 DEPS		=	-MMD -MP
 
 #-------------------------------- DIRECTORIES --------------------------------#
@@ -17,17 +18,14 @@ OBJ_DIR			=	.build/
 
 #-------------------------------- INCLUDES & FLAGS --------------------------------#
 
-INCLUDES	=	-I $(INCLUDE_DIR) \
-				-I ./lib/libft/includes \
-				-I $(LIBMLX_DIR)
+INCLUDES		= -I $(INCLUDE_DIR) -I ./lib/libft/includes -I $(LIBMLX_DIR)
 
-LDFLAGS		=	-L$(LIBMLX_DIR) -lmlx \
-				-lXext -lX11 -lm -fno-builtin
+LDFLAGS			=	-L$(LIBMLX_DIR) -lmlx -lXext -lX11 -lm -fno-builtin
 
 #-------------------------------- LIBRARIES --------------------------------#
 
-LIBFT		=	$(LIBFT_DIR)/libft.a
-MLX			=	$(LIBMLX_DIR)/libmlx.a
+LIBFT			=	$(LIBFT_DIR)/libft.a
+MLX				=	$(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
@@ -36,7 +34,7 @@ EXEC_SRCS		:=	exec/check_n_correct.c \
 					exec/print_texture.c \
 					exec/raycast.c \
 					exec/destroy.c \
-					exec/raycast_to_pointed_block.c \
+					exec/raycast_to_pointed_block.c
 
 HUD_SRCS		:=	hud/display_hud.c \
 					hud/destroy_bar.c \
@@ -55,13 +53,13 @@ INIT_SRCS		:=	init/init.c \
 					init/init_img.c \
 					init/init_keys.c \
 					init/init_mlx.c \
-					init/init_destroy.c \
+					init/init_destroy.c
 
 MLX_SRCS		:=	mlx/mlx_handler.c \
 					mlx/hook_keys.c \
 					mlx/close_window.c \
 					mlx/my_mlx_put_pixel.c \
-					mlx/hook_button.c \
+					mlx/hook_button.c
 
 PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_name.c \
@@ -71,7 +69,7 @@ PARSING_SRCS	:=	parsing/parsing.c \
 					parsing/check_map_validity.c \
 					parsing/char_compare.c \
 					parsing/color.c \
-					parsing/flood_fill.c \
+					parsing/flood_fill.c
 
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c \
@@ -83,7 +81,7 @@ UTILS_SRCS		:=	utils/free_all.c \
 					utils/my_destroy_img.c \
 					utils/free_mlx.c
 
-MAIN_SRCS		:=	main.c \
+MAIN_SRCS		:=	main.c
 
 SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MAIN_SRCS) \
@@ -93,8 +91,7 @@ SRCS			:=	$(addprefix $(SRC_DIR), \
 					$(MLX_SRCS) \
 					$(UTILS_SRCS) \
 					$(ERROR_SRCS) \
-					$(HUD_SRCS) \
-)
+					$(HUD_SRCS))
 
 #-------------------------------- OBJECTS --------------------------------------#
 
