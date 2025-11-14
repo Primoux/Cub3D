@@ -6,16 +6,16 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:38:00 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/21 21:38:01 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_map(t_data *data)
+int	init_map(t_cube *cube)
 {
-	data->map = ft_calloc(1, sizeof(t_map));
-	if (!data->map)
+	cube->map = ft_calloc(1, sizeof(t_map));
+	if (!cube->map)
 		return (1);
 	return (0);
 }

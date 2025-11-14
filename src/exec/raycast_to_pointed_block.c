@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 17:30:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/05 17:04:44 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 #include "mlx_management.h"
 #include <math.h>
 
-static void	set_pointed_block(t_data *data, double x, double y)
+static void	set_pointed_block(t_cube *cube, double x, double y)
 {
-	data->destroy->pt_x = x / TILE;
-	data->destroy->pt_y = y / TILE;
+	cube->destroy->pt_x = x / TILE;
+	cube->destroy->pt_y = y / TILE;
 }
 
-static int	check_collision(t_data *data, int *map_x, int *map_y)
+static int	check_collision(t_cube *cube, int *map_x, int *map_y)
 {
-	if (*map_y < 0 || *map_y >= data->map->y_max || *map_x < 0
-		|| *map_x >= data->map->x_max)
+	if (*map_y < 0 || *map_y >= cube->map->y_max || *map_x < 0
+		|| *map_x >= cube->map->x_max)
 	{
 		*map_x = 0;
 		*map_y = 0;
 		return (1);
 	}
-	if (data->map->map[*map_y][*map_x] >= '1'
-		&& data->map->map[*map_y][*map_x] <= '6')
+	if (cube->map->map[*map_y][*map_x] >= '1'
+		&& cube->map->map[*map_y][*map_x] <= '6')
 		return (1);
 	return (0);
 }
 
-void	raycast_to_pointed_block(t_data *data)
+void	raycast_to_pointed_block(t_cube *cube)
 {
 	double	dist;
 	double	x;
@@ -44,19 +44,19 @@ void	raycast_to_pointed_block(t_data *data)
 	int		map_y;
 
 	dist = -1.0;
-	x = data->player->x + cos(data->player->angle) * dist;
-	y = data->player->y + sin(data->player->angle) * dist;
+	x = cube->player->x + cos(cube->player->angle) * dist;
+	y = cube->player->y + sin(cube->player->angle) * dist;
 	while (++dist < RANGE_DESTROY * TILE)
 	{
 		map_x = (int)(x / TILE);
 		map_y = (int)(y / TILE);
-		if (check_collision(data, &map_x, &map_y))
+		if (check_collision(cube, &map_x, &map_y))
 		{
-			set_pointed_block(data, x, y);
+			set_pointed_block(cube, x, y);
 			return ;
 		}
-		x = data->player->x + cos(data->player->angle) * dist;
-		y = data->player->y + sin(data->player->angle) * dist;
+		x = cube->player->x + cos(cube->player->angle) * dist;
+		y = cube->player->y + sin(cube->player->angle) * dist;
 	}
-	set_pointed_block(data, x, y);
+	set_pointed_block(cube, x, y);
 }

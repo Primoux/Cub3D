@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:01 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/13 17:32:24 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	assign_texture(t_map *m, int idx, char *trimed)
 	return (0);
 }
 
-int	parse_for_textures(t_data *data, char *line)
+int	parse_for_textures(t_cube *cube, char *line)
 {
 	const char	*keys[] = {"NO", "SO", "WE", "EA", "F", "C", NULL};
 	int			idx;
@@ -66,34 +66,35 @@ int	parse_for_textures(t_data *data, char *line)
 		trimed = ft_strtrim(line + ft_strlen(keys[idx]), "\n");
 		if (!trimed)
 			return (-1);
-		if (assign_texture(data->map, idx, trimed) == -1)
+		if (assign_texture(cube->map, idx, trimed) == -1)
 			return (1);
 	}
-	if (( line[0] == '1' || line[0] == ' ' || line[0] == '\t')
+	if ((line[0] == '1' || line[0] == ' ' || line[0] == '\t')
 		|| (!ft_strnstr(line, "NO", 3) && !ft_strnstr(line, "SO", 3)
 			&& !ft_strnstr(line, "WE", 3) && !ft_strnstr(line, "EA", 3)
-			&& !ft_strnstr(line, "F", 2) && !ft_strnstr(line, "C", 2) && line[0] == '\n'))
+			&& !ft_strnstr(line, "F", 2) && !ft_strnstr(line, "C", 2)
+			&& line[0] == '\n'))
 		return (1);
 	return (0);
 }
 
-int	read_params(t_data *data)
+int	read_params(t_cube *cube)
 {
 	int	ret;
 
-	data->map->line = get_next_line(data->map->fd_map);
-	while (data->map->line)
+	cube->map->line = get_next_line(cube->map->fd_map);
+	while (cube->map->line)
 	{
-		ret = parse_for_textures(data, data->map->line);
+		ret = parse_for_textures(cube, cube->map->line);
 		if (ret == -1)
 		{
-			free(data->map->line);
+			free(cube->map->line);
 			return (0);
 		}
 		else if (ret == 1)
 			break ;
-		free(data->map->line);
-		data->map->line = get_next_line(data->map->fd_map);
+		free(cube->map->line);
+		cube->map->line = get_next_line(cube->map->fd_map);
 	}
 	return (0);
 }

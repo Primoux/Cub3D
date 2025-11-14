@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:22:58 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:23:00 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:55:14 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "cub3d.h"
 
-void	stock_block(t_data *data);
-void	raycast_to_pointed_block(t_data *data);
-void	destroy_bar(t_data *data, char state);
-void	destroy_block(t_data *data, int tile_x, int tile_y,
+void	stock_block(t_cube *cube);
+void	raycast_to_pointed_block(t_cube *cube);
+void	destroy_bar(t_cube *cube, char state);
+void	destroy_block(t_cube *cube, int tile_x, int tile_y,
 			double current_time);
 
 #endif

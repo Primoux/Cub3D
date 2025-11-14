@@ -6,28 +6,28 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:42 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 10:08:47 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_texture(t_data *data)
+int	init_texture(t_cube *cube)
 {
-	data->texture = ft_calloc(1, sizeof(t_texture));
-	if (!data->texture)
+	cube->texture = ft_calloc(1, sizeof(t_texture));
+	if (!cube->texture)
 		return (1);
-	data->texture->n_wall = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->n_wall)
+	cube->texture->n_wall = ft_calloc(1, sizeof(t_img));
+	if (!cube->texture->n_wall)
 		return (1);
-	data->texture->s_wall = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->s_wall)
+	cube->texture->s_wall = ft_calloc(1, sizeof(t_img));
+	if (!cube->texture->s_wall)
 		return (1);
-	data->texture->e_wall = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->e_wall)
+	cube->texture->e_wall = ft_calloc(1, sizeof(t_img));
+	if (!cube->texture->e_wall)
 		return (1);
-	data->texture->w_wall = ft_calloc(1, sizeof(t_img));
-	if (!data->texture->w_wall)
+	cube->texture->w_wall = ft_calloc(1, sizeof(t_img));
+	if (!cube->texture->w_wall)
 		return (1);
 	return (0);
 }

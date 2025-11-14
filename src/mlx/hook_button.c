@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 03:40:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:38:55 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,41 @@
 #include "raycast.h"
 #include "destroy.h"
 
-void	handle_mouse_button(t_data *data, double current_time_s)
+void	handle_mouse_button(t_cube *cube, double current_time_s)
 {
-	raycast_to_pointed_block(data);
-	if (data->destroy->pt_y < 0 || data->destroy->pt_x < 0
-		|| data->destroy->pt_x >= data->map->x_max
-		|| data->destroy->pt_y >= data->map->y_max)
+	raycast_to_pointed_block(cube);
+	if (cube->destroy->pt_y < 0 || cube->destroy->pt_x < 0
+		|| cube->destroy->pt_x >= cube->map->x_max
+		|| cube->destroy->pt_y >= cube->map->y_max)
 		return ;
-	destroy_block(data, data->destroy->pt_x, data->destroy->pt_y,
+	destroy_block(cube, cube->destroy->pt_x, cube->destroy->pt_y,
 		current_time_s);
-	if (data->key->mouse_3 == true && data->player->blocks
-		&& data->map->map[data->destroy->pt_y][data->destroy->pt_x] == 'O')
+	if (cube->key->mouse_3 == true && cube->player->blocks
+		&& cube->map->map[cube->destroy->pt_y][cube->destroy->pt_x] == 'O')
 	{
-		data->map->map[data->destroy->pt_y][data->destroy->pt_x] = '1';
-		data->player->blocks--;
+		cube->map->map[cube->destroy->pt_y][cube->destroy->pt_x] = '1';
+		cube->player->blocks--;
 	}
 }
 
-int	handle_press_button(int button, int x, int y, t_data *data)
+int	handle_press_button(int button, int x, int y, t_cube *cube)
 {
 	(void)x;
 	(void)y;
 	if (button == MOUSE_BUTTON_LEFT)
-		data->key->mouse_1 = true;
+		cube->key->mouse_1 = true;
 	if (button == MOUSE_BUTTON_RIGHT)
-		data->key->mouse_3 = true;
+		cube->key->mouse_3 = true;
 	return (0);
 }
 
-int	handle_release_button(int button, int x, int y, t_data *data)
+int	handle_release_button(int button, int x, int y, t_cube *cube)
 {
 	(void)x;
 	(void)y;
 	if (button == MOUSE_BUTTON_LEFT)
-		data->key->mouse_1 = false;
+		cube->key->mouse_1 = false;
 	if (button == MOUSE_BUTTON_RIGHT)
-		data->key->mouse_3 = false;
+		cube->key->mouse_3 = false;
 	return (0);
 }
