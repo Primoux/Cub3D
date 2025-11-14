@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 19:19:39 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/11/03 12:57:06 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "mlx_management.h"
 #include "utils.h"
 
-void	destroy_bar(t_data *data, char state)
+void	destroy_bar(t_cube *cube, char state)
 {
 	int	color;
 	int	num_state;
 	int	i;
 	int	j;
 
-	if (data->destroy->destroying == false)
+	if (cube->destroy->destroying == false)
 		return ;
 	num_state = state - 48;
 	num_state *= 40;
@@ -33,7 +33,7 @@ void	destroy_bar(t_data *data, char state)
 	{
 		j = 0;
 		while (j < 5)
-			my_mlx_put_pixel(data->img, ((WIDTH >> 1) - (num_state >> 1)) + i,
+			my_mlx_put_pixel(cube->img, ((WIDTH >> 1) - (num_state >> 1)) + i,
 				HEIGHT - (HEIGHT >> 3) + j++, color);
 		i++;
 	}

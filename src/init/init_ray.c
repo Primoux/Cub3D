@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:44 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/30 14:34:45 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "mlx_management.h"
 #include <math.h>
 
-int	init_ray(t_data *data)
+int	init_ray(t_cube *cube)
 {
-	data->ray = ft_calloc(1, sizeof(t_ray));
-	if (!data->ray)
+	cube->ray = ft_calloc(1, sizeof(t_ray));
+	if (!cube->ray)
 		return (1);
-	data->ray->rad_fov = FOV * (M_PI / 180);
-	data->ray->ratio = (2 * tan(data->ray->rad_fov / 2)) / WIDTH;
+	cube->ray->rad_fov = FOV * (M_PI / 180);
+	cube->ray->ratio = (2 * tan(cube->ray->rad_fov / 2)) / WIDTH;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:39 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/11 17:06:38 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-int	check_name_and_access(t_data *data, char *argv)
+int	check_name_and_access(t_cube *cube, char *argv)
 {
 	size_t	length;
 
@@ -26,8 +26,8 @@ int	check_name_and_access(t_data *data, char *argv)
 		ft_dprintf(2, "Error\nArgument must have a '.cub' extension\n");
 		return (1);
 	}
-	data->map->fd_map = open(argv, O_RDONLY);
-	if (data->map->fd_map == -1)
+	cube->map->fd_map = open(argv, O_RDONLY);
+	if (cube->map->fd_map == -1)
 	{
 		perror(argv);
 		return (1);
