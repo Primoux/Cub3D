@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:12 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/17 08:38:19 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ static void	draw_minimap_tile(t_cube *cube, int scale)
 {
 	int				player_x;
 	int				player_y;
-	unsigned int	wall_color;
 	int				player_color;
 
 	player_x = floor(cube->player->x / TILE);
 	player_y = floor(cube->player->y / TILE);
-	wall_color = ~cube->texture->ceiling.val;
 	player_color = 0x0000FF00;
 	if (cube->map->map[cube->map->y][cube->map->x] == '6')
 		draw_tile(cube, scale, 0x00AAAAFF);
