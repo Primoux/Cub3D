@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:43 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/17 08:36:03 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@ static int	parse_color_format(char *color_str, t_color *color)
 {
 	char	*str;
 	int		error;
+	int		c;
 
-	color->red = ft_atoi(color_str, &error);
-	if (error || color->red < 0 || color->red > 255)
+	c = ft_atoi(color_str, &error);
+	if (error || c < 0 || c > 255)
 		return (1);
+	color->red = c;
 	str = ft_strchr(color_str, ',');
 	if (!str || *(++str) == ',')
 		return (1);
-	color->green = ft_atoi(str, &error);
-	if (error || color->green < 0 || color->green > 255)
+	c = ft_atoi(str, &error);
+	if (error || c < 0 || c > 255)
 		return (1);
+	color->green = c;
 	str = ft_strchr(str, ',');
 	if (!str || *(++str) == ',')
 		return (1);
-	color->blue = ft_atoi(str, &error);
-	if (error || color->blue < 0 || color->blue > 255)
+	c = ft_atoi(str, &error);
+	if (error || c < 0 || c > 255)
 		return (1);
+	color->blue = c;
 	return (0);
 }
 
