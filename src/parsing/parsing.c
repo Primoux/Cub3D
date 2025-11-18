@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/18 17:32:34 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**copy_map(t_cube *cube)
 
 	map = ft_calloc(cube->map->y_max + 1, sizeof(char *));
 	if (!map)
-		return (NULL);
+		return (free_tab_return_null(cube->map->map));
 	y = -1;
 	while (++y < cube->map->y_max)
 	{
@@ -71,6 +71,8 @@ char	**copy_map(t_cube *cube)
 
 int	parsing(t_cube *cube, char *argv)
 {
+	char	**map;
+
 	cube->map->x_max = -1;
 	if (check_name_and_access(cube, argv) == 1)
 		return (1);
@@ -83,8 +85,9 @@ int	parsing(t_cube *cube, char *argv)
 	get_y_len(cube);
 	if (flood_fill(cube) == 1)
 		return (1);
-	cube->map->map = copy_map(cube);
-	if (!cube->map->map)
+	map = copy_map(cube);
+	if (!map)
 		return (1);
+	cube->map->map = map;
 	return (EXIT_SUCCESS);
 }
