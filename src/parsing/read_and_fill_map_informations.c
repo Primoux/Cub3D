@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:04 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/18 13:06:20 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ensure_textures(t_cube *cube)
 		|| !cube->map->floor_color || !cube->map->ceiling_color)
 	{
 		free(cube->map->line);
-		print_error_asset(cube);
+		ft_dprintf(2, "Error\nInvalid map\n");
 		return (1);
 	}
 	return (0);

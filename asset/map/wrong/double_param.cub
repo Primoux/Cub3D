@@ -1,11 +1,3 @@
-NO ./asset/textures/minecraft/deepslate_diamond_ore.xpm
-SO ./asset/textures/minecraft/deepslate_diamond_ore.xpm
-WE ./asset/textures/minecraft/deepslate_diamond_ore.xpm
-EA ./asset/textures/minecraft/deepslate_diamond_ore.xpm
-EA ./asset/textures/minecraft/deepslate_diamond_ore.xpm
-C 255,255,255
-F 255,255,255
-
 1111111111111111111111
 1000000000000000000001
 1000000000000000000001
@@ -17,3 +9,11 @@ F 255,255,255
 1000000000000000000001
 1000000000N00000000001
 1111111111111111111111
+
+NO ./asset/textures/minecraft/deepslate_diamond_ore.xpm
+SO ./asset/textures/minecraft/deepslate_diamond_ore.xpm
+WE ./asset/textures/minecraft/deepslate_diamond_ore.xpm
+EA ./asset/textures/minecraft/deepslate_diamond_ore.xpm
+EA ./asset/textures/minecraft/deepslate_diamond_ore.xpm
+C 255,255,255
+F 255,255,255
