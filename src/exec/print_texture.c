@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 16:52:47 by kapinarc          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/18 17:03:44 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ static t_img	*texture_north_south(t_cube *cube, double *tex_x)
 		*tex_x += TILE;
 	*tex_x /= TILE;
 	if (!ray_dir(cube->ray->angle, 0))
-		return (cube->texture->n_wall);
+		return (cube->texture->s_wall);
 	else
 	{
 		*tex_x = 1 - *tex_x;
-		return (cube->texture->s_wall);
+		return (cube->texture->n_wall);
 	}
 }
 
