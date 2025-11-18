@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:53:01 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/18 13:30:27 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	parse_for_textures(t_cube *cube, char *line)
 		if (assign_texture(cube->map, idx, trimed) == -1)
 			return (1);
 	}
-	if ((line[0] == '1' || line[0] == ' ' || line[0] == '\t')
+	if ((line[0] == '0' || line[0] == '1' || line[0] == ' ' || line[0] == '\t')
 		|| (!ft_strnstr(line, "NO", 3) && !ft_strnstr(line, "SO", 3)
 			&& !ft_strnstr(line, "WE", 3) && !ft_strnstr(line, "EA", 3)
 			&& !ft_strnstr(line, "F", 2) && !ft_strnstr(line, "C", 2)
