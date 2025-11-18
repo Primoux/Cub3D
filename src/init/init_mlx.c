@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:57 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:59:29 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/18 12:56:10 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ static int	init_texture(t_cube *cube, t_img *img, char *filename)
 	if (!str)
 		return (1);
 	img->img = mlx_xpm_file_to_image(cube->mlx, str, &img->width, &img->height);
+	free(str);
 	if (!img->img)
+	{
 		return (1);
+	}
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
 	if (!img->addr)

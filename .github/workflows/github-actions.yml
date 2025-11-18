@@ -45,4 +45,4 @@ jobs:
       - name: Check norminette
         run: |
           echo "🔍 Running norminette..."
-          norminette src inc
+          norminette src inc lib/libft
