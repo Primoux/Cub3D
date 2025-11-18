@@ -92,8 +92,8 @@ double	lazerizor(t_cube *cube, double angle)
 	cube->ray->flag = 'y';
 	cube->ray->hit_x = y_hit_x;
 	cube->ray->hit_y = y_hit_y;
-	return ((y_hit_x - cube->player->x) * (cos(cube->player->angle)) + (y_hit_y
-			- cube->player->y) * sin(cube->player->angle));
+	return ((y_hit_x - cube->player->x) * (cos(cube->player->angle))
+		+ (y_hit_y - cube->player->y) * sin(cube->player->angle));
 }
 
 static void	raycaster(t_cube *cube, double *wall_bot, double *wall_top)
@@ -103,7 +103,7 @@ static void	raycaster(t_cube *cube, double *wall_bot, double *wall_top)
 	double	ratio;
 
 	norm_angle(&cube->ray->angle);
-	ratio = tan(cube->ray->rad_fov / 2);
+	ratio = tanf(cube->ray->rad_fov / 2);
 	dist = (double)(lazerizor(cube, cube->ray->angle));
 	if (dist <= 0)
 		dist = 1;
