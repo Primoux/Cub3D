@@ -20,12 +20,12 @@ OBJ_DIR			=	.build/
 
 INCLUDES		= -I $(INCLUDE_DIR) -I ./lib/libft/includes -I $(LIBMLX_DIR)
 
-LDFLAGS			=	-L$(LIBMLX_DIR) -lmlx -lXext -lX11 -lm -fno-builtin
+LDFLAGS			= -L$(LIBMLX_DIR) -lmlx -lXext -lX11 -lm -fno-builtin
 
 #-------------------------------- LIBRARIES --------------------------------#
 
-LIBFT			=	$(LIBFT_DIR)/libft.a
-MLX				=	$(LIBMLX_DIR)/libmlx.a
+LIBFT			= $(LIBFT_DIR)/libft.a
+MLX				= $(LIBMLX_DIR)/libmlx.a
 
 #-------------------------------- SOURCE FILES --------------------------------#
 
@@ -133,7 +133,7 @@ fclean:
 
 
 re: fclean
-	$(MAKE) -j all
+	$(MAKE) all
 
 print-%:
 	@echo $($(patsubst print-%,%,$@))
