@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/18 17:32:34 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 12:50:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ void	get_y_len(t_cube *cube)
 
 	i = 0;
 	len = 0;
-	while (i < cube->map->y_max)
+	while (cube->map->map[i])
 	{
 		len = ft_strlen((cube->map->map[i]));
 		if (len > cube->map->x_max)
 			cube->map->x_max = len;
 		i++;
 	}
+	cube->map->y_max = i;
 }
 
 void	change_char(unsigned int i, char *str)
@@ -83,7 +84,7 @@ int	parsing(t_cube *cube, char *argv)
 			cube->map->map) == 1)
 		return (1);
 	get_y_len(cube);
-	if (flood_fill(cube) == 1)
+	if (launch_flood_fill(cube) == 1)
 		return (1);
 	map = copy_map(cube);
 	if (!map)
