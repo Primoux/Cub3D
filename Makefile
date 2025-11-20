@@ -2,7 +2,7 @@
 
 NAME		=	cub3D
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3 
+CFLAGS		=	-Wall -Wextra -Werror -O3 -g3
 MAKEFLAGS	+=	-j $$(nproc)
 DEPS		=	-MMD -MP
 
@@ -73,13 +73,13 @@ PARSING_SRCS	:=	parsing/parsing.c \
 
 UTILS_SRCS		:=	utils/free_all.c \
 					utils/print_map.c \
-					utils/print_error_asset.c \
 					utils/get_time_to_msec.c \
 					utils/free_images.c \
 					utils/free_map.c \
 					utils/free_structs.c \
 					utils/my_destroy_img.c \
-					utils/free_mlx.c
+					utils/free_mlx.c \
+					utils/print_error.c
 
 MAIN_SRCS		:=	main.c
 

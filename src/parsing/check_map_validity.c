@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:31 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 13:02:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_management.h"
 #include "parsing.h"
+#include "utils.h"
 #include <math.h>
 
 static int	get_angle(t_cube *cube, char c, int y, int x)
@@ -63,19 +64,13 @@ int	check_map_validity(t_cube *cube, char **map)
 	y = 0;
 	ret = check_char(cube, map, &y, &x);
 	if (ret == 1)
-	{
-		ft_dprintf(2, "Error\nWrong char in file char\n");
-		return (1);
-	}
+		return (print_error("check_char() returned 1\n\
+Wrong char in file", __FILE__, __LINE__, RETURN_1));
 	else if (ret == 2)
-	{
-		ft_dprintf(2, "Error\nPlayer character duplicated in map\n");
-		return (1);
-	}
+		return (print_error("check_char() returned 2\n\
+Player character duplicated in map", __FILE__, __LINE__, RETURN_1));
 	if (!cube->player->x || !cube->player->y)
-	{
-		ft_dprintf(2, "Error\nNo player character found in map\n");
-		return (1);
-	}
+		return (print_error("check_char did not find any player\n\
+No player character found in map", __FILE__, __LINE__, RETURN_1));
 	return (0);
 }

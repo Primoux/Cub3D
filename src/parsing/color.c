@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:43 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/17 08:36:03 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 13:03:09 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,18 @@ static int	check_line_validity(char *line)
 
 int	init_colors(t_cube *cube)
 {
-	if (check_line_validity(cube->map->floor_color) == 1
-		|| check_line_validity(cube->map->ceiling_color) == 1)
-	{
-		ft_dprintf(2, "Error\nInvalid character in line\n");
-		return (1);
-	}
+	if (check_line_validity(cube->map->floor_color) == 1)
+		return (print_error("Invalid character in floor color line", __FILE__,
+				__LINE__, RETURN_1));
+	if (check_line_validity(cube->map->ceiling_color) == 1)
+		return (print_error("Invalid character in ceiling color line", __FILE__,
+				__LINE__, RETURN_1));
 	if (parse_color_format(cube->map->ceiling_color,
 			&cube->texture->ceiling) == 1)
-	{
-		ft_dprintf(2, "Error\nInvalid color values\n");
-		return (1);
-	}
+		return (print_error("Invalid ceiling color value", __FILE__, __LINE__,
+				RETURN_1));
 	if (parse_color_format(cube->map->floor_color, &cube->texture->floor) == 1)
-	{
-		ft_dprintf(2, "Error\nInvalid color values\n");
-		return (1);
-	}
+		return (print_error("Invalid floor color value", __FILE__, __LINE__,
+				RETURN_1));
 	return (0);
 }

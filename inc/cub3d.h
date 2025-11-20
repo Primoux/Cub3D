@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:54:50 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 10:07:59 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_texture	t_texture;
 typedef struct s_mlx		t_mlx;
 typedef struct s_cube		t_cube;
+typedef struct s_img		t_img;
 typedef struct s_map		t_map;
 typedef struct s_player		t_player;
 typedef struct s_ray		t_ray;

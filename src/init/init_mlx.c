@@ -6,12 +6,13 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:37:57 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/18 12:56:10 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 13:02:45 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_management.h"
 #include "parsing.h"
+#include "utils.h"
 
 static int	init_texture(t_cube *cube, t_img *img, char *filename)
 {
@@ -19,17 +20,18 @@ static int	init_texture(t_cube *cube, t_img *img, char *filename)
 
 	str = ft_strtrim(filename, " \t");
 	if (!str)
-		return (1);
+		return (print_error("ft_strtrim failed\n\
+str is null", __FILE__, __LINE__, RETURN_1));
 	img->img = mlx_xpm_file_to_image(cube->mlx, str, &img->width, &img->height);
 	free(str);
 	if (!img->img)
-	{
-		return (1);
-	}
+		return (print_error("mlx_xpm_file_to_image failed\n\
+Unable to setup the image", __FILE__, __LINE__, RETURN_1));
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_length,
 			&img->endian);
 	if (!img->addr)
-		return (1);
+		return (print_error("mlx_get_data_addr failed\n\
+Unable to setup the image informations", __FILE__, __LINE__, RETURN_1));
 	return (0);
 }
 
@@ -45,42 +47,27 @@ static int	init_display(t_cube *cube)
 		return (1);
 	cube->img->img = mlx_new_image(cube->mlx, WIDTH, HEIGHT);
 	if (!cube->img->img)
-	{
-		ft_dprintf(2, "Error\nmlx_new_image returned an error\n");
-		return (2);
-	}
+		return (print_error("mlx_new_image failed\n\
+cube->img->img is NULL", __FILE__, __LINE__, RETURN_1));
 	cube->img->addr = mlx_get_data_addr(cube->img->img, &cube->img->bpp,
 			&cube->img->line_length, &cube->img->endian);
 	if (!cube->img->addr)
-	{
-		ft_dprintf(2, "Error\nmlx_get_cube_addr returned an error\n");
-		return (2);
-	}
+		return (print_error("mlx_get_data_addr failed\n\
+Unable to setup the address of the image", __FILE__, __LINE__, RETURN_1));
 	return (0);
 }
 
 int	init_mlx(t_cube *cube)
 {
-	int	res;
-
 	cube->mlx = mlx_init();
 	if (!cube->mlx)
-	{
-		ft_dprintf(2, "Error\nmlx_init returned an error\n");
+		return (print_error("mlx_init failed\n\
+Unable to setup the mlx", __FILE__, __LINE__, RETURN_1));
+	if (init_display(cube) == 1)
 		return (1);
-	}
-	res = init_display(cube);
-	if (res != 0)
-	{
-		if (res == 1)
-			ft_dprintf(2, "Error\ninit_display returned an error\n");
-		return (1);
-	}
 	cube->win = mlx_new_window(cube->mlx, WIDTH, HEIGHT, "Plein le CUB3D");
 	if (!cube->win)
-	{
-		ft_dprintf(2, "Error\nmlx_new_window returned an error\n");
-		return (1);
-	}
+		return (print_error("mlx_new_window failed\n\
+Unable to setup the window", __FILE__, __LINE__, RETURN_1));
 	return (0);
 }
