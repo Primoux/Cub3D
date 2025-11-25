@@ -1,7 +1,7 @@
 #-------------------------------- VARIABLES ----------------------------------#
 NAME	=	libft.a
 CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g3
+CFLAGS	=	-Wall -Wextra -Werror -O3
 MAKEFLAGS += -j $$(nproc)
 AR		=	ar rcs
 RM		=	rm -f
