@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 19:28:11 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/14 16:57:49 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/25 16:08:03 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 void	free_images(t_cube *cube)
 {
 	my_destroy_img(cube->mlx, cube->img);
-	my_destroy_img(cube->mlx, cube->texture->n_wall);
-	my_destroy_img(cube->mlx, cube->texture->s_wall);
-	my_destroy_img(cube->mlx, cube->texture->e_wall);
-	my_destroy_img(cube->mlx, cube->texture->w_wall);
+	if (cube->texture)
+	{
+		my_destroy_img(cube->mlx, cube->texture->n_wall);
+		my_destroy_img(cube->mlx, cube->texture->s_wall);
+		my_destroy_img(cube->mlx, cube->texture->e_wall);
+		my_destroy_img(cube->mlx, cube->texture->w_wall);
+	}
 }
