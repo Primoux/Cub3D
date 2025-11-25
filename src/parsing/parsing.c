@@ -6,11 +6,12 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:49 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/20 12:50:09 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/25 16:22:55 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "utils.h"
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -49,7 +50,7 @@ char	**copy_map(t_cube *cube)
 
 	map = ft_calloc(cube->map->y_max + 1, sizeof(char *));
 	if (!map)
-		return (free_tab_return_null(cube->map->map));
+		return (NULL);
 	y = -1;
 	while (++y < cube->map->y_max)
 	{
@@ -88,7 +89,7 @@ int	parsing(t_cube *cube, char *argv)
 		return (1);
 	map = copy_map(cube);
 	if (!map)
-		return (1);
+		return (print_error("ft_calloc failed", __FILE__, __LINE__, RETURN_1));
 	cube->map->map = map;
 	return (EXIT_SUCCESS);
 }
