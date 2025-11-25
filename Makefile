@@ -2,7 +2,7 @@
 
 NAME		=	cub3D
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -O3 -g3
+CFLAGS		=	-Wall -Wextra -Werror -O3
 MAKEFLAGS	+=	-j $$(nproc)
 DEPS		=	-MMD -MP
 
