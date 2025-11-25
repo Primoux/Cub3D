@@ -1,5 +1,10 @@
+# Executables
 cub3D
+
+# Build artifacts
 .build/*
+
+# IDE/Editor
 *.json
 .idea
-out
+.vscode/
