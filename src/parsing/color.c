@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:52:43 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/20 13:03:09 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/26 17:48:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,21 @@ static int	parse_color_format(char *color_str, t_color *color)
 
 static int	check_line_validity(char *line)
 {
-	int			i;
-	int			y;
-	const char	*good_char = {"0123456789,"};
-	int			g_c_len;
+	int	nb_comma;
 
-	g_c_len = ft_strlen(good_char);
-	i = 0;
-	while (line[i])
+	nb_comma = 0;
+	if (!ft_isdigit(*line))
+		return (1);
+	while (*line)
 	{
-		y = 0;
-		while (good_char[y])
-		{
-			if (good_char[y] == line[i])
-				break ;
-			y++;
-		}
-		if (y == g_c_len)
+		if (!ft_isdigit(*line) && *line != ',')
 			return (1);
-		i++;
+		if (*line == ',')
+			nb_comma++;
+		line++;
 	}
+	if (nb_comma > 2)
+		return (1);
 	return (0);
 }
 
