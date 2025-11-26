@@ -29,6 +29,6 @@ int	main(int argc, char **argv)
 		free_all(&cube);
 		return (1);
 	}
-	winner(&cube);
+	windowser(&cube);
 	return (0);
 }
