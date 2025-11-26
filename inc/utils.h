@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:24:45 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/20 13:02:10 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/26 18:06:56 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 double	get_time_to_msec(void);
 void	my_mlx_put_pixel(t_img *img, int x, int y, int color);
 void	print_map_and_params(t_cube *cube);
-void	windowser(t_cube *cube);
 void	handle_mouse_button(t_cube *cube, double current_time);
 int		print_error(char *str, char *file, int line, int ret);
 

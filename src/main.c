@@ -6,13 +6,14 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 21:51:17 by enchevri          #+#    #+#             */
-/*   Updated: 2025/11/20 13:03:55 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/26 18:07:18 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "init.h"
 #include "memory.h"
+#include "game.h"
 #include "parsing.h"
 #include "utils.h"
 
