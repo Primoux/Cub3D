@@ -55,7 +55,7 @@ INIT_SRCS		:=	init/init.c \
 					init/init_mlx.c \
 					init/init_destroy.c
 
-MLX_SRCS		:=	mlx/mlx_handler.c \
+MLX_SRCS		:=	mlx/windowser.c \
 					mlx/hook_keys.c \
 					mlx/close_window.c \
 					mlx/my_mlx_put_pixel.c \
