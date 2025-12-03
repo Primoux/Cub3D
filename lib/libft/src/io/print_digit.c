@@ -6,7 +6,7 @@
 /*   By: enchevri <enchevri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:36:17 by enchevri          #+#    #+#             */
-/*   Updated: 2025/10/07 23:53:06 by enchevri         ###   ########lyon.fr   */
+/*   Updated: 2025/11/26 18:12:39 by enchevri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	print_digit(int fd, long n, int base, char c)
 		symbols = "0123456789ABCDEF";
 	if (n < 0)
 	{
-		write(1, "-", 1);
-		return (print_digit(fd, -n, base, c) + 1);
+		count += write(1, "-", 1);
+		return (print_digit(fd, -n, base, c) + count);
 	}
 	else if (n < base)
 		return (ft_putchar_fd(symbols[n], fd));
