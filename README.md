@@ -88,7 +88,3 @@ asset/map/     maps, valid and invalid
 asset/textures/ wall textures
 lib/libft/     my own C library
 ```
-
-## Note on repository size
-
-`asset/` is about 136 MB because of the high-resolution texture sets. Cloning takes a while; `git clone --depth 1` helps.
